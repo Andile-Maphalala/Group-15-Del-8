@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="INF370ModelStoreContainer" CdmEntityContainer="INF370Entities">
+    <EntitySetMapping Name="AGENTs">
+      <EntityTypeMapping TypeName="INF370Model.AGENT">
+        <MappingFragment StoreEntitySet="AGENT">
+          <ScalarProperty Name="AGENT_ID" ColumnName="AGENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="COMPANY" ColumnName="COMPANY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AREAs">
+      <EntityTypeMapping TypeName="INF370Model.AREA">
+        <MappingFragment StoreEntitySet="AREA">
+          <ScalarProperty Name="AREAID" ColumnName="AREAID" />
+          <ScalarProperty Name="CITYID" ColumnName="CITYID" />
+          <ScalarProperty Name="AREANAME" ColumnName="AREANAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BOOKINGs">
+      <EntityTypeMapping TypeName="INF370Model.BOOKING">
+        <MappingFragment StoreEntitySet="BOOKING">
+          <ScalarProperty Name="BOOKINGID" ColumnName="BOOKINGID" />
+          <ScalarProperty Name="PROPERTYID" ColumnName="PROPERTYID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="CLIENTID" ColumnName="CLIENTID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CITies">
+      <EntityTypeMapping TypeName="INF370Model.CITY">
+        <MappingFragment StoreEntitySet="CITY">
+          <ScalarProperty Name="CITYID" ColumnName="CITYID" />
+          <ScalarProperty Name="PROVINCEID" ColumnName="PROVINCEID" />
+          <ScalarProperty Name="CITYNAME" ColumnName="CITYNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTs">
+      <EntityTypeMapping TypeName="INF370Model.CLIENT">
+        <MappingFragment StoreEntitySet="CLIENT">
+          <ScalarProperty Name="CLIENTID" ColumnName="CLIENTID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+          <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PASSPORT_NO" ColumnName="PASSPORT_NO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NATIONALITY" ColumnName="NATIONALITY" />
+          <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+          <ScalarProperty Name="ISSTUDENT" ColumnName="ISSTUDENT" />
+          <ScalarProperty Name="RESIDENTIAL_ADDRESS" ColumnName="RESIDENTIAL_ADDRESS" />
+          <ScalarProperty Name="POSTAL_ADDRESS" ColumnName="POSTAL_ADDRESS" />
+          <ScalarProperty Name="NAME_OF_EMPLOYER" ColumnName="NAME_OF_EMPLOYER" />
+          <ScalarProperty Name="OCCUPATION" ColumnName="OCCUPATION" />
+          <ScalarProperty Name="WORK_ADDRESS" ColumnName="WORK_ADDRESS" />
+          <ScalarProperty Name="WORK_TEL__NO" ColumnName="WORK_TEL__NO" />
+          <ScalarProperty Name="GROSS_SALARY" ColumnName="GROSS_SALARY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPLAINTs">
+      <EntityTypeMapping TypeName="INF370Model.COMPLAINT">
+        <MappingFragment StoreEntitySet="COMPLAINT">
+          <ScalarProperty Name="COMPLAINTID" ColumnName="COMPLAINTID" />
+          <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+          <ScalarProperty Name="COMPLAINTSTATUSID" ColumnName="COMPLAINTSTATUSID" />
+          <ScalarProperty Name="RENTALAGREEMENTID" ColumnName="RENTALAGREEMENTID" />
+          <ScalarProperty Name="FEEDBACKID" ColumnName="FEEDBACKID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+          <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPLAINTSTATUS">
+      <EntityTypeMapping TypeName="INF370Model.COMPLAINTSTATU">
+        <MappingFragment StoreEntitySet="COMPLAINTSTATUS">
+          <ScalarProperty Name="COMPLAINTSTATUSID" ColumnName="COMPLAINTSTATUSID" />
+          <ScalarProperty Name="COMPLAINTSTATUS_NAME" ColumnName="COMPLAINTSTATUS_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DATEs">
+      <EntityTypeMapping TypeName="INF370Model.DATE">
+        <MappingFragment StoreEntitySet="DATE">
+          <ScalarProperty Name="DATEID" ColumnName="DATEID" />
+          <ScalarProperty Name="DATEDESCRIPTION" ColumnName="DATEDESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DATETIMESLOTs">
+      <EntityTypeMapping TypeName="INF370Model.DATETIMESLOT">
+        <MappingFragment StoreEntitySet="DATETIMESLOT">
+          <ScalarProperty Name="DATETIMESLOTID" ColumnName="DATETIMESLOTID" />
+          <ScalarProperty Name="DATEID" ColumnName="DATEID" />
+          <ScalarProperty Name="SLOTID" ColumnName="SLOTID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEACTIVATEDUSERs">
+      <EntityTypeMapping TypeName="INF370Model.DEACTIVATEDUSER">
+        <MappingFragment StoreEntitySet="DEACTIVATEDUSER">
+          <ScalarProperty Name="DECTIVATEDID" ColumnName="DECTIVATEDID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="DEACTIVATE_DATETIME" ColumnName="DEACTIVATE_DATETIME" />
+          <ScalarProperty Name="DEACTIVATE_REASON" ColumnName="DEACTIVATE_REASON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTs">
+      <EntityTypeMapping TypeName="INF370Model.DOCUMENT">
+        <MappingFragment StoreEntitySet="DOCUMENT">
+          <ScalarProperty Name="DOCUMENTID" ColumnName="DOCUMENTID" />
+          <ScalarProperty Name="RENTALAPPLICATIONID" ColumnName="RENTALAPPLICATIONID" />
+          <ScalarProperty Name="IDENTITYDOCUMENT" ColumnName="IDENTITYDOCUMENT" />
+          <ScalarProperty Name="PAYSLIP" ColumnName="PAYSLIP" />
+          <ScalarProperty Name="BURSARYLETTER" ColumnName="BURSARYLETTER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEEDATETIMESLOTs">
+      <EntityTypeMapping TypeName="INF370Model.EMPLOYEEDATETIMESLOT">
+        <MappingFragment StoreEntitySet="EMPLOYEEDATETIMESLOT">
+          <ScalarProperty Name="EMPLOYEEDATETIMESLOTID" ColumnName="EMPLOYEEDATETIMESLOTID" />
+          <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+          <ScalarProperty Name="EMPLOYEESLOTSTAUSID" ColumnName="EMPLOYEESLOTSTAUSID" />
+          <ScalarProperty Name="DATETIMESLOTID" ColumnName="DATETIMESLOTID" />
+          <ScalarProperty Name="BOOKINGID" ColumnName="BOOKINGID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEESLOTSTATUS">
+      <EntityTypeMapping TypeName="INF370Model.EMPLOYEESLOTSTATU">
+        <MappingFragment StoreEntitySet="EMPLOYEESLOTSTATUS">
+          <ScalarProperty Name="EMPLOYEESLOTSTAUSID" ColumnName="EMPLOYEESLOTSTAUSID" />
+          <ScalarProperty Name="EMPLOYEESLOTSTATUSDESCR" ColumnName="EMPLOYEESLOTSTATUSDESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEETYPEs">
+      <EntityTypeMapping TypeName="INF370Model.EMPLOYEETYPE">
+        <MappingFragment StoreEntitySet="EMPLOYEETYPE">
+          <ScalarProperty Name="EMPLOYEETYPEID" ColumnName="EMPLOYEETYPEID" />
+          <ScalarProperty Name="EMPLOYEETYPEDESCRIPTION" ColumnName="EMPLOYEETYPEDESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FEEDBACKs">
+      <EntityTypeMapping TypeName="INF370Model.FEEDBACK">
+        <MappingFragment StoreEntitySet="FEEDBACK">
+          <ScalarProperty Name="FEEDBACKID" ColumnName="FEEDBACKID" />
+          <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+          <ScalarProperty Name="COMPLAINTID" ColumnName="COMPLAINTID" />
+          <ScalarProperty Name="FEEDBACKCOMMENT" ColumnName="FEEDBACKCOMMENT" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INSPECTIONSTATUS">
+      <EntityTypeMapping TypeName="INF370Model.INSPECTIONSTATU">
+        <MappingFragment StoreEntitySet="INSPECTIONSTATUS">
+          <ScalarProperty Name="INSPECTION_STATUS_ID" ColumnName="INSPECTION_STATUS_ID" />
+          <ScalarProperty Name="INSPECTION_STATUS_NAME" ColumnName="INSPECTION_STATUS_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INSPECTIONTYPEs">
+      <EntityTypeMapping TypeName="INF370Model.INSPECTIONTYPE">
+        <MappingFragment StoreEntitySet="INSPECTIONTYPE">
+          <ScalarProperty Name="INSPECTIONTYPEID" ColumnName="INSPECTIONTYPEID" />
+          <ScalarProperty Name="INSPECTIONTYPEDESCRIPTION" ColumnName="INSPECTIONTYPEDESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ITEMs">
+      <EntityTypeMapping TypeName="INF370Model.ITEM">
+        <MappingFragment StoreEntitySet="ITEM">
+          <ScalarProperty Name="ITEMID" ColumnName="ITEMID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JOBs">
+      <EntityTypeMapping TypeName="INF370Model.JOB">
+        <MappingFragment StoreEntitySet="JOB">
+          <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+          <ScalarProperty Name="RENTALAGREEMENTID" ColumnName="RENTALAGREEMENTID" />
+          <ScalarProperty Name="JOBTYPEID" ColumnName="JOBTYPEID" />
+          <ScalarProperty Name="FEEDBACKID" ColumnName="FEEDBACKID" />
+          <ScalarProperty Name="JOBSTATUSID" ColumnName="JOBSTATUSID" />
+          <ScalarProperty Name="DATEREQUESTED" ColumnName="DATEREQUESTED" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+          <ScalarProperty Name="DATECOMPLETED" ColumnName="DATECOMPLETED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JOBSTATUS">
+      <EntityTypeMapping TypeName="INF370Model.JOBSTATU">
+        <MappingFragment StoreEntitySet="JOBSTATUS">
+          <ScalarProperty Name="JOBSTATUSID" ColumnName="JOBSTATUSID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JOBTASKs">
+      <EntityTypeMapping TypeName="INF370Model.JOBTASK">
+        <MappingFragment StoreEntitySet="JOBTASK">
+          <ScalarProperty Name="JOBTASKID" ColumnName="JOBTASKID" />
+          <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+          <ScalarProperty Name="PURCHASELINEID" ColumnName="PURCHASELINEID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JOBTYPEs">
+      <EntityTypeMapping TypeName="INF370Model.JOBTYPE">
+        <MappingFragment StoreEntitySet="JOBTYPE">
+          <ScalarProperty Name="JOBTYPEID" ColumnName="JOBTYPEID" />
+          <ScalarProperty Name="JOBTYPEDESCRIPTION" ColumnName="JOBTYPEDESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAYMENTs">
+      <EntityTypeMapping TypeName="INF370Model.PAYMENT">
+        <MappingFragment StoreEntitySet="PAYMENT">
+          <ScalarProperty Name="PAYMENTID" ColumnName="PAYMENTID" />
+          <ScalarProperty Name="RENTALAGREEMENTID" ColumnName="RENTALAGREEMENTID" />
+          <ScalarProperty Name="PAYMENTTYPEID" ColumnName="PAYMENTTYPEID" />
+          <ScalarProperty Name="PAYMENT_REFERENCE_NO" ColumnName="PAYMENT_REFERENCE_NO" />
+          <ScalarProperty Name="PAYMENT_AMOUNT" ColumnName="PAYMENT_AMOUNT" />
+          <ScalarProperty Name="PAYMENTDATETIME" ColumnName="PAYMENTDATETIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAYMENTTYPEs">
+      <EntityTypeMapping TypeName="INF370Model.PAYMENTTYPE">
+        <MappingFragment StoreEntitySet="PAYMENTTYPE">
+          <ScalarProperty Name="PAYMENTTYPEID" ColumnName="PAYMENTTYPEID" />
+          <ScalarProperty Name="PAYMENTTYPE_NAME" ColumnName="PAYMENTTYPE_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROPERTies">
+      <EntityTypeMapping TypeName="INF370Model.PROPERTY">
+        <MappingFragment StoreEntitySet="PROPERTY">
+          <ScalarProperty Name="PROPERTYID" ColumnName="PROPERTYID" />
+          <ScalarProperty Name="PROPERTYSTATUSID" ColumnName="PROPERTYSTATUSID" />
+          <ScalarProperty Name="PROPERTYTYPEID" ColumnName="PROPERTYTYPEID" />
+          <ScalarProperty Name="AGENT_ID" ColumnName="AGENT_ID" />
+          <ScalarProperty Name="AREAID" ColumnName="AREAID" />
+          <ScalarProperty Name="PROPERTYDESCRIPTION" ColumnName="PROPERTYDESCRIPTION" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+          <ScalarProperty Name="NUMBED" ColumnName="NUMBED" />
+          <ScalarProperty Name="NUMBBATH" ColumnName="NUMBBATH" />
+          <ScalarProperty Name="GARDEN" ColumnName="GARDEN" />
+          <ScalarProperty Name="ADDITIONALINFO" ColumnName="ADDITIONALINFO" />
+          <ScalarProperty Name="LISTINGDATE" ColumnName="LISTINGDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROPERTYPHOTOes">
+      <EntityTypeMapping TypeName="INF370Model.PROPERTYPHOTO">
+        <MappingFragment StoreEntitySet="PROPERTYPHOTO">
+          <ScalarProperty Name="PROPERTY_PHOTO_ID" ColumnName="PROPERTY_PHOTO_ID" />
+          <ScalarProperty Name="PROPERTYID" ColumnName="PROPERTYID" />
+          <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROPERTYSTATUS">
+      <EntityTypeMapping TypeName="INF370Model.PROPERTYSTATU">
+        <MappingFragment StoreEntitySet="PROPERTYSTATUS">
+          <ScalarProperty Name="PROPERTYSTATUSID" ColumnName="PROPERTYSTATUSID" />
+          <ScalarProperty Name="PROPERTYSTATUSNAME" ColumnName="PROPERTYSTATUSNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROPERTYTYPEs">
+      <EntityTypeMapping TypeName="INF370Model.PROPERTYTYPE">
+        <MappingFragment StoreEntitySet="PROPERTYTYPE">
+          <ScalarProperty Name="PROPERTYTYPEID" ColumnName="PROPERTYTYPEID" />
+          <ScalarProperty Name="PROPERTTYPEDESCRIPTION" ColumnName="PROPERTTYPEDESCRIPTION" />
+          <ScalarProperty Name="TIMESVISITED" ColumnName="TIMESVISITED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROVINCEs">
+      <EntityTypeMapping TypeName="INF370Model.PROVINCE">
+        <MappingFragment StoreEntitySet="PROVINCE">
+          <ScalarProperty Name="PROVINCEID" ColumnName="PROVINCEID" />
+          <ScalarProperty Name="PROVINCENAME" ColumnName="PROVINCENAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PURCHASEs">
+      <EntityTypeMapping TypeName="INF370Model.PURCHASE">
+        <MappingFragment StoreEntitySet="PURCHASE">
+          <ScalarProperty Name="PURCHASEID" ColumnName="PURCHASEID" />
+          <ScalarProperty Name="SUPPLIERID" ColumnName="SUPPLIERID" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PURCHASELINEs">
+      <EntityTypeMapping TypeName="INF370Model.PURCHASELINE">
+        <MappingFragment StoreEntitySet="PURCHASELINE">
+          <ScalarProperty Name="PURCHASELINEID" ColumnName="PURCHASELINEID" />
+          <ScalarProperty Name="ITEMID" ColumnName="ITEMID" />
+          <ScalarProperty Name="PURCHASEID" ColumnName="PURCHASEID" />
+          <ScalarProperty Name="JOBTASKID" ColumnName="JOBTASKID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RENTAL_AGREEMENT">
+      <EntityTypeMapping TypeName="INF370Model.RENTAL_AGREEMENT">
+        <MappingFragment StoreEntitySet="RENTAL_AGREEMENT">
+          <ScalarProperty Name="TerminateRentalDate" ColumnName="TerminateRentalDate" />
+          <ScalarProperty Name="ExtendRentalDate" ColumnName="ExtendRentalDate" />
+          <ScalarProperty Name="RENTALAGREEMENTID" ColumnName="RENTALAGREEMENTID" />
+          <ScalarProperty Name="RENTALSTATUSID" ColumnName="RENTALSTATUSID" />
+          <ScalarProperty Name="CLIENTID" ColumnName="CLIENTID" />
+          <ScalarProperty Name="RENTALAPPLICATIONID" ColumnName="RENTALAPPLICATIONID" />
+          <ScalarProperty Name="PROPERTYID" ColumnName="PROPERTYID" />
+          <ScalarProperty Name="RENTALSTARTDATE" ColumnName="RENTALSTARTDATE" />
+          <ScalarProperty Name="RENTALENDDATE" ColumnName="RENTALENDDATE" />
+          <ScalarProperty Name="AMOUNTDUE" ColumnName="AMOUNTDUE" />
+          <ScalarProperty Name="DepositDueDate" ColumnName="DepositDueDate" />
+          <ScalarProperty Name="REFERENCE_NO" ColumnName="REFERENCE_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RENTAL_STATUS">
+      <EntityTypeMapping TypeName="INF370Model.RENTAL_STATUS">
+        <MappingFragment StoreEntitySet="RENTAL_STATUS">
+          <ScalarProperty Name="RENTALSTATUSID" ColumnName="RENTALSTATUSID" />
+          <ScalarProperty Name="RENTALSTATUS_NAME" ColumnName="RENTALSTATUS_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RENTALAMOUNTs">
+      <EntityTypeMapping TypeName="INF370Model.RENTALAMOUNT">
+        <MappingFragment StoreEntitySet="RENTALAMOUNT">
+          <ScalarProperty Name="PROPERTYID" ColumnName="PROPERTYID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="RENTALAMOUNTID" ColumnName="RENTALAMOUNTID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RENTALAPPLICATIONs">
+      <EntityTypeMapping TypeName="INF370Model.RENTALAPPLICATION">
+        <MappingFragment StoreEntitySet="RENTALAPPLICATION">
+          <ScalarProperty Name="RENTALAPPLICATIONID" ColumnName="RENTALAPPLICATIONID" />
+          <ScalarProperty Name="PROPERTYID" ColumnName="PROPERTYID" />
+          <ScalarProperty Name="CLIENTID" ColumnName="CLIENTID" />
+          <ScalarProperty Name="RENTALAGREEMENTID" ColumnName="RENTALAGREEMENTID" />
+          <ScalarProperty Name="RENTALAPPLICATIONSTATUSID" ColumnName="RENTALAPPLICATIONSTATUSID" />
+          <ScalarProperty Name="APPLICATIONDATE" ColumnName="APPLICATIONDATE" />
+          <ScalarProperty Name="PREFERREDSTARTDATE" ColumnName="PREFERREDSTARTDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RENTALAPPLICATIONSTATUS">
+      <EntityTypeMapping TypeName="INF370Model.RENTALAPPLICATIONSTATU">
+        <MappingFragment StoreEntitySet="RENTALAPPLICATIONSTATUS">
+          <ScalarProperty Name="RENTALAPPLICATIONSTATUSID" ColumnName="RENTALAPPLICATIONSTATUSID" />
+          <ScalarProperty Name="RENTALAPPLICATIONSTATUSDESCR" ColumnName="RENTALAPPLICATIONSTATUSDESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RENTALPERIODs">
+      <EntityTypeMapping TypeName="INF370Model.RENTALPERIOD">
+        <MappingFragment StoreEntitySet="RENTALPERIOD">
+          <ScalarProperty Name="RENTALPERIODID" ColumnName="RENTALPERIODID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="PERIOD" ColumnName="PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SLOTs">
+      <EntityTypeMapping TypeName="INF370Model.SLOT">
+        <MappingFragment StoreEntitySet="SLOT">
+          <ScalarProperty Name="SLOTID" ColumnName="SLOTID" />
+          <ScalarProperty Name="STARTTIME" ColumnName="STARTTIME" />
+          <ScalarProperty Name="ENDTIME" ColumnName="ENDTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUPPLIERs">
+      <EntityTypeMapping TypeName="INF370Model.SUPPLIER">
+        <MappingFragment StoreEntitySet="SUPPLIER">
+          <ScalarProperty Name="SUPPLIERID" ColumnName="SUPPLIERID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TERMINATEDAGREEMENTs">
+      <EntityTypeMapping TypeName="INF370Model.TERMINATEDAGREEMENT">
+        <MappingFragment StoreEntitySet="TERMINATEDAGREEMENT">
+          <ScalarProperty Name="TERMINATEDRENTALAGREEMENTID" ColumnName="TERMINATEDRENTALAGREEMENTID" />
+          <ScalarProperty Name="RENTALAGREEMENTID" ColumnName="RENTALAGREEMENTID" />
+          <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+          <ScalarProperty Name="REASON" ColumnName="REASON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERs">
+      <EntityTypeMapping TypeName="INF370Model.USER">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="USERTYPEID" ColumnName="USERTYPEID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="RESETOTP" ColumnName="RESETOTP" />
+          <ScalarProperty Name="UserPasswordChangeRequest" ColumnName="UserPasswordChangeRequest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERTYPEs">
+      <EntityTypeMapping TypeName="INF370Model.USERTYPE">
+        <MappingFragment StoreEntitySet="USERTYPE">
+          <ScalarProperty Name="USERTYPEID" ColumnName="USERTYPEID" />
+          <ScalarProperty Name="USERTYPEDESCRIPTION" ColumnName="USERTYPEDESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEEs">
+      <EntityTypeMapping TypeName="INF370Model.EMPLOYEE">
+        <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="DATEOFBIRTH" ColumnName="DATEOFBIRTH" />
+          <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="DATEEMPLOYED" ColumnName="DATEEMPLOYED" />
+          <ScalarProperty Name="EMPLOYEEPASSPORTNO" ColumnName="EMPLOYEEPASSPORTNO" />
+          <ScalarProperty Name="EMPLOYEENATIONALID" ColumnName="EMPLOYEENATIONALID" />
+          <ScalarProperty Name="EMPLOYEETYPEID" ColumnName="EMPLOYEETYPEID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INSPECTIONs">
+      <EntityTypeMapping TypeName="INF370Model.INSPECTION">
+        <MappingFragment StoreEntitySet="INSPECTION">
+          <ScalarProperty Name="DATECOMPLETED" ColumnName="DATECOMPLETED" />
+          <ScalarProperty Name="INSPECTIONPASSED" ColumnName="INSPECTIONPASSED" />
+          <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+          <ScalarProperty Name="SLOTID" ColumnName="SLOTID" />
+          <ScalarProperty Name="DATEREQUESTED" ColumnName="DATEREQUESTED" />
+          <ScalarProperty Name="INSPECTIONNOTE" ColumnName="INSPECTIONNOTE" />
+          <ScalarProperty Name="INSPECTIONDATE" ColumnName="INSPECTIONDATE" />
+          <ScalarProperty Name="RENTALAGREEMENTID" ColumnName="RENTALAGREEMENTID" />
+          <ScalarProperty Name="INSPECTIONTYPEID" ColumnName="INSPECTIONTYPEID" />
+          <ScalarProperty Name="INSPECTION_STATUS_ID" ColumnName="INSPECTION_STATUS_ID" />
+          <ScalarProperty Name="INSPECTIONID" ColumnName="INSPECTIONID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

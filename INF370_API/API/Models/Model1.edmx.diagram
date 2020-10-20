@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="97dcb97c47884cad99ed7d47ddbb4577" Name="Diagram1">
+        <EntityTypeShape EntityType="INF370Model.AGENT" Width="1.5" PointX="8.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.AREA" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.Audit" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.BOOKING" Width="1.5" PointX="12.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.CITY" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.CLIENT" Width="1.5" PointX="13.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.COMPLAINT" Width="1.5" PointX="18" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.COMPLAINTSTATU" Width="1.5" PointX="15.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.DATE" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.DATETIMESLOT" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.DEACTIVATEDUSER" Width="1.5" PointX="12.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.DOCUMENT" Width="1.5" PointX="23.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.EMPLOYEE" Width="1.5" PointX="12.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.EMPLOYEEDATETIMESLOT" Width="1.5" PointX="15" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.EMPLOYEESLOTSTATU" Width="1.5" PointX="12.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.EMPLOYEETYPE" Width="1.5" PointX="10.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.FEEDBACK" Width="1.5" PointX="23.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.INSPECTION" Width="1.5" PointX="21" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.INSPECTIONSTATU" Width="1.5" PointX="18.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.INSPECTIONTYPE" Width="1.5" PointX="18.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.ITEM" Width="1.5" PointX="27.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.JOB" Width="1.5" PointX="25.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.JOBSTATU" Width="1.5" PointX="23.25" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.JOBTASK" Width="1.5" PointX="27.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.JOBTYPE" Width="1.5" PointX="23.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PAYMENT" Width="1.5" PointX="18" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PAYMENTTYPE" Width="1.5" PointX="15.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PROPERTY" Width="1.5" PointX="10.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PROPERTYPHOTO" Width="1.5" PointX="12.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PROPERTYSTATU" Width="1.5" PointX="8.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PROPERTYTYPE" Width="1.5" PointX="8.25" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PROVINCE" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PURCHASE" Width="1.5" PointX="27.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.PURCHASELINE" Width="1.5" PointX="30" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.RENTAL_AGREEMENT" Width="1.5" PointX="15.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.RENTAL_STATUS" Width="1.5" PointX="13.5" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.RENTALAMOUNT" Width="1.5" PointX="12.75" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.RENTALAPPLICATION" Width="1.5" PointX="21" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.RENTALAPPLICATIONSTATU" Width="1.5" PointX="18.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.RENTALPERIOD" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.SLOT" Width="1.5" PointX="5.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.SUPPLIER" Width="1.5" PointX="25.5" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.TERMINATEDAGREEMENT" Width="1.5" PointX="18" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.USER" Width="1.5" PointX="10.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.USERTYPE" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.AggregatedCounter" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.Hash" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.Job1" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.JobParameter" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.JobQueue" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.List" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.Schema" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.Server" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.Set" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.State" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="INF370Model.Counter" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="INF370Model.FK_PROPERTY_ASSIGNED_AGENT" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_AREA_IS_WITHIN_CITY" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_DATETIMESLOT_AREA" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PROPERTY_IS_LOCATE_AREA" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_BOOKING_CAN_HAVE_PROPERTY" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_EMPLOYEEDATETIMESLOT_BOOKING" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_CITY_IS_WITHIN_PROVINCE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_CLIENT_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTAL_AGREEMENT_CLIENT" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTALAPPLICATION_CLIENT" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_COMPLAIN_ATTEND_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_COMPLAIN_CLASSIFIE_COMPLAIN" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_COMPLAIN_RECIEVES_FEEDBACK" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_COMPLAIN_RELATIONS_RENTAL_A" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_FEEDBACK_RECIEVES2_COMPLAIN" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_DATETIME_IS_IN_DATE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_DATETIME_HAS_00_SLOT" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_EMPLOYEEDATETIMESLOT_DATETIMESLOT" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_DEACTIVA_BECOMES__USER" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_DOCUMENT_UPLOADS_RENTALAP" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_EMPLOYEE_CLASSIFIE_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_EMPLOYEE_IS_AN2_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_EMPLOYEE_RELATIONS_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_INSPECTION_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_JOB_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_EMPLOYEE_RELATIONS_EMPLOYEES" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_FEEDBACK_RELATIONS_JOB" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_JOB_RELATIONS_FEEDBACK" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_INSPECTI_CLASSIFIE_INSPECTI" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_INSPECTI_CLASSIFIE_INSPECTION" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_INSPECTI_RELATIONS_RENTAL_A" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_INSPECTION_SLOT" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PURCHASE_RELATIONS_ITEM" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_JOB_RELATIONS_JOBSTATU" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_JOB_RELATIONS_JOBTYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_JOB_RELATIONS_RENTAL_A" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_JOBTASK_RELATIONS_JOB" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_JOBTASK_RELATIONS_PURCHASE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PURCHASE_RELATIONS_JOBTASK" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PAYMENT_CLASSIFIE_PAYMENTT" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PAYMENT_HAS_7_RENTAL_A" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PROPERTY_CLASSIFIE_PROPERTY" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PROPERTY_CLASSIFIE_PROPERTYS" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PROPERTY_HAS_3_PROPERTY" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTAL_A_HAS_4_PROPERTY" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTALAMOUNT_PROPERTY" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTALAP_HAS_50_PROPERTY" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PURCHASE_RELATIONS_PURCHASE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_PURCHASE_RELATIONS_SUPPLIER" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTAL_A_HAS_1_RENTAL_S" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTAL_A_RELATIONS_RENTALAP" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTALAP_RELATIONS_RENTAL_A" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_TERMINAT_BECOMES_RENTAL_A" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_RENTALAP_CLASSIFIE_RENTALAP" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_USER_CLASSIFIE_USERTYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_HangFire_JobParameter_Job" ManuallyRouted="false" />
+        <AssociationConnector Association="INF370Model.FK_HangFire_State_Job" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="INF370Model.tbl_test_audit_trail" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="INF370Model.Time" Width="1.5" PointX="3.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

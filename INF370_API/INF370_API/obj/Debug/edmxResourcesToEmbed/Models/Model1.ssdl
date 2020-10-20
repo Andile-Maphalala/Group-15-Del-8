@@ -1,0 +1,1545 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="INF370Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AGENT">
+    <Key>
+      <PropertyRef Name="AGENT_ID" />
+    </Key>
+    <Property Name="AGENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="100" />
+    <Property Name="SURNAME" Type="varchar" MaxLength="100" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="10" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+    <Property Name="COMPANY" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AREA">
+    <Key>
+      <PropertyRef Name="AREAID" />
+    </Key>
+    <Property Name="AREAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CITYID" Type="int" Nullable="false" />
+    <Property Name="AREANAME" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BOOKING">
+    <Key>
+      <PropertyRef Name="BOOKINGID" />
+    </Key>
+    <Property Name="BOOKINGID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROPERTYID" Type="int" />
+    <Property Name="USERID" Type="int" Nullable="false" />
+    <Property Name="CLIENTID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CITY">
+    <Key>
+      <PropertyRef Name="CITYID" />
+    </Key>
+    <Property Name="CITYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROVINCEID" Type="int" Nullable="false" />
+    <Property Name="CITYNAME" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENT">
+    <Key>
+      <PropertyRef Name="CLIENTID" />
+    </Key>
+    <Property Name="CLIENTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERID" Type="int" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="150" />
+    <Property Name="SURNAME" Type="varchar" MaxLength="150" />
+    <Property Name="PHONENUMBER" Type="varchar" MaxLength="10" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="150" />
+    <Property Name="PASSPORT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="varchar" MaxLength="13" />
+    <Property Name="NATIONALITY" Type="varchar" MaxLength="50" />
+    <Property Name="DATE_OF_BIRTH" Type="date" />
+    <Property Name="ISSTUDENT" Type="bit" />
+    <Property Name="RESIDENTIAL_ADDRESS" Type="nvarchar" MaxLength="250" />
+    <Property Name="POSTAL_ADDRESS" Type="varchar" MaxLength="250" />
+    <Property Name="NAME_OF_EMPLOYER" Type="varchar" MaxLength="50" />
+    <Property Name="OCCUPATION" Type="varchar" MaxLength="50" />
+    <Property Name="WORK_ADDRESS" Type="nvarchar" MaxLength="50" />
+    <Property Name="WORK_TEL__NO" Type="varchar" MaxLength="10" />
+    <Property Name="GROSS_SALARY" Type="money" />
+    <Property Name="OTP" Type="varchar" MaxLength="50" />
+    <Property Name="verified" Type="bit" />
+  </EntityType>
+  <EntityType Name="COMPLAINT">
+    <Key>
+      <PropertyRef Name="COMPLAINTID" />
+    </Key>
+    <Property Name="COMPLAINTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMPLOYEEID" Type="int" />
+    <Property Name="COMPLAINTSTATUSID" Type="int" Nullable="false" />
+    <Property Name="RENTALAGREEMENTID" Type="int" Nullable="false" />
+    <Property Name="FEEDBACKID" Type="int" />
+    <Property Name="DATE" Type="datetime" />
+    <Property Name="DETAILS" Type="varchar" MaxLength="150" />
+    <Property Name="PHOTO" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="COMPLAINTSTATUS">
+    <Key>
+      <PropertyRef Name="COMPLAINTSTATUSID" />
+    </Key>
+    <Property Name="COMPLAINTSTATUSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COMPLAINTSTATUS_NAME" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="DATE">
+    <Key>
+      <PropertyRef Name="DATEID" />
+    </Key>
+    <Property Name="DATEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATEDESCRIPTION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DATETIMESLOT">
+    <Key>
+      <PropertyRef Name="DATETIMESLOTID" />
+    </Key>
+    <Property Name="DATETIMESLOTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATEID" Type="int" Nullable="false" />
+    <Property Name="AREAID" Type="int" />
+    <Property Name="SLOTID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DEACTIVATEDUSER">
+    <Key>
+      <PropertyRef Name="DECTIVATEDID" />
+    </Key>
+    <Property Name="DECTIVATEDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERID" Type="int" />
+    <Property Name="DEACTIVATE_DATETIME" Type="datetime" />
+    <Property Name="DEACTIVATE_REASON" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DOCUMENT">
+    <Key>
+      <PropertyRef Name="DOCUMENTID" />
+    </Key>
+    <Property Name="DOCUMENTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RENTALAPPLICATIONID" Type="int" Nullable="false" />
+    <Property Name="IDENTITYDOCUMENT" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PAYSLIP" Type="nvarchar(max)" />
+    <Property Name="BURSARYLETTER" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="EMPLOYEEID" />
+    </Key>
+    <Property Name="EMPLOYEEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERID" Type="int" Nullable="false" />
+    <Property Name="EMPLOYEETYPEID" Type="int" Nullable="false" />
+    <Property Name="EMPLOYEENATIONALID" Type="varchar" MaxLength="50" />
+    <Property Name="EMPLOYEEPASSPORTNO" Type="int" />
+    <Property Name="DATEEMPLOYED" Type="datetime" />
+    <Property Name="ACTIVE" Type="bit" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="SURNAME" Type="varchar" MaxLength="50" />
+    <Property Name="DATEOFBIRTH" Type="varchar" MaxLength="50" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="15" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EMPLOYEEDATETIMESLOT">
+    <Key>
+      <PropertyRef Name="EMPLOYEEDATETIMESLOTID" />
+    </Key>
+    <Property Name="EMPLOYEEDATETIMESLOTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMPLOYEEID" Type="int" Nullable="false" />
+    <Property Name="EMPLOYEESLOTSTAUSID" Type="int" Nullable="false" />
+    <Property Name="DATETIMESLOTID" Type="int" Nullable="false" />
+    <Property Name="BOOKINGID" Type="int" />
+  </EntityType>
+  <EntityType Name="EMPLOYEESLOTSTATUS">
+    <Key>
+      <PropertyRef Name="EMPLOYEESLOTSTAUSID" />
+    </Key>
+    <Property Name="EMPLOYEESLOTSTAUSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMPLOYEESLOTSTATUSDESCR" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="EMPLOYEETYPE">
+    <Key>
+      <PropertyRef Name="EMPLOYEETYPEID" />
+    </Key>
+    <Property Name="EMPLOYEETYPEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMPLOYEETYPEDESCRIPTION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="FEEDBACK">
+    <Key>
+      <PropertyRef Name="FEEDBACKID" />
+    </Key>
+    <Property Name="FEEDBACKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JOBID" Type="int" />
+    <Property Name="COMPLAINTID" Type="int" />
+    <Property Name="FEEDBACKCOMMENT" Type="varchar" MaxLength="50" />
+    <Property Name="DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="INSPECTION">
+    <Key>
+      <PropertyRef Name="INSPECTIONID" />
+    </Key>
+    <Property Name="INSPECTIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INSPECTION_STATUS_ID" Type="int" Nullable="false" />
+    <Property Name="INSPECTIONTYPEID" Type="int" Nullable="false" />
+    <Property Name="RENTALAGREEMENTID" Type="int" Nullable="false" />
+    <Property Name="INSPECTIONDATE" Type="date" />
+    <Property Name="INSPECTIONNOTE" Type="varchar(max)" />
+    <Property Name="DATEREQUESTED" Type="date" Nullable="false" />
+    <Property Name="SLOTID" Type="int" />
+    <Property Name="EMPLOYEEID" Type="int" />
+    <Property Name="INSPECTIONPASSED" Type="bit" />
+    <Property Name="DATECOMPLETED" Type="date" />
+  </EntityType>
+  <EntityType Name="INSPECTIONSTATUS">
+    <Key>
+      <PropertyRef Name="INSPECTION_STATUS_ID" />
+    </Key>
+    <Property Name="INSPECTION_STATUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INSPECTION_STATUS_NAME" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="INSPECTIONTYPE">
+    <Key>
+      <PropertyRef Name="INSPECTIONTYPEID" />
+    </Key>
+    <Property Name="INSPECTIONTYPEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INSPECTIONTYPEDESCRIPTION" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ITEM">
+    <Key>
+      <PropertyRef Name="ITEMID" />
+    </Key>
+    <Property Name="ITEMID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="JOB">
+    <Key>
+      <PropertyRef Name="JOBID" />
+    </Key>
+    <Property Name="JOBID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RENTALAGREEMENTID" Type="int" Nullable="false" />
+    <Property Name="JOBTYPEID" Type="int" Nullable="false" />
+    <Property Name="FEEDBACKID" Type="int" />
+    <Property Name="JOBSTATUSID" Type="int" Nullable="false" />
+    <Property Name="DATEREQUESTED" Type="date" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="100" />
+    <Property Name="EMPLOYEEID" Type="int" />
+    <Property Name="DATECOMPLETED" Type="date" />
+  </EntityType>
+  <EntityType Name="JOBSTATUS">
+    <Key>
+      <PropertyRef Name="JOBSTATUSID" />
+    </Key>
+    <Property Name="JOBSTATUSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="JOBTASK">
+    <Key>
+      <PropertyRef Name="JOBTASKID" />
+    </Key>
+    <Property Name="JOBTASKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JOBID" Type="int" />
+    <Property Name="PURCHASELINEID" Type="int" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="JOBTYPE">
+    <Key>
+      <PropertyRef Name="JOBTYPEID" />
+    </Key>
+    <Property Name="JOBTYPEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JOBTYPEDESCRIPTION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PAYMENT">
+    <Key>
+      <PropertyRef Name="PAYMENTID" />
+    </Key>
+    <Property Name="PAYMENTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RENTALAGREEMENTID" Type="int" Nullable="false" />
+    <Property Name="PAYMENTTYPEID" Type="int" Nullable="false" />
+    <Property Name="PAYMENT_REFERENCE_NO" Type="int" />
+    <Property Name="PAYMENT_AMOUNT" Type="money" />
+    <Property Name="PAYMENTDATETIME" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PAYMENTTYPE">
+    <Key>
+      <PropertyRef Name="PAYMENTTYPEID" />
+    </Key>
+    <Property Name="PAYMENTTYPEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PAYMENTTYPE_NAME" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PROPERTY">
+    <Key>
+      <PropertyRef Name="PROPERTYID" />
+    </Key>
+    <Property Name="PROPERTYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROPERTYSTATUSID" Type="int" />
+    <Property Name="PROPERTYTYPEID" Type="int" />
+    <Property Name="AGENT_ID" Type="int" />
+    <Property Name="AREAID" Type="int" />
+    <Property Name="PROPERTYDESCRIPTION" Type="varchar" MaxLength="900" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="900" />
+    <Property Name="SIZE" Type="varchar" MaxLength="50" />
+    <Property Name="NUMBED" Type="int" />
+    <Property Name="NUMBBATH" Type="int" />
+    <Property Name="GARDEN" Type="varchar" MaxLength="900" />
+    <Property Name="ADDITIONALINFO" Type="varchar" MaxLength="900" />
+    <Property Name="LISTINGDATE" Type="datetime" />
+    <Property Name="AVAILABLEDATE" Type="date" />
+    <Property Name="IsExtending" Type="bit" />
+  </EntityType>
+  <EntityType Name="PROPERTYPHOTO">
+    <Key>
+      <PropertyRef Name="PROPERTY_PHOTO_ID" />
+    </Key>
+    <Property Name="PROPERTY_PHOTO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROPERTYID" Type="int" Nullable="false" />
+    <Property Name="PHOTO" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="PROPERTYSTATUS">
+    <Key>
+      <PropertyRef Name="PROPERTYSTATUSID" />
+    </Key>
+    <Property Name="PROPERTYSTATUSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROPERTYSTATUSNAME" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PROPERTYTYPE">
+    <Key>
+      <PropertyRef Name="PROPERTYTYPEID" />
+    </Key>
+    <Property Name="PROPERTYTYPEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROPERTTYPEDESCRIPTION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TIMESVISITED" Type="int" />
+  </EntityType>
+  <EntityType Name="PROVINCE">
+    <Key>
+      <PropertyRef Name="PROVINCEID" />
+    </Key>
+    <Property Name="PROVINCEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROVINCENAME" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PURCHASE">
+    <Key>
+      <PropertyRef Name="PURCHASEID" />
+    </Key>
+    <Property Name="PURCHASEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SUPPLIERID" Type="int" Nullable="false" />
+    <Property Name="QUANTITY" Type="int" />
+    <Property Name="PRICE" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PURCHASELINE">
+    <Key>
+      <PropertyRef Name="PURCHASELINEID" />
+    </Key>
+    <Property Name="PURCHASELINEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ITEMID" Type="int" Nullable="false" />
+    <Property Name="PURCHASEID" Type="int" Nullable="false" />
+    <Property Name="JOBTASKID" Type="int" />
+  </EntityType>
+  <EntityType Name="RENTAL_AGREEMENT">
+    <Key>
+      <PropertyRef Name="RENTALAGREEMENTID" />
+    </Key>
+    <Property Name="RENTALAGREEMENTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RENTALSTATUSID" Type="int" Nullable="false" />
+    <Property Name="CLIENTID" Type="int" Nullable="false" />
+    <Property Name="RENTALAPPLICATIONID" Type="int" />
+    <Property Name="PROPERTYID" Type="int" Nullable="false" />
+    <Property Name="RENTALSTARTDATE" Type="datetime" />
+    <Property Name="RENTALENDDATE" Type="datetime" />
+    <Property Name="AMOUNTDUE" Type="int" />
+    <Property Name="DepositDueDate" Type="datetime" />
+    <Property Name="REFERENCE_NO" Type="varchar" MaxLength="50" />
+    <Property Name="ExtendRentalDate" Type="date" />
+    <Property Name="TerminateRentalDate" Type="date" />
+  </EntityType>
+  <EntityType Name="RENTAL_STATUS">
+    <Key>
+      <PropertyRef Name="RENTALSTATUSID" />
+    </Key>
+    <Property Name="RENTALSTATUSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RENTALSTATUS_NAME" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="RENTALAMOUNT">
+    <Key>
+      <PropertyRef Name="RENTALAMOUNTID" />
+    </Key>
+    <Property Name="PROPERTYID" Type="int" />
+    <Property Name="DATE" Type="datetime" />
+    <Property Name="AMOUNT" Type="int" />
+    <Property Name="RENTALAMOUNTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RENTALAPPLICATION">
+    <Key>
+      <PropertyRef Name="RENTALAPPLICATIONID" />
+    </Key>
+    <Property Name="RENTALAPPLICATIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PROPERTYID" Type="int" Nullable="false" />
+    <Property Name="CLIENTID" Type="int" Nullable="false" />
+    <Property Name="RENTALAGREEMENTID" Type="int" />
+    <Property Name="RENTALAPPLICATIONSTATUSID" Type="int" />
+    <Property Name="APPLICATIONDATE" Type="datetime" />
+    <Property Name="PREFERREDSTARTDATE" Type="date" />
+  </EntityType>
+  <EntityType Name="RENTALAPPLICATIONSTATUS">
+    <Key>
+      <PropertyRef Name="RENTALAPPLICATIONSTATUSID" />
+    </Key>
+    <Property Name="RENTALAPPLICATIONSTATUSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RENTALAPPLICATIONSTATUSDESCR" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="RENTALPERIOD">
+    <Key>
+      <PropertyRef Name="RENTALPERIODID" />
+    </Key>
+    <Property Name="RENTALPERIODID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATE" Type="datetime" />
+    <Property Name="PERIOD" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="SLOT">
+    <Key>
+      <PropertyRef Name="SLOTID" />
+    </Key>
+    <Property Name="SLOTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STARTTIME" Type="varchar" MaxLength="50" />
+    <Property Name="ENDTIME" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SUPPLIER">
+    <Key>
+      <PropertyRef Name="SUPPLIERID" />
+    </Key>
+    <Property Name="SUPPLIERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="150" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="150" />
+    <Property Name="PHONENUMBER" Type="varchar" MaxLength="10" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tbl_test_audit_trail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="audit_datetime_utc" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="audit_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="audit_user" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="table_name" Type="nvarchar" MaxLength="150" />
+    <Property Name="key_values" Type="nvarchar" MaxLength="250" />
+    <Property Name="old_values" Type="nvarchar(max)" />
+    <Property Name="new_values" Type="nvarchar(max)" />
+    <Property Name="changed_columns" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TERMINATEDAGREEMENT">
+    <Key>
+      <PropertyRef Name="TERMINATEDRENTALAGREEMENTID" />
+    </Key>
+    <Property Name="TERMINATEDRENTALAGREEMENTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RENTALAGREEMENTID" Type="int" Nullable="false" />
+    <Property Name="DATETIME" Type="datetime" />
+    <Property Name="REASON" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Time">
+    <Key>
+      <PropertyRef Name="TimeID" />
+    </Key>
+    <Property Name="TimeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Logouttime" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERTYPEID" Type="int" />
+    <Property Name="USERNAME" Type="varchar" MaxLength="100" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="65" />
+    <Property Name="RESETOTP" Type="varchar" MaxLength="50" />
+    <Property Name="UserPasswordChangeRequest" Type="bit" />
+  </EntityType>
+  <EntityType Name="USERTYPE">
+    <Key>
+      <PropertyRef Name="USERTYPEID" />
+    </Key>
+    <Property Name="USERTYPEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERTYPEDESCRIPTION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AggregatedCounter">
+    <Key>
+      <PropertyRef Name="Key" />
+    </Key>
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="bigint" Nullable="false" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'INF370.HangFire.Counter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Counter">
+    <Key>
+      <PropertyRef Name="Key" />
+      <PropertyRef Name="Value" />
+    </Key>
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Hash">
+    <Key>
+      <PropertyRef Name="Key" />
+      <PropertyRef Name="Field" />
+    </Key>
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Field" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="ExpireAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Job1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateId" Type="bigint" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="20" />
+    <Property Name="InvocationData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Arguments" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="JobParameter">
+    <Key>
+      <PropertyRef Name="JobId" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="JobId" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="JobQueue">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Queue" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobId" Type="bigint" Nullable="false" />
+    <Property Name="Queue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FetchedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="List">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Key" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Schema">
+    <Key>
+      <PropertyRef Name="Version" />
+    </Key>
+    <Property Name="Version" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Server">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Data" Type="nvarchar(max)" />
+    <Property Name="LastHeartbeat" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Set">
+    <Key>
+      <PropertyRef Name="Key" />
+      <PropertyRef Name="Value" />
+    </Key>
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Score" Type="float" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="JobId" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobId" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Data" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_AREA_IS_WITHIN_CITY">
+    <End Role="CITY" Type="Self.CITY" Multiplicity="1" />
+    <End Role="AREA" Type="Self.AREA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CITY">
+        <PropertyRef Name="CITYID" />
+      </Principal>
+      <Dependent Role="AREA">
+        <PropertyRef Name="CITYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKING_CAN_HAVE_PROPERTY">
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="0..1" />
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROPERTY">
+        <PropertyRef Name="PROPERTYID" />
+      </Principal>
+      <Dependent Role="BOOKING">
+        <PropertyRef Name="PROPERTYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CITY_IS_WITHIN_PROVINCE">
+    <End Role="PROVINCE" Type="Self.PROVINCE" Multiplicity="1" />
+    <End Role="CITY" Type="Self.CITY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVINCE">
+        <PropertyRef Name="PROVINCEID" />
+      </Principal>
+      <Dependent Role="CITY">
+        <PropertyRef Name="PROVINCEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENT_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="CLIENT">
+        <PropertyRef Name="USERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPLAIN_ATTEND_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="COMPLAINT" Type="Self.COMPLAINT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="EMPLOYEEID" />
+      </Principal>
+      <Dependent Role="COMPLAINT">
+        <PropertyRef Name="EMPLOYEEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPLAIN_CLASSIFIE_COMPLAIN">
+    <End Role="COMPLAINTSTATUS" Type="Self.COMPLAINTSTATUS" Multiplicity="1" />
+    <End Role="COMPLAINT" Type="Self.COMPLAINT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPLAINTSTATUS">
+        <PropertyRef Name="COMPLAINTSTATUSID" />
+      </Principal>
+      <Dependent Role="COMPLAINT">
+        <PropertyRef Name="COMPLAINTSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPLAIN_RECIEVES_FEEDBACK">
+    <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="0..1" />
+    <End Role="COMPLAINT" Type="Self.COMPLAINT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FEEDBACK">
+        <PropertyRef Name="FEEDBACKID" />
+      </Principal>
+      <Dependent Role="COMPLAINT">
+        <PropertyRef Name="FEEDBACKID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPLAIN_RELATIONS_RENTAL_A">
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="1" />
+    <End Role="COMPLAINT" Type="Self.COMPLAINT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Principal>
+      <Dependent Role="COMPLAINT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DATETIME_HAS_00_SLOT">
+    <End Role="SLOT" Type="Self.SLOT" Multiplicity="1" />
+    <End Role="DATETIMESLOT" Type="Self.DATETIMESLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLOT">
+        <PropertyRef Name="SLOTID" />
+      </Principal>
+      <Dependent Role="DATETIMESLOT">
+        <PropertyRef Name="SLOTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DATETIME_IS_IN_DATE">
+    <End Role="DATE" Type="Self.DATE" Multiplicity="1" />
+    <End Role="DATETIMESLOT" Type="Self.DATETIMESLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DATE">
+        <PropertyRef Name="DATEID" />
+      </Principal>
+      <Dependent Role="DATETIMESLOT">
+        <PropertyRef Name="DATEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DATETIMESLOT_AREA">
+    <End Role="AREA" Type="Self.AREA" Multiplicity="0..1" />
+    <End Role="DATETIMESLOT" Type="Self.DATETIMESLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AREA">
+        <PropertyRef Name="AREAID" />
+      </Principal>
+      <Dependent Role="DATETIMESLOT">
+        <PropertyRef Name="AREAID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DEACTIVA_BECOMES__USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="DEACTIVATEDUSER" Type="Self.DEACTIVATEDUSER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="DEACTIVATEDUSER">
+        <PropertyRef Name="USERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENT_UPLOADS_RENTALAP">
+    <End Role="RENTALAPPLICATION" Type="Self.RENTALAPPLICATION" Multiplicity="1" />
+    <End Role="DOCUMENT" Type="Self.DOCUMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTALAPPLICATION">
+        <PropertyRef Name="RENTALAPPLICATIONID" />
+      </Principal>
+      <Dependent Role="DOCUMENT">
+        <PropertyRef Name="RENTALAPPLICATIONID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_CLASSIFIE_EMPLOYEE">
+    <End Role="EMPLOYEETYPE" Type="Self.EMPLOYEETYPE" Multiplicity="1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEETYPE">
+        <PropertyRef Name="EMPLOYEETYPEID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="EMPLOYEETYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_IS_AN2_USER">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="USERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_RELATIONS_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="EMPLOYEEDATETIMESLOT" Type="Self.EMPLOYEEDATETIMESLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="EMPLOYEEID" />
+      </Principal>
+      <Dependent Role="EMPLOYEEDATETIMESLOT">
+        <PropertyRef Name="EMPLOYEEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_RELATIONS_EMPLOYEES">
+    <End Role="EMPLOYEESLOTSTATUS" Type="Self.EMPLOYEESLOTSTATUS" Multiplicity="1" />
+    <End Role="EMPLOYEEDATETIMESLOT" Type="Self.EMPLOYEEDATETIMESLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEESLOTSTATUS">
+        <PropertyRef Name="EMPLOYEESLOTSTAUSID" />
+      </Principal>
+      <Dependent Role="EMPLOYEEDATETIMESLOT">
+        <PropertyRef Name="EMPLOYEESLOTSTAUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEEDATETIMESLOT_BOOKING">
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="0..1" />
+    <End Role="EMPLOYEEDATETIMESLOT" Type="Self.EMPLOYEEDATETIMESLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BOOKING">
+        <PropertyRef Name="BOOKINGID" />
+      </Principal>
+      <Dependent Role="EMPLOYEEDATETIMESLOT">
+        <PropertyRef Name="BOOKINGID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEEDATETIMESLOT_DATETIMESLOT">
+    <End Role="DATETIMESLOT" Type="Self.DATETIMESLOT" Multiplicity="1" />
+    <End Role="EMPLOYEEDATETIMESLOT" Type="Self.EMPLOYEEDATETIMESLOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DATETIMESLOT">
+        <PropertyRef Name="DATETIMESLOTID" />
+      </Principal>
+      <Dependent Role="EMPLOYEEDATETIMESLOT">
+        <PropertyRef Name="DATETIMESLOTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FEEDBACK_RECIEVES2_COMPLAIN">
+    <End Role="COMPLAINT" Type="Self.COMPLAINT" Multiplicity="0..1" />
+    <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPLAINT">
+        <PropertyRef Name="COMPLAINTID" />
+      </Principal>
+      <Dependent Role="FEEDBACK">
+        <PropertyRef Name="COMPLAINTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FEEDBACK_RELATIONS_JOB">
+    <End Role="JOB" Type="Self.JOB" Multiplicity="0..1" />
+    <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB">
+        <PropertyRef Name="JOBID" />
+      </Principal>
+      <Dependent Role="FEEDBACK">
+        <PropertyRef Name="JOBID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HangFire_JobParameter_Job">
+    <End Role="Job1" Type="Self.Job1" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JobParameter" Type="Self.JobParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobParameter">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HangFire_State_Job">
+    <End Role="Job1" Type="Self.Job1" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="State" Type="Self.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INSPECTI_CLASSIFIE_INSPECTI">
+    <End Role="INSPECTIONTYPE" Type="Self.INSPECTIONTYPE" Multiplicity="1" />
+    <End Role="INSPECTION" Type="Self.INSPECTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSPECTIONTYPE">
+        <PropertyRef Name="INSPECTIONTYPEID" />
+      </Principal>
+      <Dependent Role="INSPECTION">
+        <PropertyRef Name="INSPECTIONTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INSPECTI_CLASSIFIE_INSPECTION">
+    <End Role="INSPECTIONSTATUS" Type="Self.INSPECTIONSTATUS" Multiplicity="1" />
+    <End Role="INSPECTION" Type="Self.INSPECTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSPECTIONSTATUS">
+        <PropertyRef Name="INSPECTION_STATUS_ID" />
+      </Principal>
+      <Dependent Role="INSPECTION">
+        <PropertyRef Name="INSPECTION_STATUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INSPECTI_RELATIONS_RENTAL_A">
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="1" />
+    <End Role="INSPECTION" Type="Self.INSPECTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Principal>
+      <Dependent Role="INSPECTION">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INSPECTION_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="INSPECTION" Type="Self.INSPECTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="EMPLOYEEID" />
+      </Principal>
+      <Dependent Role="INSPECTION">
+        <PropertyRef Name="EMPLOYEEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INSPECTION_SLOT">
+    <End Role="SLOT" Type="Self.SLOT" Multiplicity="0..1" />
+    <End Role="INSPECTION" Type="Self.INSPECTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLOT">
+        <PropertyRef Name="SLOTID" />
+      </Principal>
+      <Dependent Role="INSPECTION">
+        <PropertyRef Name="SLOTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOB_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="JOB" Type="Self.JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="EMPLOYEEID" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="EMPLOYEEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOB_RELATIONS_FEEDBACK">
+    <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="0..1" />
+    <End Role="JOB" Type="Self.JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FEEDBACK">
+        <PropertyRef Name="FEEDBACKID" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="FEEDBACKID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOB_RELATIONS_JOBSTATU">
+    <End Role="JOBSTATUS" Type="Self.JOBSTATUS" Multiplicity="1" />
+    <End Role="JOB" Type="Self.JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOBSTATUS">
+        <PropertyRef Name="JOBSTATUSID" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="JOBSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOB_RELATIONS_JOBTYPE">
+    <End Role="JOBTYPE" Type="Self.JOBTYPE" Multiplicity="1" />
+    <End Role="JOB" Type="Self.JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOBTYPE">
+        <PropertyRef Name="JOBTYPEID" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="JOBTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOB_RELATIONS_RENTAL_A">
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="1" />
+    <End Role="JOB" Type="Self.JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOBTASK_RELATIONS_JOB">
+    <End Role="JOB" Type="Self.JOB" Multiplicity="0..1" />
+    <End Role="JOBTASK" Type="Self.JOBTASK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB">
+        <PropertyRef Name="JOBID" />
+      </Principal>
+      <Dependent Role="JOBTASK">
+        <PropertyRef Name="JOBID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOBTASK_RELATIONS_PURCHASE">
+    <End Role="PURCHASELINE" Type="Self.PURCHASELINE" Multiplicity="0..1" />
+    <End Role="JOBTASK" Type="Self.JOBTASK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PURCHASELINE">
+        <PropertyRef Name="PURCHASELINEID" />
+      </Principal>
+      <Dependent Role="JOBTASK">
+        <PropertyRef Name="PURCHASELINEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAYMENT_CLASSIFIE_PAYMENTT">
+    <End Role="PAYMENTTYPE" Type="Self.PAYMENTTYPE" Multiplicity="1" />
+    <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAYMENTTYPE">
+        <PropertyRef Name="PAYMENTTYPEID" />
+      </Principal>
+      <Dependent Role="PAYMENT">
+        <PropertyRef Name="PAYMENTTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAYMENT_HAS_7_RENTAL_A">
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="1" />
+    <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Principal>
+      <Dependent Role="PAYMENT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROPERTY_ASSIGNED_AGENT">
+    <End Role="AGENT" Type="Self.AGENT" Multiplicity="0..1" />
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AGENT">
+        <PropertyRef Name="AGENT_ID" />
+      </Principal>
+      <Dependent Role="PROPERTY">
+        <PropertyRef Name="AGENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROPERTY_CLASSIFIE_PROPERTY">
+    <End Role="PROPERTYSTATUS" Type="Self.PROPERTYSTATUS" Multiplicity="0..1" />
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROPERTYSTATUS">
+        <PropertyRef Name="PROPERTYSTATUSID" />
+      </Principal>
+      <Dependent Role="PROPERTY">
+        <PropertyRef Name="PROPERTYSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROPERTY_CLASSIFIE_PROPERTYS">
+    <End Role="PROPERTYTYPE" Type="Self.PROPERTYTYPE" Multiplicity="0..1" />
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROPERTYTYPE">
+        <PropertyRef Name="PROPERTYTYPEID" />
+      </Principal>
+      <Dependent Role="PROPERTY">
+        <PropertyRef Name="PROPERTYTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROPERTY_HAS_3_PROPERTY">
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="1" />
+    <End Role="PROPERTYPHOTO" Type="Self.PROPERTYPHOTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROPERTY">
+        <PropertyRef Name="PROPERTYID" />
+      </Principal>
+      <Dependent Role="PROPERTYPHOTO">
+        <PropertyRef Name="PROPERTYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROPERTY_IS_LOCATE_AREA">
+    <End Role="AREA" Type="Self.AREA" Multiplicity="0..1" />
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AREA">
+        <PropertyRef Name="AREAID" />
+      </Principal>
+      <Dependent Role="PROPERTY">
+        <PropertyRef Name="AREAID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PURCHASE_RELATIONS_ITEM">
+    <End Role="ITEM" Type="Self.ITEM" Multiplicity="1" />
+    <End Role="PURCHASELINE" Type="Self.PURCHASELINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ITEM">
+        <PropertyRef Name="ITEMID" />
+      </Principal>
+      <Dependent Role="PURCHASELINE">
+        <PropertyRef Name="ITEMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PURCHASE_RELATIONS_JOBTASK">
+    <End Role="JOBTASK" Type="Self.JOBTASK" Multiplicity="0..1" />
+    <End Role="PURCHASELINE" Type="Self.PURCHASELINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOBTASK">
+        <PropertyRef Name="JOBTASKID" />
+      </Principal>
+      <Dependent Role="PURCHASELINE">
+        <PropertyRef Name="JOBTASKID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PURCHASE_RELATIONS_PURCHASE">
+    <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="1" />
+    <End Role="PURCHASELINE" Type="Self.PURCHASELINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PURCHASE">
+        <PropertyRef Name="PURCHASEID" />
+      </Principal>
+      <Dependent Role="PURCHASELINE">
+        <PropertyRef Name="PURCHASEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PURCHASE_RELATIONS_SUPPLIER">
+    <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="1" />
+    <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUPPLIER">
+        <PropertyRef Name="SUPPLIERID" />
+      </Principal>
+      <Dependent Role="PURCHASE">
+        <PropertyRef Name="SUPPLIERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTAL_A_HAS_1_RENTAL_S">
+    <End Role="RENTAL_STATUS" Type="Self.RENTAL_STATUS" Multiplicity="1" />
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTAL_STATUS">
+        <PropertyRef Name="RENTALSTATUSID" />
+      </Principal>
+      <Dependent Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="RENTALSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTAL_A_HAS_4_PROPERTY">
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="1" />
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROPERTY">
+        <PropertyRef Name="PROPERTYID" />
+      </Principal>
+      <Dependent Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="PROPERTYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTAL_A_RELATIONS_RENTALAP">
+    <End Role="RENTALAPPLICATION" Type="Self.RENTALAPPLICATION" Multiplicity="0..1" />
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTALAPPLICATION">
+        <PropertyRef Name="RENTALAPPLICATIONID" />
+      </Principal>
+      <Dependent Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="RENTALAPPLICATIONID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTAL_AGREEMENT_CLIENT">
+    <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENT">
+        <PropertyRef Name="CLIENTID" />
+      </Principal>
+      <Dependent Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="CLIENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTALAMOUNT_PROPERTY">
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="0..1" />
+    <End Role="RENTALAMOUNT" Type="Self.RENTALAMOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROPERTY">
+        <PropertyRef Name="PROPERTYID" />
+      </Principal>
+      <Dependent Role="RENTALAMOUNT">
+        <PropertyRef Name="PROPERTYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTALAP_CLASSIFIE_RENTALAP">
+    <End Role="RENTALAPPLICATIONSTATUS" Type="Self.RENTALAPPLICATIONSTATUS" Multiplicity="0..1" />
+    <End Role="RENTALAPPLICATION" Type="Self.RENTALAPPLICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTALAPPLICATIONSTATUS">
+        <PropertyRef Name="RENTALAPPLICATIONSTATUSID" />
+      </Principal>
+      <Dependent Role="RENTALAPPLICATION">
+        <PropertyRef Name="RENTALAPPLICATIONSTATUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTALAP_HAS_50_PROPERTY">
+    <End Role="PROPERTY" Type="Self.PROPERTY" Multiplicity="1" />
+    <End Role="RENTALAPPLICATION" Type="Self.RENTALAPPLICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROPERTY">
+        <PropertyRef Name="PROPERTYID" />
+      </Principal>
+      <Dependent Role="RENTALAPPLICATION">
+        <PropertyRef Name="PROPERTYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTALAP_RELATIONS_RENTAL_A">
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="0..1" />
+    <End Role="RENTALAPPLICATION" Type="Self.RENTALAPPLICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Principal>
+      <Dependent Role="RENTALAPPLICATION">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RENTALAPPLICATION_CLIENT">
+    <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+    <End Role="RENTALAPPLICATION" Type="Self.RENTALAPPLICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENT">
+        <PropertyRef Name="CLIENTID" />
+      </Principal>
+      <Dependent Role="RENTALAPPLICATION">
+        <PropertyRef Name="CLIENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TERMINAT_BECOMES_RENTAL_A">
+    <End Role="RENTAL_AGREEMENT" Type="Self.RENTAL_AGREEMENT" Multiplicity="1" />
+    <End Role="TERMINATEDAGREEMENT" Type="Self.TERMINATEDAGREEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RENTAL_AGREEMENT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Principal>
+      <Dependent Role="TERMINATEDAGREEMENT">
+        <PropertyRef Name="RENTALAGREEMENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CLASSIFIE_USERTYPE">
+    <End Role="USERTYPE" Type="Self.USERTYPE" Multiplicity="0..1" />
+    <End Role="USER" Type="Self.USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERTYPE">
+        <PropertyRef Name="USERTYPEID" />
+      </Principal>
+      <Dependent Role="USER">
+        <PropertyRef Name="USERTYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="INF370ModelStoreContainer">
+    <EntitySet Name="AGENT" EntityType="Self.AGENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AREA" EntityType="Self.AREA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BOOKING" EntityType="Self.BOOKING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CITY" EntityType="Self.CITY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENT" EntityType="Self.CLIENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMPLAINT" EntityType="Self.COMPLAINT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMPLAINTSTATUS" EntityType="Self.COMPLAINTSTATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DATE" EntityType="Self.DATE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DATETIMESLOT" EntityType="Self.DATETIMESLOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEACTIVATEDUSER" EntityType="Self.DEACTIVATEDUSER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENT" EntityType="Self.DOCUMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEEDATETIMESLOT" EntityType="Self.EMPLOYEEDATETIMESLOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEESLOTSTATUS" EntityType="Self.EMPLOYEESLOTSTATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEETYPE" EntityType="Self.EMPLOYEETYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEEDBACK" EntityType="Self.FEEDBACK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INSPECTION" EntityType="Self.INSPECTION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INSPECTIONSTATUS" EntityType="Self.INSPECTIONSTATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INSPECTIONTYPE" EntityType="Self.INSPECTIONTYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ITEM" EntityType="Self.ITEM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JOB" EntityType="Self.JOB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JOBSTATUS" EntityType="Self.JOBSTATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JOBTASK" EntityType="Self.JOBTASK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JOBTYPE" EntityType="Self.JOBTYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAYMENT" EntityType="Self.PAYMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAYMENTTYPE" EntityType="Self.PAYMENTTYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROPERTY" EntityType="Self.PROPERTY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROPERTYPHOTO" EntityType="Self.PROPERTYPHOTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROPERTYSTATUS" EntityType="Self.PROPERTYSTATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROPERTYTYPE" EntityType="Self.PROPERTYTYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROVINCE" EntityType="Self.PROVINCE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PURCHASE" EntityType="Self.PURCHASE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PURCHASELINE" EntityType="Self.PURCHASELINE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RENTAL_AGREEMENT" EntityType="Self.RENTAL_AGREEMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RENTAL_STATUS" EntityType="Self.RENTAL_STATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RENTALAMOUNT" EntityType="Self.RENTALAMOUNT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RENTALAPPLICATION" EntityType="Self.RENTALAPPLICATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RENTALAPPLICATIONSTATUS" EntityType="Self.RENTALAPPLICATIONSTATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RENTALPERIOD" EntityType="Self.RENTALPERIOD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SLOT" EntityType="Self.SLOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_test_audit_trail" EntityType="Self.tbl_test_audit_trail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TERMINATEDAGREEMENT" EntityType="Self.TERMINATEDAGREEMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Time" EntityType="Self.Time" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERTYPE" EntityType="Self.USERTYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Hash" EntityType="Self.Hash" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Job1" EntityType="Self.Job1" Schema="HangFire" Table="Job" store:Type="Tables" />
+    <EntitySet Name="JobParameter" EntityType="Self.JobParameter" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="JobQueue" EntityType="Self.JobQueue" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="List" EntityType="Self.List" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Schema" EntityType="Self.Schema" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Server" EntityType="Self.Server" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Set" EntityType="Self.Set" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Counter" EntityType="Self.Counter" store:Type="Tables" store:Schema="HangFire">
+      <DefiningQuery>SELECT 
+    [Counter].[Key] AS [Key], 
+    [Counter].[Value] AS [Value], 
+    [Counter].[ExpireAt] AS [ExpireAt]
+    FROM [HangFire].[Counter] AS [Counter]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_AREA_IS_WITHIN_CITY" Association="Self.FK_AREA_IS_WITHIN_CITY">
+      <End Role="CITY" EntitySet="CITY" />
+      <End Role="AREA" EntitySet="AREA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKING_CAN_HAVE_PROPERTY" Association="Self.FK_BOOKING_CAN_HAVE_PROPERTY">
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+      <End Role="BOOKING" EntitySet="BOOKING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CITY_IS_WITHIN_PROVINCE" Association="Self.FK_CITY_IS_WITHIN_PROVINCE">
+      <End Role="PROVINCE" EntitySet="PROVINCE" />
+      <End Role="CITY" EntitySet="CITY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENT_USER" Association="Self.FK_CLIENT_USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="CLIENT" EntitySet="CLIENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPLAIN_ATTEND_EMPLOYEE" Association="Self.FK_COMPLAIN_ATTEND_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="COMPLAINT" EntitySet="COMPLAINT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPLAIN_CLASSIFIE_COMPLAIN" Association="Self.FK_COMPLAIN_CLASSIFIE_COMPLAIN">
+      <End Role="COMPLAINTSTATUS" EntitySet="COMPLAINTSTATUS" />
+      <End Role="COMPLAINT" EntitySet="COMPLAINT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPLAIN_RECIEVES_FEEDBACK" Association="Self.FK_COMPLAIN_RECIEVES_FEEDBACK">
+      <End Role="FEEDBACK" EntitySet="FEEDBACK" />
+      <End Role="COMPLAINT" EntitySet="COMPLAINT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPLAIN_RELATIONS_RENTAL_A" Association="Self.FK_COMPLAIN_RELATIONS_RENTAL_A">
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+      <End Role="COMPLAINT" EntitySet="COMPLAINT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DATETIME_HAS_00_SLOT" Association="Self.FK_DATETIME_HAS_00_SLOT">
+      <End Role="SLOT" EntitySet="SLOT" />
+      <End Role="DATETIMESLOT" EntitySet="DATETIMESLOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DATETIME_IS_IN_DATE" Association="Self.FK_DATETIME_IS_IN_DATE">
+      <End Role="DATE" EntitySet="DATE" />
+      <End Role="DATETIMESLOT" EntitySet="DATETIMESLOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DATETIMESLOT_AREA" Association="Self.FK_DATETIMESLOT_AREA">
+      <End Role="AREA" EntitySet="AREA" />
+      <End Role="DATETIMESLOT" EntitySet="DATETIMESLOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DEACTIVA_BECOMES__USER" Association="Self.FK_DEACTIVA_BECOMES__USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="DEACTIVATEDUSER" EntitySet="DEACTIVATEDUSER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENT_UPLOADS_RENTALAP" Association="Self.FK_DOCUMENT_UPLOADS_RENTALAP">
+      <End Role="RENTALAPPLICATION" EntitySet="RENTALAPPLICATION" />
+      <End Role="DOCUMENT" EntitySet="DOCUMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_CLASSIFIE_EMPLOYEE" Association="Self.FK_EMPLOYEE_CLASSIFIE_EMPLOYEE">
+      <End Role="EMPLOYEETYPE" EntitySet="EMPLOYEETYPE" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_IS_AN2_USER" Association="Self.FK_EMPLOYEE_IS_AN2_USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_RELATIONS_EMPLOYEE" Association="Self.FK_EMPLOYEE_RELATIONS_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEEDATETIMESLOT" EntitySet="EMPLOYEEDATETIMESLOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_RELATIONS_EMPLOYEES" Association="Self.FK_EMPLOYEE_RELATIONS_EMPLOYEES">
+      <End Role="EMPLOYEESLOTSTATUS" EntitySet="EMPLOYEESLOTSTATUS" />
+      <End Role="EMPLOYEEDATETIMESLOT" EntitySet="EMPLOYEEDATETIMESLOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEEDATETIMESLOT_BOOKING" Association="Self.FK_EMPLOYEEDATETIMESLOT_BOOKING">
+      <End Role="BOOKING" EntitySet="BOOKING" />
+      <End Role="EMPLOYEEDATETIMESLOT" EntitySet="EMPLOYEEDATETIMESLOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEEDATETIMESLOT_DATETIMESLOT" Association="Self.FK_EMPLOYEEDATETIMESLOT_DATETIMESLOT">
+      <End Role="DATETIMESLOT" EntitySet="DATETIMESLOT" />
+      <End Role="EMPLOYEEDATETIMESLOT" EntitySet="EMPLOYEEDATETIMESLOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FEEDBACK_RECIEVES2_COMPLAIN" Association="Self.FK_FEEDBACK_RECIEVES2_COMPLAIN">
+      <End Role="COMPLAINT" EntitySet="COMPLAINT" />
+      <End Role="FEEDBACK" EntitySet="FEEDBACK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FEEDBACK_RELATIONS_JOB" Association="Self.FK_FEEDBACK_RELATIONS_JOB">
+      <End Role="JOB" EntitySet="JOB" />
+      <End Role="FEEDBACK" EntitySet="FEEDBACK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HangFire_JobParameter_Job" Association="Self.FK_HangFire_JobParameter_Job">
+      <End Role="Job1" EntitySet="Job1" />
+      <End Role="JobParameter" EntitySet="JobParameter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HangFire_State_Job" Association="Self.FK_HangFire_State_Job">
+      <End Role="Job1" EntitySet="Job1" />
+      <End Role="State" EntitySet="State" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INSPECTI_CLASSIFIE_INSPECTI" Association="Self.FK_INSPECTI_CLASSIFIE_INSPECTI">
+      <End Role="INSPECTIONTYPE" EntitySet="INSPECTIONTYPE" />
+      <End Role="INSPECTION" EntitySet="INSPECTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INSPECTI_CLASSIFIE_INSPECTION" Association="Self.FK_INSPECTI_CLASSIFIE_INSPECTION">
+      <End Role="INSPECTIONSTATUS" EntitySet="INSPECTIONSTATUS" />
+      <End Role="INSPECTION" EntitySet="INSPECTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INSPECTI_RELATIONS_RENTAL_A" Association="Self.FK_INSPECTI_RELATIONS_RENTAL_A">
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+      <End Role="INSPECTION" EntitySet="INSPECTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INSPECTION_EMPLOYEE" Association="Self.FK_INSPECTION_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="INSPECTION" EntitySet="INSPECTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INSPECTION_SLOT" Association="Self.FK_INSPECTION_SLOT">
+      <End Role="SLOT" EntitySet="SLOT" />
+      <End Role="INSPECTION" EntitySet="INSPECTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOB_EMPLOYEE" Association="Self.FK_JOB_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="JOB" EntitySet="JOB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOB_RELATIONS_FEEDBACK" Association="Self.FK_JOB_RELATIONS_FEEDBACK">
+      <End Role="FEEDBACK" EntitySet="FEEDBACK" />
+      <End Role="JOB" EntitySet="JOB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOB_RELATIONS_JOBSTATU" Association="Self.FK_JOB_RELATIONS_JOBSTATU">
+      <End Role="JOBSTATUS" EntitySet="JOBSTATUS" />
+      <End Role="JOB" EntitySet="JOB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOB_RELATIONS_JOBTYPE" Association="Self.FK_JOB_RELATIONS_JOBTYPE">
+      <End Role="JOBTYPE" EntitySet="JOBTYPE" />
+      <End Role="JOB" EntitySet="JOB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOB_RELATIONS_RENTAL_A" Association="Self.FK_JOB_RELATIONS_RENTAL_A">
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+      <End Role="JOB" EntitySet="JOB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOBTASK_RELATIONS_JOB" Association="Self.FK_JOBTASK_RELATIONS_JOB">
+      <End Role="JOB" EntitySet="JOB" />
+      <End Role="JOBTASK" EntitySet="JOBTASK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOBTASK_RELATIONS_PURCHASE" Association="Self.FK_JOBTASK_RELATIONS_PURCHASE">
+      <End Role="PURCHASELINE" EntitySet="PURCHASELINE" />
+      <End Role="JOBTASK" EntitySet="JOBTASK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAYMENT_CLASSIFIE_PAYMENTT" Association="Self.FK_PAYMENT_CLASSIFIE_PAYMENTT">
+      <End Role="PAYMENTTYPE" EntitySet="PAYMENTTYPE" />
+      <End Role="PAYMENT" EntitySet="PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAYMENT_HAS_7_RENTAL_A" Association="Self.FK_PAYMENT_HAS_7_RENTAL_A">
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+      <End Role="PAYMENT" EntitySet="PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROPERTY_ASSIGNED_AGENT" Association="Self.FK_PROPERTY_ASSIGNED_AGENT">
+      <End Role="AGENT" EntitySet="AGENT" />
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROPERTY_CLASSIFIE_PROPERTY" Association="Self.FK_PROPERTY_CLASSIFIE_PROPERTY">
+      <End Role="PROPERTYSTATUS" EntitySet="PROPERTYSTATUS" />
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROPERTY_CLASSIFIE_PROPERTYS" Association="Self.FK_PROPERTY_CLASSIFIE_PROPERTYS">
+      <End Role="PROPERTYTYPE" EntitySet="PROPERTYTYPE" />
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROPERTY_HAS_3_PROPERTY" Association="Self.FK_PROPERTY_HAS_3_PROPERTY">
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+      <End Role="PROPERTYPHOTO" EntitySet="PROPERTYPHOTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROPERTY_IS_LOCATE_AREA" Association="Self.FK_PROPERTY_IS_LOCATE_AREA">
+      <End Role="AREA" EntitySet="AREA" />
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PURCHASE_RELATIONS_ITEM" Association="Self.FK_PURCHASE_RELATIONS_ITEM">
+      <End Role="ITEM" EntitySet="ITEM" />
+      <End Role="PURCHASELINE" EntitySet="PURCHASELINE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PURCHASE_RELATIONS_JOBTASK" Association="Self.FK_PURCHASE_RELATIONS_JOBTASK">
+      <End Role="JOBTASK" EntitySet="JOBTASK" />
+      <End Role="PURCHASELINE" EntitySet="PURCHASELINE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PURCHASE_RELATIONS_PURCHASE" Association="Self.FK_PURCHASE_RELATIONS_PURCHASE">
+      <End Role="PURCHASE" EntitySet="PURCHASE" />
+      <End Role="PURCHASELINE" EntitySet="PURCHASELINE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PURCHASE_RELATIONS_SUPPLIER" Association="Self.FK_PURCHASE_RELATIONS_SUPPLIER">
+      <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+      <End Role="PURCHASE" EntitySet="PURCHASE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTAL_A_HAS_1_RENTAL_S" Association="Self.FK_RENTAL_A_HAS_1_RENTAL_S">
+      <End Role="RENTAL_STATUS" EntitySet="RENTAL_STATUS" />
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTAL_A_HAS_4_PROPERTY" Association="Self.FK_RENTAL_A_HAS_4_PROPERTY">
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTAL_A_RELATIONS_RENTALAP" Association="Self.FK_RENTAL_A_RELATIONS_RENTALAP">
+      <End Role="RENTALAPPLICATION" EntitySet="RENTALAPPLICATION" />
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTAL_AGREEMENT_CLIENT" Association="Self.FK_RENTAL_AGREEMENT_CLIENT">
+      <End Role="CLIENT" EntitySet="CLIENT" />
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTALAMOUNT_PROPERTY" Association="Self.FK_RENTALAMOUNT_PROPERTY">
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+      <End Role="RENTALAMOUNT" EntitySet="RENTALAMOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTALAP_CLASSIFIE_RENTALAP" Association="Self.FK_RENTALAP_CLASSIFIE_RENTALAP">
+      <End Role="RENTALAPPLICATIONSTATUS" EntitySet="RENTALAPPLICATIONSTATUS" />
+      <End Role="RENTALAPPLICATION" EntitySet="RENTALAPPLICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTALAP_HAS_50_PROPERTY" Association="Self.FK_RENTALAP_HAS_50_PROPERTY">
+      <End Role="PROPERTY" EntitySet="PROPERTY" />
+      <End Role="RENTALAPPLICATION" EntitySet="RENTALAPPLICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTALAP_RELATIONS_RENTAL_A" Association="Self.FK_RENTALAP_RELATIONS_RENTAL_A">
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+      <End Role="RENTALAPPLICATION" EntitySet="RENTALAPPLICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RENTALAPPLICATION_CLIENT" Association="Self.FK_RENTALAPPLICATION_CLIENT">
+      <End Role="CLIENT" EntitySet="CLIENT" />
+      <End Role="RENTALAPPLICATION" EntitySet="RENTALAPPLICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TERMINAT_BECOMES_RENTAL_A" Association="Self.FK_TERMINAT_BECOMES_RENTAL_A">
+      <End Role="RENTAL_AGREEMENT" EntitySet="RENTAL_AGREEMENT" />
+      <End Role="TERMINATEDAGREEMENT" EntitySet="TERMINATEDAGREEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CLASSIFIE_USERTYPE" Association="Self.FK_USER_CLASSIFIE_USERTYPE">
+      <End Role="USERTYPE" EntitySet="USERTYPE" />
+      <End Role="USER" EntitySet="USER" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

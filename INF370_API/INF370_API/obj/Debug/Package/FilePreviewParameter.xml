@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="INF370Api" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\User\\Desktop\\IQ-Solutions-INF370-Repo\\INF370_API\\INF370_API\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\User\\Desktop\\IQ-Solutions-INF370-Repo\\INF370_API\\INF370_API\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-INF370_API-20200817070652.mdf;Initial Catalog=aspnet-INF370_API-20200817070652;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\User\\Desktop\\IQ-Solutions-INF370-Repo\\INF370_API\\INF370_API\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="INF370Entities-Web.config Connection String" description="INF370Entities Connection String used in web.config by the application to access the database." value="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=inf370.database.windows.net;initial catalog=inf370;persist security info=True;user id=AccessDb370;password=IQsolutions3;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\User\\Desktop\\IQ-Solutions-INF370-Repo\\INF370_API\\INF370_API\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='INF370Entities']/@connectionString" />
+  </parameter>
+</parameters>

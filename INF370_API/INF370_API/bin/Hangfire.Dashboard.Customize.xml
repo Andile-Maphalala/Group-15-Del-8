@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hangfire.Dashboard.Customize</name>
+    </assembly>
+    <members>
+        <member name="T:Hangfire.HangfireDashboardCustomOptions">
+            <summary>
+            Custom configuration options for the Hangfire Dashboard
+            </summary>
+        </member>
+        <member name="P:Hangfire.HangfireDashboardCustomOptions.DashboardTitle">
+            <summary>
+            The title to display in the Hangfire Dashboard
+            </summary>
+        </member>
+        <member name="T:Hangfire.HangfireDashboardCustomOptionsExtensions">
+            <summary>
+            Provides extension methods for the <c>IAppBuilder</c> interface
+            defined in the <see href="https://www.nuget.org/packages/Owin/">Owin</see>
+            NuGet package to simplify the integration with OWIN applications
+            </summary>
+        </member>
+        <member name="M:Hangfire.HangfireDashboardCustomOptionsExtensions.UseHangfireDashboardCustomOptions(Owin.IAppBuilder,Hangfire.HangfireDashboardCustomOptions)">
+            <summary>
+            Configure custom options for the Hangfire Dashboard
+            </summary>
+            <param name="app">The application builder instance</param>
+            <param name="options">The custom configuration options for the Hangfire Dashboard</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
