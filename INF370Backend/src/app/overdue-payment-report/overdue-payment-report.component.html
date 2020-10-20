@@ -9,87 +9,88 @@
           </mat-sidenav>
           <mat-sidenav-content>
             <app-username></app-username>
-                <mat-card>  
-                  <mat-toolbar color="primary">  
-                    <div class="container w-100 row">
-                    <div align="center" style="color:white; text-align: left;  " class="col-6">  
-                     Overdue Payment Report 
-                   
-                     </div>
-        
-                     <div align="right"  class="col-6">
-                      
-                         
-                        
-                        <div  *ngIf="Clients">
-                          <!-- <button style="font-weight:bold;" mat-raised-button color="secondary" (click)="download()" >Export as PDF</button> -->
-                        </div>
-                        
-        
-                      
-        
-                     </div>
-                     <br>
-                  
-                  
-        
-                  </div>
-                  </mat-toolbar>  
-                <br><br>  
-                  <mat-card-content>  
- 
-
-                     <div class="text-center w-100">
-                      <button  mat-raised-button color="primary" (click)="submitRequest()">Generate Report</button>
-                     </div>
-
-                  <br>
-                  <!-- <canvas id = 'canvas'> -->
-                     <table *ngIf="Clients" id = 'table' class="mat-elevation-z8 table w-100" >
-                  <thead class="thead-dark">
-                      <tr>
-              
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Phone Number</th>
-                        <th>Email</th>
-                        <th>Reference Number</th>
-                        <th>Amount Due</th>
-                        
-                              
-                      </tr>
-                    </thead>
-                 
-                 
-                  <tbody>
-                    <tr *ngFor= "let item of Clients">
-                      <td>{{item.Name}}</td>
-                      <td>{{item.Surname}}</td>
-                      <td>{{item.PhomeNumber}}</td>
-                      <td>{{item.Email}}</td>
-                      <td>{{item.ReferanceNo}}</td>
-                      <td>{{item.AmountDue}}</td>
-                    </tr>
-
-                  </tbody>
-                  <tfoot></tfoot>
-                </table>
-              <!-- </canvas> -->
-              <div class="float-right"  *ngIf="Clients">
-                <label class="mat-display-1">
-                  <b>Total Amount Due : R {{Total}}</b>
-                </label>
-              </div>
-<br><br>
+            <mat-card>  
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row">
+                <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                 Overdue Payment Report 
                
-                  </mat-card-content>  
-                </mat-card>  
-        
-        
-                      
-                 
-                
-                      </mat-sidenav-content>
+                 </div>
+    
+                 <div align="right"  class="col-6">
+                  
+                     
+                    
+                    <div  *ngIf="Clients">
+                      <button style="font-weight:bold;" mat-raised-button color="secondary" (click)="download()" >Export as PDF</button>
+                    </div>
+                    
+    
+                  
+    
+                 </div>
+                 <br>
+              
+              
+    
+              </div>
+              </mat-toolbar>  
+            <br><br>  
+            <div  style="font-size:20px ;" class="float-right"  *ngIf="Clients">
+              <label>
+                <b>Total Amount Due : R {{Total | number:'1.2-2'}}</b>
+              </label>
+            </div>
+              <mat-card-content>  
+
+
+                 <div class="text-center w-100">
+                  <button  mat-raised-button color="primary" (click)="submitRequest()">Generate Report</button>
+                 </div>
+
+              <br>
+              <!-- <canvas id = 'canvas'> -->
+                 <table *ngIf="Clients" id = 'table' class="mat-elevation-z8 table w-100" >
+              <thead class="thead-dark">
+                  <tr>
+          
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Reference Number</th>
+                    <th>Amount Due</th>
+                    
+                          
+                  </tr>
+                </thead>
+             
+             
+              <tbody>
+                <tr *ngFor= "let item of Clients">
+                  <td>{{item.Name}}</td>
+                  <td>{{item.Surname}}</td>
+                  <td>{{item.PhomeNumber}}</td>
+                  <td>{{item.Email}}</td>
+                  <td>{{item.ReferanceNo}}</td>
+                  <td>{{item.AmountDue | number:'1.2-2'}}</td>
+                </tr>
+
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          <!-- </canvas> -->
+          
+<br><br>
+           
+              </mat-card-content>  
+            </mat-card>  
+    
+    
+                  
+             
+            
+                  </mat-sidenav-content>
                     </mat-sidenav-container>
                     <div class="modal fade" id="myModal" role="dialog">
                       <div class="modal-dialog">
