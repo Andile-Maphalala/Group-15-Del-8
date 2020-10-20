@@ -1,0 +1,187 @@
+
+  <ion-app>
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar color ="primary">
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ul class="nav navbar-nav navbar-right nav-item nav-link">
+              <a routerLink='/Home'><li style=" font-size: 15px; color: white; "><ion-icon name="home-sharp"></ion-icon></li></a>
+            </ul>
+          </ion-buttons>
+          <ion-title style=" font-size: 15px;">View Job Tasks</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div >
+
+          <button class="btn btn-primary" style="text-align: left; display: inline-flex; line-height: 24px;" type="button" routerLink='/ViewRepairRequsts'>
+             
+            <i style=" color: rgb(66, 252, 9);" class="material-icons">
+              arrow_right_alt
+              </i>
+              <span>  
+               
+                Return</span>
+
+          </button>
+           <button class="btn btn-primary" style="text-align: left; display: inline-flex; line-height: 24px;" type="button" (click) = "AddJobTask()">
+             
+            <i style=" color: rgb(66, 252, 9);" class="material-icons">
+              add
+              </i>
+              <span>  
+               
+                Add Job Task</span>
+
+          </button> 
+
+         </div>
+     
+      
+
+        <ion-item *ngFor ="let job of allJobTasks">
+          <ion-label class="decision" position="stacked"><strong>Job Description:</strong>{{job.DESCRIPTION}}</ion-label>
+          <ion-label class="decision" position="stacked"><strong>Status:</strong>{{job.COMPLETED}}</ion-label>
+          <br>
+          <div  class="row" > 
+          <ion-item  *ngIf="job.COMPLETED == 'Incomplete'" >
+             <ion-button type="button" (click)="AddItem(job.JOBTASKID)"  >Add Item </ion-button> 
+            
+            <ion-button  type="button"  (click)="PromptComplete(job.JOBTASKID)" >Complete Task</ion-button> 
+            
+          </ion-item>  
+          </div>
+          
+    
+
+        </ion-item>
+
+      </ion-content>
+    </div>
+    <ng-template #content  let-modal>
+      <div class="modal-header alert-success">
+        <h3 class="modal-title text-center"  style="text-align: center;">Add Bought items</h3>
+      </div>
+      <form [formGroup]="itemForm" (ngSubmit)="OnSubmitPurchaseItem()">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Supplier</label>
+          <select class="form-control" formControlName="SUPPLIERID" >
+            <option *ngFor="let supplier of allsuppliers | async" value="{{supplier.SUPPLIERID}}"> {{supplier.NAME}} // {{supplier.ADDRESS}} </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+      <label for="exampleFormControlInput1">Name </label><br> 
+        <input formControlName="NAME" type ="text"  placeholder="">  
+      </div>
+
+      <div class="form-group">
+      <label for="exampleFormControlInput1">Item Description</label><br>
+        <input  formControlName="DESCRIPTION" type ="text"  placeholder=""> 
+      </div>
+
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Quantity </label><br> 
+        <input formControlName="QUANTITY" type ="number"  placeholder="">  
+      </div>
+
+        <div class="form-group">
+      <label for="exampleFormControlInput1">Price</label><br>
+        <input  formControlName="PRICE" type ="number"   placeholder="">
+      </div>  
+
+      <div class="modal-footer">
+        <button type="button" ngbAutofocus  class="btn btn-danger" (click)="modal.close()"  >Cancel</button>
+        <button type="button" ngbAutofocus  class="btn btn-success"  [disabled]= "!itemForm.valid" type="submit" >Add Item</button>
+      </div>
+      </form>
+    </ng-template>
+  
+  
+    <ng-template #job  let-modal>
+      <div class="modal-header alert-success">
+        <h3 class="modal-title text-center"  style="text-align: center;">Add a Job Task</h3>
+      </div>
+      <form [formGroup]="jobTaskForm" (ngSubmit)="OnSubmitJobTask()">
+      <div class="form-group">
+      <label for="exampleFormControlInput1">Description </label><br> 
+        <input formControlName="DESCRIPTION"   placeholder="">  
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" ngbAutofocus  class="btn btn-danger" (click)="modal.close()"  >Cancel</button>
+        <button type="button" ngbAutofocus  class="btn btn-success" [disabled]= "!jobTaskForm.valid"  type="submit"  >Add JobTask</button>
+      </div>
+    </form> 
+    </ng-template>
+
+
+     <ng-template #complete  let-modal>
+      <div class="modal-header alert-success">
+        <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+      </div>
+      <div class="form-group">
+      <label for="exampleFormControlInput1" alert-success>Successfully completed a jobtask </label><br> 
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+      </div>
+    </ng-template>
+
+    <ng-template #comItem  let-modal>
+      <div class="modal-header alert-success">
+        <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+      </div>
+      <div class="form-group">
+      <label for="exampleFormControlInput1" alert-success>Successfully added a purchased item </label><br> 
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" ngbAutofocus  class="btn btn-danger" (click)="modal.close()"  >Ok</button>
+      </div>
+    </ng-template>
+
+    <ng-template #comJob  let-modal>
+      <div class="modal-header alert-success">
+        <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+      </div>
+      <div class="form-group">
+      <label for="exampleFormControlInput1" alert-success>Successfully added a Job Task </label><br> 
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+      </div>
+    </ng-template>
+
+
+    <ng-template #prompt  let-modal>
+      <div class="modal-header alert-success">
+        <h3 class="modal-title text-center"  style="text-align: center;">Complete?</h3>
+      </div>
+      <div class="form-group">
+      <label for="exampleFormControlInput1">Are you sure you want to complese this JobTask </label><br> 
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" ngbAutofocus  class="btn btn-danger" (click)="modal.close()"  >Cancel</button>
+        <button type="button" ngbAutofocus  class="btn btn-success" (click)="CompleteJobTask()"  >Complete</button>
+      </div>
+    </ng-template>
+  
+  
+  </ion-app>
+
+
+  
+
+
+
+
+
+
+          

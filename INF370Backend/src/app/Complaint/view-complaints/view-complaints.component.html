@@ -1,0 +1,287 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Complaints
+             
+               </div>
+
+               <div align="right"  class="col-6" >
+              
+                <button class="btn btn-primary" routerLink="/ViewFeedback" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" >
+                   
+                    <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                      visibility
+                      </i>
+                      <span>  
+                       
+                        View complaints feedback </span>
+    
+                  </button>
+  
+
+               </div>
+        
+               
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+              <div >
+                <mat-form-field class="w-100">
+                  <mat-label>Search</mat-label>
+                  <input matInput  [(ngModel)]="searchedKeyword" placeholder="Search Keyword">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+                <!--  (keyup)="filterExpenses()" -->
+               </div>
+            
+               <table class="mat-elevation-z8 table w-100 table-bordered"  >
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th>Status</th>
+                    <th>Client Name</th>
+                    <th>Number</th>
+                    <th>Photo</th>
+                    <th>Complaint Resolved?</th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor ="let com of allcomplaints | async |  filter:searchedKeyword">
+                        <td>{{com.ComplaintID}}</td>
+                        <td>{{com.Date |date:'yyyy-MM-dd'}}</td>
+                        <td>{{com.Details}}</td>  
+                        <td>{{com.ComplaintStatus}}</td> 
+                        <td>{{com.Name}}</td>  
+                        <td>{{com.Number}}</td>  
+                        <!-- <td>{{com.ComplaintStatus}}</td>   -->
+
+                        <td class="zoom"> <img id="image" width="125" height="125" [src]="com.Photo"/> </td>
+                        <td style="text-align: center;" class="">  
+                            <button type="button" class="btn btn-primary"  (click)="Assin(com.ComplaintID)" >Resolved</button>  
+                          </td>  
+                        
+                    </tr>
+              
+             
+            </tbody>
+          </table>
+            </mat-card-content>  
+          </mat-card>  
+  
+  
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+           
+                         
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Asign Complaints Page</h4>
+                    </div>
+                      <div class="modal-body">
+                        <a href="   https://motlatso-baps.github.io/HelpInturbidus/pages/5292-assign-complaint.html" target="_blank" mat-menu-item>
+                         
+                    <mat-icon class="icons">help_outline</mat-icon>        
+                         Go to Help</a>
+                      </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+
+           <style>
+                .zoom {
+                   /*   padding: 50px;
+              background-color: green;*/
+                  transition: transform .2s;  
+                  /* width: 200px;
+                  height: 200px; */
+                  margin: 0 auto;
+                }
+                
+                .zoom:hover {
+                  transform: scale(4); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+                }
+                </style>
+              <div id="MyModal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <!-- <button type="button" class="close " aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button> -->
+                      <h4 class="modal-title w-100" id="myModalLabel" style="color:rgb(60, 191, 196)">Assign Complaints Page</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>This is the Complaints Page.</p><br/>
+                      <p style="color:rgb(60, 191, 196); font-weight: bold">Here you can select to:</p>
+                     
+                      <p>-Click RESOLVE COMPLAINT button to change the status of the complaint to resolved</p>
+                      <p>-Type a keyword in the SEARCH input to search for a complaint </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+          
+      <ng-template #content let-modal>
+        <div class="modal-header alert-success">
+          <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+          <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Complaint Resolved !</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+
+          <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+        </div>
+      </ng-template>
+     
+          
+          
+          
+          <!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+          
+          <!-- Add Area modal -->
+          
+          <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;"></h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">No search results found</label>
+  
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Edit Area modal -->
+          
+          <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Complaint?</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Are you sure you want to delete the Complaint?</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success"data-dismiss="modal" data-toggle="modal" data-target="#sucdel">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="sucdel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-success ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Successfully deleted Complaint</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" data-dismiss="modal" class="btn btn-success">Ok</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header alert-primary ">
+                          <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Feedack</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <strong><mat-label>Add feedback description:</mat-label></strong>
+                          <input  matInput  placeholder="NaFeedbackme"  name="name"  required>
+                        </div>
+                        <div class="modal-footer " >
+                          <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
+                          <button type="button" data-dismiss="modal" data-toggle="modal" data-target="#sucfeedback" class="btn btn-primary">Confrim</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="sucfeedback" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header alert-success ">
+                          <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">success</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <label>Successfully added Feedback</label>
+                        </div>
+                        <div class="modal-footer " >
+                          <button type="button" data-dismiss="modal" class="btn btn-success">OK</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>

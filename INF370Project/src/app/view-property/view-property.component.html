@@ -1,0 +1,245 @@
+
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened *ngIf="!isLoggedIn"> 
+     
+  <app-nav></app-nav>
+  
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <nav class="navbar navbar-expand-lg py-3 navbar-dark shadow-sm navbar-inverse navbar-fixed-top" style="  background-color: #111;  ">
+        <div class="container">
+          <a  class="navbar-brand" >
+            <!-- Logo Image -->
+            <img src="assets/Logo (2).png"   class="d-inline-block align-middle mr-2">
+            <!-- Logo Text -->
+            <span class="text-uppercase font-weight-bold">Inturbidus</span>
+          </a>
+      
+          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+      
+          <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+      
+              <li class="nav-item " style=" font-size: 20px; color: gray; "><a routerLink="/login"  *ngIf="isLoggedIn" class="nav-link">Login <span class="sr-only">(current)</span></a></li>
+               <li class="nav-item" style=" font-size: 20px; color: gray; "><a *ngIf="!isLoggedIn "  routerLink="/view-user" class="nav-link">{{names}}<mat-icon class="icons">account_circle</mat-icon></a></li>
+              
+              <li class="nav-item" style=" font-size: 20px; color: gray; "><a routerLink="/register"  *ngIf="isLoggedIn" class="nav-link">Register</a></li>
+            <li class="nav-item" style=" font-size: 20px; color: gray; "><a (click)="logout();"  *ngIf="!isLoggedIn " [hidden]="!isLoggedIn" class="nav-link">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                Property Details
+             
+               </div>
+               <div align="right"  class="col-6">
+                <button class="btn btn-primary" routerLink="/" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" >
+                   
+                  <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                    keyboard_backspace
+                  </i>
+                    <span>  
+                     
+                      Go Back To Browse properties</span>
+  
+                </button>
+
+               </div>
+               
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+            <!-- <mat-toolbar color="primary">  
+              <div class="container w-100 row">
+              <div align="center" style="color:white; text-align: left;"  class="col-6">  
+               Property Details
+             
+               </div>
+               <div align="right"  class="col-6">
+                
+                <button class="btn btn-primary"  routerLink="/" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" >
+                   
+                    <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                        keyboard_backspace
+                      </i>
+                      <span>  
+                       
+                        Go Back To Browse properties</span>
+    
+                  </button>
+                  
+                  
+                  
+  
+                
+  
+               </div>
+               <br>
+            </div>
+            </mat-toolbar>   -->
+          <br><br>  
+            <mat-card-content>  
+              <div >
+                
+  
+               </div>
+               <div class="control-group span6 container row">
+  
+                <div class="col-md-4">
+                
+                </div>
+  
+               </div>
+               <br><br>
+               <div class="row">
+                <div class="col-md-12">
+              
+                  <!-- <div id="mdb-lightbox-ui"></div>
+              
+                  <div class="mdb-lightbox no-margin">
+              
+                    <figure class="center">
+                     
+                        <img alt="picture" src="../../assets/images/Accomodation1.jpg"
+                        
+                          class="img-fluid">
+                       
+                      
+                    </figure> 
+                    <mat-card class="card" >   
+                        <h2>{{allProperty.ADDITIONALINFO}}</h2> 
+                        <p>{{allProperty.PROPERTYDESCRIPTION}}</p>
+                        <p>{{allProperty.ADDRESS}}</p>
+                        </mat-card>
+<br><br>
+                     -->
+<mdb-carousel [animation]="'slide'"  style="margin-top:0px; width:100%; height:50px;" class="images">
+  <mdb-carousel-item *ngFor="let ty of allProperty.photo">
+    <img class="d-block w-100 img-fluid" src="{{ty.PHOTO}}" alt="First slide">
+  </mdb-carousel-item>
+ 
+</mdb-carousel>
+<!-- <img [src]="allProperty.photo.PHOTO" style="margin-top:0px; width:100%; height:330px;" class="images">
+<ng-image-slider [images]="allProperty.photo" #nav style="margin-top:0px; width:100%; height:330px;" class="images"></ng-image-slider> -->
+<!-- <img src="../../../assets/images/left.png" (click)="left()" class="left">  
+<img src="../../../assets/images/right.png" (click)="right()" class="right"> -->
+<table class="table table-striped text-center " style="table-layout: fixed;width: 100%;">
+ <tbody>
+  <tr >
+    <td class="text-center" colspan="4">{{allProperty.PROPERTYDESCRIPTION}}</td>
+  </tr>
+  <tr>
+    <td style="text-align:right;">Size:</td><td>{{allProperty.SIZE}} m<sup>2</sup></td>
+    <td style="text-align:right;">Address:</td><td>{{allProperty.ADDRESS}}</td>
+  </tr>
+  <tr >
+      <td style="text-align:right;">Rental Amount:</td><td>R {{allProperty.RentalAmount}} per month</td>
+      <td style="text-align:right;">Bedrooms:</td><td>{{allProperty.NUMBED}}</td>
+  </tr>
+  <tr >
+    <td style="text-align:right;">Property Reference No.:</td><td>{{allProperty.PROPERTYID}}</td>
+    <td style="text-align:right;">Bathrooms:</td><td>{{allProperty.NUMBBATH}}</td>
+</tr>
+ <tr >
+  <td style="text-align:right;">Garden:</td><td>{{allProperty.GARDEN}}</td>
+  <td style="text-align:right;">Available from :</td><td>{{allProperty.AVAILABLEDATE |date:'dd MMMM yyyy'}}</td>
+ </tr> 
+ <tr >
+  <td class="text-center" colspan="4">Property Reference No : {{allProperty.PROPERTYID}}</td>
+</tr>
+<tr>
+
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+
+</tr>
+
+</tbody>
+</table>
+
+                            
+                        <br><br>
+                       
+                           <mat-card class="card row">
+                            <!-- check if logged in -->
+                            <button mat-raised-button class="col" *ngIf="date>=(allProperty.AVAILABLEDATE |date:'yyyy-MM-dd')" color="primary" (click)="makeBooking(allProperty.PROPERTYID)" >Make Viewing Booking</button><br>
+                            <button mat-raised-button color="warn" class="col" (click)="apply(allProperty.PROPERTYID)" >Apply for Rental Agreement</button>
+                           </mat-card>
+                  </div>
+                
+              </div>
+            </mat-card-content>  
+          </mat-card>  
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+
+<!--End of help modal-->
+<div id="MyModal1"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel" style="color:green">View Property Page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <a href="https://motlatso-baps.github.io/HelpInturbidus/pages/6262view-property.html" target="_blank" mat-menu-item>
+           
+            <mat-icon class="icons">help_outline</mat-icon>        
+            Go to Help</a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <ng-template #content let-modal>
+                <div class="modal-header alert-success">
+                  <h3 class="modal-title text-center"  style="text-align: center;">Verification</h3>
+                  <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                    <span aria-hidden="true">&times;</span>
+                  </button> -->
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Please verify your account before proceeding.</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/verify" >Ok</button>
+                </div>
+              </ng-template>
+          
+          
+         

@@ -1,0 +1,123 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <app-username></app-username>
+            <mat-card>  
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row"  >
+                <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                 Assigned Jobs 
+               
+                 </div>
+    
+                
+                 <br>
+              
+              
+    
+              </div>
+              </mat-toolbar>  
+            <br><br>  
+              <mat-card-content>  
+                <form [formGroup]="jobfeedbackForm"(ngSubmit)="onFormSubmitUpdateJob()">  
+                 <table class="mat-elevation-z8 table w-100" >
+              
+                <tr ngclass="btn-primary"> 
+
+                      <!-- <th>Username </th>  -->
+                      <th>Job Description</th>
+                      <th>Job Type</th>
+                      <th>Property Address</th> 
+                      <th>Date Requested </th>
+                      <th>Client Name</th>
+                      <th>Client Surname</th>
+                      <th>Client Number</th>
+                      <th>Job Completed ?</th>
+
+                     </tr>
+    
+                     <tr *ngFor="let job of alljobs | async">  
+               <input hidden value="{{job.JOBID}}">
+                      <!-- <td class="tbl2">{{job.USERNAME}}</td>      -->
+                      <td class="tbl2">{{job.DESCRIPTION}}</td>  
+                      <td class="tbl2">{{job.JOBTYPE}}</td> 
+                      <td class="tbl2">{{job.ADDRESS}}</td>     
+                      <td class="tbl2">{{job.DATEREQUESTED  |  date:'dd/MM/yyyy'}}</td>  
+                      <!-- <td class="tbl2">{{job.JOBSTATUS}}</td>   -->
+                      <td class="tbl2">{{job.CLIENTNAME}}</td>  
+                      <td class="tbl2">{{job.CLIENTSURNAME}}</td>  
+                      <td class="tbl2">{{job.CLIENTNUMBER}}</td>  
+
+                      <td class="tbl2">  
+                        <button type="button" class="btn btn-info" (click)="setJobID(job.JOBID)"  matTooltip="Click Edit Button" >Job Complete</button>  
+                      </td>  
+                    </tr>
+                  
+            
+                      
+                
+               
+
+            </table>
+            <!-- <button type="button" data-target="#capturejobfeedback" class="btn btn-info" matTooltip="Click Delete Button" mat-raised-button routerLink = "/capturejobfeedback" >Capture Job Details</button>   -->
+                </form>
+            
+
+              </mat-card-content>  
+            </mat-card>  
+  
+  
+                  
+             
+            
+                  </mat-sidenav-content>
+                </mat-sidenav-container>
+            
+            
+            
+         <ng-template #content let-modal>
+          <div class="modal-header alert-success">
+            <h3 class="modal-title text-center"  style="text-align: center;">Job Completed </h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Was the job completed? </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button>
+
+            <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); CompleteJob()"  >Yes</button>
+          </div>
+        </ng-template>
+       
+            
+        <ng-template #content1 let-modal>
+          <div class="modal-header alert-success">
+            <h3 class="modal-title text-center"  style="text-align: center;">Thank you</h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Thank you for your hard work.Keep it up</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+
+            <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+          </div>
+        </ng-template>
+       
+            
+            
+            
+    

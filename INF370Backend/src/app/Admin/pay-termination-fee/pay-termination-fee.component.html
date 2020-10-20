@@ -1,0 +1,203 @@
+        
+     <mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row" >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">Pay Termination Fee
+             
+               </div>
+  
+               <div align="right"  class="col-6">
+                
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br> 
+          
+            <mat-card-content>  
+                <!-- <form [formGroup]="searchForm" (ngSubmit)="onFormSubmit()">  
+                    <table class="mat-elevation-z8 table w-100" >
+                     
+                        <tr ngclass="btn-primary"> 
+                          
+                        <th>Rental Agreement ID </th> 
+                        <th>client ID</th>
+                        <th>address </th> 
+                        <th>Name </th> 
+                        <th>Surname</th>
+                        <th>Phone Number</th> 
+                        <th>Lease End Date</th>
+                        <th>Terminate</th>
+    
+               
+                       </tr>
+      
+                       <tr *ngFor="let selectCity of allRentals | async">  
+    
+                        <td class="tbl2" >{{selectCity.RENTALAGREEMENTID}}</td>  
+                      
+                        <td class="tbl2" >{{selectCity.CLIENTID}}</td>  
+                        
+                        <td class="tbl2" >{{selectCity.ADDRESS}}</td>  
+                       
+                        <td class="tbl2" >{{selectCity.Name}}</td>  
+                        <td class="tbl2" >{{selectCity.SURNAME}}</td>  
+                       
+                        <td class="tbl2" >{{selectCity.REFERENCE_NO}}</td>  
+                      
+        
+                    </table>
+                      
+                    </form> -->
+              <ng-container>
+
+ <form #form action="https://sandbox.payfast.co.za/eng/process" method="POST"> 
+              <div>
+                <mat-form-field class="w-100">
+                    
+                  <mat-label>Please select the rental agreement you wish to terminate </mat-label>
+                  <mat-select #ReferenceNo (selectionChange)='onOptionsSelected($event)' (selectionChange)="GetAmount(ReferenceNo.value);" >
+                    <mat-option  matInput *ngFor="let selectCity of allRentals " value="{{selectCity.ReferenceNo}}"  selected> Rental Agreement ID {{selectCity.RENTALAGREEMENTID}} || Address {{selectCity.PropertyAddress }} || ReferenceNo. {{selectCity.ReferenceNo }}
+                      
+                    
+                    </mat-option>
+   
+          
+                  </mat-select>
+           
+                </mat-form-field>
+                
+             
+             
+                
+                  
+              </div>
+            <br>
+
+              <div>
+              
+         
+                <input type="hidden" name="merchant_id" value="10000100">
+                <input type="hidden" name="merchant_key" value="46f0cd694581a">
+                <input type="hidden" name="return_url" value="https://nattrendstore.000webhostapp.com/paysuccess">
+                <input type="hidden" name="cancel_url" value="https://nattrendstore.000webhostapp.com/paycancel">
+                <input type="hidden" name="amount" value="{{AmountDue1.value}}">
+                <input type="hidden" name="item_name" value="AmountDue">
+                <input type="hidden" name="signature" value="{{MD5string}}"> 
+                <mat-label>Please confirm you wish to pay the payment termination fee</mat-label> 
+                  <div>
+                    <mat-checkbox  #Rental class="example-margin">Confirm</mat-checkbox>
+                  </div>
+                 
+               </div>
+               <br><br>
+            <div>
+                     <!--  <div>
+                    <mat-label  matInput *ngFor="let selectCity of allRentals " value="{{selectCity.ReferenceNo}}"  selected>{{selectCity.RENTALAGREEMENTID}}</mat-label>   
+                   </div>
+                   <div>
+                    <mat-label [hidden]='!selectCity.value'>{{CLIENTID}}</mat-label>    
+                   </div>
+                   <div>
+                       
+                    <mat-label [hidden]='!selectCity.value'>{{ADDRESS}}</mat-label>
+                   </div>
+                   <div>
+                       
+                    <mat-label [hidden]='!selectCity.value'>{{NAME}}</mat-label>       
+                   </div>
+                   <div>
+                       
+                    <mat-label [hidden]='!selectCity.value'>{{SURNAME}}</mat-label>    
+                   </div>
+                   <div>  <mat-label [hidden]='!selectCity.value'>{{REFERENCE_NO}}</mat-label>  </div>
+    
+             
+              
+                             
+               </div>
+               <div > -->
+                
+                    <mat-label [hidden]='!ReferenceNo.value'>AmountDue:R{{AmountDue}}</mat-label>  
+                    
+                     
+                                                
+                    <input #AmountDue1 type="hidden"  value="{{AmountDue}}">
+               </div>
+                  
+  
+                <div >
+                <button [disabled]='!Rental.checked' *ngIf="payable" type="submit" class="btn aqua-gradient" (click)="form.submit()" mat-raised-button color="primary" data-toggle="modal" data-target="#editEmployeeTypeModal">Procced</button>
+               </div> 
+              </form> 
+              </ng-container>
+            </mat-card-content>  
+          
+          </mat-card>  
+  
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+                
+                <!-- Modal -->
+        <div class="modal fade" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert-primary ">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add New Booking</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Employee Type Name</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success">Add New Booking</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Edit Area modal -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="editEmployeeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header  alert-danger ">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Error Notifiation</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               <p>The payment was unsuccessful!Please try again</p>
+             
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+          
+          
+          
+        <!-- <form #form action="https://sandbox.payfast.co.za/eng/process" method="POST"> -->-->

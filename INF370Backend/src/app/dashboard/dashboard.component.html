@@ -1,0 +1,71 @@
+<mat-sidenav-container class="example-container"  >
+  <mat-sidenav mode="side" opened> 
+    <app-nav></app-nav>
+ 
+   </mat-sidenav>
+
+   <mat-sidenav-content >
+    <app-username></app-username>
+            <mat-card style="background-color: #7FD4D3;">   
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row">
+                <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                 Dashboard
+               
+                 </div>
+    
+                 <div align="right"  class="col-6">
+                  Current Income for the month: R{{TotalIncome}}
+                 </div>
+                 <br>
+              
+              
+    
+              </div>
+              </mat-toolbar>  
+            <br><br>  
+              <mat-card-content >   
+
+            <div class="row">
+
+              <div class ="col" >
+              <div *ngIf="chart" class="reportchart" id="elemetToPrint" >
+                <canvas id = "canvas">{{chart}}</canvas>
+              </div> 
+            </div>
+
+            <div class="col" >
+              <div *ngIf="chart"  class="reportchart" id="elemetToPrint" >
+                <canvas id = "bargraph">{{chart}}</canvas>
+              </div> 
+            </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col" >
+                <div *ngIf="chart"  class="reportchart" id="elemetToPrint" >
+                  <canvas id = "pieChart">{{chart}}</canvas>
+                </div> 
+              </div>
+
+              <div>
+                <iframe style="height: 300px; width: 500px;" src="{{JobLink}}" title="Recurring Jobs"></iframe>
+              </div>
+            </div>
+
+              </mat-card-content>  
+            </mat-card>  
+                  </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+
+
+
+
+
+
+
+
+

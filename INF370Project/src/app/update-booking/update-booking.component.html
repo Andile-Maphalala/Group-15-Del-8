@@ -1,0 +1,169 @@
+<app-is-logged-in></app-is-logged-in>
+
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+  
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row">
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Update Booking <br>
+
+                <!-- <h6 style="font-size: 10px;">Select your updated booking</h6> -->
+               
+             
+               </div>
+  
+               <div align="right"  class="col-6">
+                
+                <button class="btn btn-primary"  routerLink="/ViewBooking" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" >
+                   
+                    <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                        keyboard_backspace
+                      </i>
+                      <span>  
+                       
+                        Go Back To My Bookings</span>
+    
+                  </button>
+                  
+                  
+                  
+  
+                
+  
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content *ngIf="noBoookings">  
+             
+                <h4>Select your updated booking slot </h4>
+                <table class="mat-elevation-z8 table w-100" >
+            <thead class="thead-dark">
+                <tr>
+  
+                  <th>Employee Name</th>
+                  <th>Employee Surname</th>
+                  <th>Phone Number</th>
+                    <th>Date</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    
+                    <th>Action</th>
+                        
+                </tr>
+            </thead>
+            <tbody>
+                      <tr *ngFor="let item of allBookings">
+                        <td hidden>{{item.EmployeeDateTimeSLotID}}</td> 
+                        <td>{{item.Name}}</td> 
+                        <td>{{item.Surname}}</td> 
+                        <td>{{item.PhoneNumber}}</td>
+                        <td>{{item.Date}}</td> 
+                        <td>{{item.Startime }}</td>  
+                        <td>{{item.Endtime}}</td> 
+                          
+                      <td> <button mat-raised-button color="primary" (click)="OnSubmit(item.EmployeeDateTimeSLotID)">Update Booking</button></td>
+                        
+                    </tr>
+        
+             
+            </tbody>
+          </table> 
+            </mat-card-content>  
+            <div *ngIf="!noBoookings" class="alert alert-danger">
+                There are no available booking slots.Please contact us on 0123456789 for alternative arrangments!
+            </div> 
+          </mat-card>  
+  
+  
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+  
+               <!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+          
+          <!-- Add Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add New Booking</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Employee Type Name</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Add New Booking</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Edit Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="editEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header  alert-info ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Booking Confirmation</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <p>Are you sure you want to make the booking?</p>
+               
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          <!-- Delete Area modal -->
+          
+          
+          <ng-template #content let-modal>
+            <div class="modal-header alert-success">
+              <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+              <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">You have successfully updated your booking.</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" ngbAutofocus  class="btn btn-success" (click)=" modal.close()" routerLink="/ViewBooking"   >Ok</button>
+            </div>
+          </ng-template>

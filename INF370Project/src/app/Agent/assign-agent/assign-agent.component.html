@@ -1,0 +1,161 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+              Assign Agent
+             
+               </div>
+  
+               
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+              <div >
+                <mat-form-field class="w-100">
+                  <mat-label>Search Property</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Search Keyword">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+  
+               </div>
+            <h3> Select a propety to assign the Agent to</h3>
+               <table class="mat-elevation-z8 table w-100" >
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Province</th>
+                    <th>PropertyType</th>
+                    <th>Address</th>
+                    <th>Picture</th>
+                    <th><mat-icon class="icons">assignment_ind</mat-icon></th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                    <!-- <tr>
+                        <td>7</td>
+                        <td>Gauteng</td>
+                        <td>commune</td>  
+                        <td>457 Prospect</td>  
+                        <td> <img class = 'images' class="images" src="./assets/p1.jpg" style="width:100px;height:100px;"/></td>  
+                        <td style="text-align: center;" class="">  
+                            <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addAreaModal" >Select Property</button>  
+                          </td>  
+                    </tr> -->
+              
+             
+            </tbody>
+          </table>
+            </mat-card-content>  
+          </mat-card>  
+  
+  
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+              <br>
+              <br>
+              <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+          
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#validation">
+                Launch demo modal
+              </button>
+          
+          
+          
+          
+          <!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+          
+          <!-- Add Area modal -->
+          
+                   <!-- Modal -->
+        <div class="modal fade" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert-danger ">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;"></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">No search results found</label>
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+          
+          <!-- Edit Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="editEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-success ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">You have successfully assigned the Agent</label>                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success">Ok</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="deleteEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Assign Agent to property</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Are you sure you want to assign the Agent to this property?</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#editEmployeeTypeModal">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>

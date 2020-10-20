@@ -1,0 +1,174 @@
+<mat-sidenav-container class="example-container"  >
+  <mat-sidenav mode="side" opened> 
+    <app-nav></app-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-username></app-username>
+    <mat-card>  
+
+    <mat-toolbar color="primary">  
+      <div class="container w-100 row">
+      <div align="center" style="color:white; text-align: left;  " class="col-6">  
+        Client Payment Report     
+       </div>
+
+       <!-- <div align="right"  class="col-6">
+        
+           
+          
+          <div>
+            <i class="fa fa-print"></i> Print Report
+          </div>
+          <div>
+            <i class="fa fa-external-link"></i>Export Report
+            
+          </div>
+          
+
+        
+
+       </div> -->
+       <br>
+    
+    
+
+    </div>
+    </mat-toolbar>  
+    <br>
+<!-- Toolbar -->
+<!-- <div class="toolbar" role="banner">
+    <span>Client Payment Report</span>
+      <div class="spacer"></div>
+   
+  </div> -->
+
+  <mat-card-content>  
+
+  <div class="content" role="main">
+    <br><br>
+    <div >
+      <form [formGroup]="dateForm"  (ngSubmit)="onSubmit()" novalidate> 
+  
+      <mat-form-field >
+        <mat-label>Choose start date</mat-label>
+        <input matInput readonly [matDatepicker]="pickerStart"  type="text " [max]="date" #startDate formControlName="startDate"  
+      >
+        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStart  ></mat-datepicker>
+        <mat-error *ngIf="dateForm.controls['startDate'].errors?.required ">This field is required</mat-error>
+
+      </mat-form-field>
+  
+      &nbsp; &nbsp;
+      <mat-form-field >
+        <mat-label>Choose end date</mat-label>
+        <input matInput readonly [matDatepicker]="pickerEnd" [min]="startDate.value |date:'yyyy-MM-dd'" [max]="date"  type="text"  #endDate formControlName="endDate"  
+       >
+        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEnd></mat-datepicker>
+        <mat-error *ngIf="dateForm.controls['endDate'].errors?.required ">This field is required</mat-error>
+
+      </mat-form-field>
+  <!-- 
+      <input [owlDateTime]="dt1">
+      <span class="trigger" [owlDateTimeTrigger]="dt1">
+          <i class="fas fa-calendar-alt">gfhf</i>
+      </span>
+      <owl-date-time #dt1></owl-date-time> -->
+  
+  
+      <br><br>
+      <button class="btns"  mat-raised-button color="primary" type="submit" [disabled]="!dateForm.valid ||(startDate.value |date:'yyyy-MM-dd')> (endDate.value |date:'yyyy-MM-dd')">Generate</button> <br><br>
+      <div  *ngIf="dateForm.hasError('notValid')" class="alert alert-danger">
+        End Date can't be before start date
+     </div>
+
+     <!-- <small *ngIf="dateForm.hasError('notValid')">Not valid</small> -->
+
+
+    </form> 
+    <!-- <button class="btns" mat-raised-button color="primary" (click)="DownloadPDF()"  *ngIf="payments">Download PDF</button> -->
+  
+
+    </div>
+  
+   
+  
+  
+  
+  
+  <br><br>
+
+  <div id="data">
+  <div *ngIf="chart" class="reportChart chartW" >
+  
+  <canvas id="canvas" >
+  
+  {{chart}}
+  </canvas>
+  
+  
+  </div>
+  <br><br>
+  <div *ngIf="payments">
+    <h1>Client Payments Summary Report</h1>
+  
+  
+    <div class="table">
+    <div *ngFor="let payment of payments; let i=index "  >
+      <hr/>
+    <table class="container table" id="test{{i}}" >
+    <tr  class="border1 ">
+    
+    <h3 ><strong>{{payment.Name}}</strong></h3>
+  
+  </tr>
+    <tr>
+  
+      <th>Name</th>
+      <th>Surname </th>
+      <th>Date of Payment</th>
+      <th>Address</th>
+      <th>Amount</th>
+    </tr>
+    
+    <tr *ngFor="let orderDetail of payment.payments">
+    <td>{{orderDetail.NAME}}          </td>
+    <td>{{orderDetail.SURNAME}}          </td>
+    <td> {{orderDetail.PAYMENTDATETIME |date:'dd/MM/yyyy'}}         </td>
+    <td> {{orderDetail.ADDRESS}}        </td>
+    <td> R {{orderDetail.PAYMENT_AMOUNT}}        </td>
+    </tr>
+    
+  
+    </table>
+    <hr/>
+    <h3  class="totalg">Grand Total : <strong > R {{payment.Total}}  </strong></h3>
+    <br><br>
+    <br><br>
+    <br><br>
+  
+    
+
+    </div>
+    
+    
+    
+    </div>
+    
+    
+    </div> 
+  </div>
+
+  </div>
+  
+</mat-card-content>  
+</mat-card>  
+    
+    
+</mat-sidenav-content>
+</mat-sidenav-container>
+  
+  
+  
+  <!-- <router-outlet></router-outlet> -->

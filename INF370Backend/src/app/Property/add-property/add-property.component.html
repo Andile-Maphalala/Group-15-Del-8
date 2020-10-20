@@ -1,0 +1,294 @@
+<app-is-logged-in></app-is-logged-in>
+<mat-sidenav-container class="example-container"  >
+  <mat-sidenav mode="side" opened> 
+<app-nav></app-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-username></app-username>
+        <mat-card>  
+          <mat-toolbar color="primary">  
+            <div class="container w-100 row"   >
+            <div align="center" style="color:white; text-align: left;  " class="col-6">  
+             Add Property
+           
+             </div>
+             <br>
+          
+          
+
+          </div>
+          </mat-toolbar>  
+        <br><br>  
+    
+          <mat-card-content>  
+
+      
+             <mat-card-content>  
+              <form [formGroup]="propertyForm" (ngSubmit)="OnSubmit()">
+                <mat-card-content>
+                  <div class="row "   > 
+                    <div class="col-12  ">
+                      <mat-form-field class=" w-100"  >
+                        <mat-label >Select Province</mat-label>
+                       
+      
+                        <mat-select #searchProvince  formControlName="searchProvince"  (selectionChange)="getCity(searchProvince.value)" >
+                          <mat-option  matInput *ngFor="let select of allData " value="{{select.ID}}"  >{{select.Name}} <input hidden #searchP  value="{{select.Name}}" ></mat-option>
+         
+                
+                        </mat-select>
+                        <mat-error *ngIf="propertyForm.controls['searchProvince'].errors?.required ">This field is required</mat-error>
+      
+                      </mat-form-field>
+  
+  
+                    </div>
+                    <div class="col-12" [hidden]="allCity==null" >
+                      <mat-form-field class=" w-100">
+                        <mat-label >Select a city </mat-label>
+                       
+      
+                        <mat-select #searchCity  formControlName="searchCity" (selectionChange)="getArea(searchCity.value)"  [(ngModel)]="selectedArea"  >
+                          <mat-option  matInput *ngFor="let select of allCity " value="{{select.ID}}"  >{{select.Name}} <input hidden #searchA  value="{{select.Name}}" ></mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="propertyForm.controls['searchCity'].errors?.required ">This field is required</mat-error>
+      
+                      </mat-form-field>
+  
+  
+                    </div>
+                    <div class="col-12 " [hidden]="!displayArea" >
+                      <mat-form-field class=" w-100">
+                        <mat-label >Select an area</mat-label>
+                       
+      
+                        <mat-select #searchCity  formControlName="AREA"   >
+                          <mat-option  matInput *ngFor="let select of allArea " value="{{select.ID}}"  >{{select.Name}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="propertyForm.controls['AREA'].errors?.pattern  ">AREA is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+                        <mat-error *ngIf="propertyForm.controls['AREA'].errors?.required ">AREA is required</mat-error>
+  
+                      </mat-form-field>
+  
+  
+                    </div>
+             
+           
+                </div>
+               
+                  <div >
+                    <mat-form-field class="w-100">
+                      <mat-label >Property Type</mat-label>
+                      <select matNativeControl  placeholder="Select type of property" formControlName ="PROPERTYTYPE">
+                        <option *ngFor="let prop of allProductTypes| async"   value="{{prop.PROPERTYTYPEID}}">{{prop.PROPERTTYPEDESCRIPTION}}</option>
+                      </select>
+                      <mat-error *ngIf="propertyForm.controls['PROPERTYTYPE'].errors?.required ">PROPERTY TYPE is required</mat-error>
+
+                    </mat-form-field>
+                  </div>
+        
+                        <div>
+                           <mat-form-field class="w-100">
+                               <mat-label>Property Description</mat-label>
+                               <input matInput placeholder="Property Description"  formControlName ="PROPERTYDESCRIPTION">
+                               <mat-error *ngIf="propertyForm.controls['PROPERTYDESCRIPTION'].errors?.required ">PROPERTY DESCRIPTION is required</mat-error>
+
+                              </mat-form-field>
+             
+                          </div>
+                          <div >
+                           <mat-form-field class="w-100">
+                               <mat-label>Address</mat-label>
+                               <input matInput placeholder="Address"  formControlName ="ADDRESS">
+                               <mat-error *ngIf="propertyForm.controls['ADDRESS'].errors?.required ">ADDRESS is required</mat-error>
+
+                             </mat-form-field>
+                          </div>
+                          <div >
+                           <mat-form-field class="w-100">
+                               <mat-label>Size</mat-label>
+                               <input matInput type="text" maxlength="4" formControlName ="SIZE" placeholder="Size in square meters ">
+                               <mat-error *ngIf="propertyForm.controls['SIZE'].errors?.required ">SIZE is required</mat-error>
+                               <mat-error *ngIf="propertyForm.controls['SIZE'].errors?.pattern  ">SIZE is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                             </mat-form-field>
+                          </div>
+                          <div >
+                            <mat-form-field class="w-100">
+                                <mat-label>Number of bedrooms</mat-label>
+                                <input matInput type="text" maxlength="2" formControlName ="NUMBED">
+                                <mat-error *ngIf="propertyForm.controls['NUMBED'].errors?.required ">NUMBER OF BEDROOMS is required</mat-error>
+                                <mat-error *ngIf="propertyForm.controls['NUMBED'].errors?.pattern  ">NUMBER OF BEDROOMS is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                              </mat-form-field>
+                           </div>
+                           <div >
+                            <mat-form-field class="w-100">
+                                <mat-label>Number of bathrooms</mat-label>
+                                <input matInput type="text" maxlength="2" formControlName ="NUMBBATH">
+                                <mat-error *ngIf="propertyForm.controls['NUMBBATH'].errors?.required ">NUMBER OF BATHROOMS is required</mat-error>
+                                <mat-error *ngIf="propertyForm.controls['NUMBBATH'].errors?.pattern  ">NUMBER OF BATHROOMS is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                              </mat-form-field>
+                           </div>
+                           <div >
+                             <mat-form-field class="w-100">
+                               <mat-label >Is there a Garden</mat-label>
+                               <select matNativeControl   formControlName ="GARDEN">
+                                 <option value="No">No</option>
+                                 <option value="Yes">Yes</option>
+                               </select>
+                               <mat-error *ngIf="propertyForm.controls['GARDEN'].errors?.required ">GARDEN is required</mat-error>
+                               <!-- <mat-error *ngIf="propertyForm.controls['GARDEN'].errors?.pattern  ">GARDEN is not valid! Special characters, letters and spaces are not allowed!</mat-error> -->
+
+                             </mat-form-field>
+                           </div>
+
+                           <div >
+                            <mat-form-field class="w-100">
+                                <mat-label>Additional Info</mat-label>
+                                <input matInput type="text"  formControlName ="ADDITIONALINFO">
+                                <mat-error *ngIf="propertyForm.controls['ADDITIONALINFO'].errors?.required ">ADDITIONAL INFO is required</mat-error>
+
+                              </mat-form-field>
+                           </div>
+
+                           <div>
+                            <mat-form-field class="w-100">
+                                <mat-label>Rental Amount</mat-label>
+                                <input matInput placeholder="Rental Amount" maxlength="5"  #RENTALAMOUNT  formControlName ="RENTALAMOUNT">
+                                <mat-error *ngIf="propertyForm.controls['RENTALAMOUNT'].errors?.required ">RENTALAMOUNT is required</mat-error>
+                                <mat-error *ngIf="propertyForm.controls['RENTALAMOUNT'].errors?.pattern ">RENTALAMOUNT is not valid! Spaces, letters and Special characters are not allowed!</mat-error>
+
+                              </mat-form-field>
+                            </div>
+
+                            <div >
+                              <mat-form-field class="w-100">
+                                <mat-label>AVAILABLE DATE</mat-label>
+                                <input matInput [matDatepicker]="pickerStart" [min]="minDate"  type="text" #AVAILABLEDATE formControlName="AVAILABLEDATE" readonly>
+                                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerStart></mat-datepicker>
+                              </mat-form-field>
+                
+                             </div>
+                            <div>
+                          
+                            
+                   </div>
+
+                           <!-- AMOUNT -->
+                           <!-- <div >
+                            <mat-form-field class="w-100">
+                                <mat-label>Additional Info</mat-label>
+                                <input matInput type="text"  formControlName ="ADDITIONALINFO">
+                              </mat-form-field>
+                           </div> -->
+
+
+                                   <!-- <div>
+                                 
+                                    <label>
+                                      Property Images
+                                      <br>                                    
+                                      <input type="file"  multiple="multiple" formControlName="PHOTO" id="productImage" name="productImage" #Image accept="image/png" (change)="selectFiles($event)" class="form-control" >
+                                    </label> 
+                          </div> -->
+                          <div class="w-100">  
+                            <ng-container>  
+                              <label>Property Images</label>
+                              <div class="file-field">
+                                <div class="btn btn-primary btn-sm ">
+                                <input type="file" id="file" multiple #images (change)="getFileDetails($event)" accept="image/png"> 
+                              </div>
+                 
+                            </div>
+                                <!-- <input type="text" [(ngModel)]="remark">   -->
+                                <!-- <button  type="button" class="btn btn-primary" (click)="uploadFiles()">Upload</button>   -->
+                            </ng-container>  
+                          </div> 
+                          
+                          <br>
+
+                          <div >
+                           
+                             <button mat-raised-button color="warn" routerLink="/Properties" >Cancel</button> &nbsp;
+                                <button mat-raised-button color="primary"   type ="submit" [disabled]="noimages==true ||propertyForm.invalid">Add Property</button>
+                          </div>  
+                          <!-- <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#adduser">Open Modal</button> -->
+                </mat-card-content>
+               </form>
+        </mat-card-content>    
+         
+          </mat-card-content>  
+
+        </mat-card>                
+         
+        
+              </mat-sidenav-content>
+            </mat-sidenav-container>
+          
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add property Page</h4>
+                  </div>
+                    <div class="modal-body">
+                      <a href="https://motlatso-baps.github.io/HelpInturbidus/pages/5282-add-property-type.html" target="_blank" mat-menu-item>
+                       
+                  <mat-icon class="icons">help_outline</mat-icon>        
+                       Go to Help</a>
+                    </div>
+                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+      
+        
+       
+        
+        <!-- Add Area modal -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="addPropertyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+             
+            </div>
+          </div>
+       
+        </div>
+     
+        <!-- Edit Area modal -->
+        
+      
+
+        
+        <ng-template #content let-modal>
+          <div class="modal-header alert-success">
+            <h3 class="modal-title text-center"  style="text-align: center;">Successfully Added Property</h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">The property was successfully added </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/Properties" >Ok</button>
+          </div>
+        </ng-template>
+      
+          
+          

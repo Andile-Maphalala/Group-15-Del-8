@@ -1,0 +1,84 @@
+<mat-sidenav-container class="example-container"  >
+  <mat-sidenav mode="side" opened> 
+    
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+   
+        <mat-card>  
+          <mat-toolbar color="primary">  
+            <div class="container w-100 row" >
+            <div align="center" style="color:white; text-align: left;  " class="col-6">Request Maintenance Job
+           
+             </div>
+
+             <div align="right"  class="col-6">
+              
+             </div>
+             <br>
+
+
+
+          </div>
+          </mat-toolbar>  
+        <br><br>  
+          <mat-card-content>
+            <form  [formGroup]="maintenanceForm" (ngSubmit)="OnSubmit()"> 
+              <div>
+                <mat-form-field class="w-100">
+                  <mat-label>Choose a property </mat-label>
+                  <mat-select #ReferenceNo  formControlName="RentalAgreementID" >
+                    <mat-option  matInput *ngFor="let selectCity of allRentals " value="{{selectCity.RentalAgreementID}}"  selected>Property ReferenceNo: {{selectCity.PropertyID }} || Property Address: {{selectCity.PropertyAddress }} || Agreement ReferenceNo: {{selectCity.RefferenceNo }}  </mat-option>
+                    
+          
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              
+          <br>  
+           
+                      <div>
+                          <textarea formControlName="MaintenanceReason"  name="What needs to be repaired" class="form-control" rows="5" placeholder="Provide details of what needs to be repaired....."  ng-model="CommentText"></textarea>  
+                      </div>
+             
+             <div>
+
+              <button id="my-form-button" type="submit" mat-raised-button color="primary">Send Request</button>
+             </div>
+             
+            </form>
+          </mat-card-content>  
+        </mat-card>  
+
+              </mat-sidenav-content>
+            </mat-sidenav-container>
+        
+        
+        
+                
+         <!-- Modal -->
+         <div class="modal fade" id="editEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header  alert-success">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success Notification</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               <p>The request was successfully submitted!</p>
+             
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>   
+            
+        
+        
+        
+       

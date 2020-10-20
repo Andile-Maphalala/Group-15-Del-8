@@ -1,0 +1,75 @@
+
+  <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--This HTML is for the login screen-->
+<div class="container " style="align-content: center; padding:80px;">
+  <div>
+    <div>
+      <mat-icon style="font-size:48px;"  data-toggle="modal" data-target="#MyModal">help_outline</mat-icon>
+    </div>
+  <form class="text-center border border-light p-5" [formGroup]="loginForm" style="background-color:#c8f0ea" (ngSubmit)="clientLogin()">
+      <p class="h4 mb-4">Login</p> 
+      <input type="email" id="defaultLoginFormUsername" #USERNAME formControlName="USERNAME" class="form-control mb-4" placeholder="Username" > 
+      <input type="password" id="defaultLoginFormPassword" #PASSWORD formControlName="PASSWORD" class="form-control mb-4" placeholder="Password">  
+      <div class="d-flex justify-content-around">
+        <!-- <div>
+          <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+        </div> -->
+        <div *ngIf="!saveInProgress">
+            <!--change the routerlink to recover password when implemented and remove this comment-->
+          <a routerLink="/Reset">Forgot password?</a>
+        </div>
+      </div>
+      <div *ngIf="saveInProgress">
+        <div class="loader"><span></span></div><br>
+        <p>Logging in...</p>
+      </div>
+    
+      <button *ngIf="!saveInProgress" mdbBtn  block="true" class="my-4" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" >Login</button>
+      <!-- [disabled]="PASSWORD.value=='' || USERNAME.value==''" -->
+      <p *ngIf="!saveInProgress">Not a client?
+        <a routerLink="/register">Register</a>
+      </p>
+      <div *ngIf="succLogin" class="alert alert-danger">
+        This user does not exist!
+      </div>
+  
+      <div *ngIf="invPass" class="alert alert-danger">
+        Incorrect Password!
+      </div>
+  
+      <div *ngIf="emptyUSR" class="alert alert-danger">
+        Please enter a username!
+      </div>
+  
+      <div *ngIf="emptyPSR" class="alert alert-danger">
+        Please enter a password!
+      </div>
+  
+  
+    </form>
+  </div>
+  </div>
+    <!--End of login HTML-->
+
+    <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close"  data-dismiss="modal" (click)="basicModal.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:rgb(60, 191, 196)">Login Page</h4>
+          </div>
+          <div class="modal-body">
+            <p>This is the Login Page.</p><br/>
+            <p style="color:rgb(60, 191, 196); font-weight: bold">Here you can select to:</p>
+            <p>-Click LOGIN to login </p>
+            <p>-Click REGISTER to register </p>
+            <p>-Click FORGOT PASSWORD to reset your password</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,57 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+          Your Rental Agreement is near expiration
+             
+               </div>
+  
+              
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+                <form [formGroup]="clientForm"(ngSubmit)="onFormSubmit()">  
+                    <p>Dear {{NAME}} it has come to our that your rental rental is near expiration </p><br>
+                    <p>If you wish to continue staying with us please extend yor rental agreemen</p>
+                    <table class="mat-elevation-z8 table w-100" >
+                 
+                   <tr ngclass="btn-primary"> 
+   
+                         <th>Name </th> 
+                         <th>Surname</th>
+                         <th>Phone Number</th> 
+                         <th>Lease End Date</th>
+                
+                        </tr>
+       
+                        <tr *ngFor="let cln of client | async">  
+                  
+                         <td class="tbl2">{{cln.NAME}}</td>     
+                         <td class="tbl2">{{cln.SURNAME}}</td>  
+                         <td class="tbl2">{{cln.PHONENUMBER}}</td>     
+                         <td class="tbl2">{{cln.RENTALENDDATE}}</td>    
+                       
+                       </tr>
+                     
+               
+                         
+                   
+                  
+   
+               </table>
+                   </form>
+            </mat-card-content>  
+          </mat-card>  
+

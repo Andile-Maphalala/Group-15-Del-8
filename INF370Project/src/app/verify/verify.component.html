@@ -1,0 +1,52 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened > 
+     
+  <app-nav></app-nav>
+  
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+<app-username></app-username>
+
+
+<div class="container">
+    <img src="assets/Logo.png"   class="d-inline-block align-middle mr-2">
+    <div class="col-md-12" style="margin:auto" style="text-align: center;">
+        <form  class="text-center border border-light p-5" action="#!" style="background-color:rgb(60, 191, 196)">
+            <p class="h4 mb-4">Enter OTP</p>
+            <p>If you have not recieved an OTP please ensure your email address was inputted correctly then select to Resend.</p>
+            <div *ngIf="noOTP" class="alet alert-danger">Please Enter the OTP sent to your Email (6-digits)</div> 
+            <input type="text" id="otp" maxlength="6" name="username" class="form-control mb-4" placeholder="OTP" [(ngModel)]="enteredOTP">
+            <button mdbBtn block="true" color="light-blue" (click)="checkOTP()" mdbWavesEffect type="submit">Verify</button> <br>
+            <button mdbBtn block="true" color="light-green" (click)="ResendOTP()" mdbWavesEffect type="submit">Resend OTP</button>
+        </form>
+
+        <div  *ngIf="success" class="alert alert-success" >
+         OTP Verified!
+        </div>
+
+        <div  *ngIf="failure" class="alert alert-danger" >
+           Incorrect OTP! Please try again!
+        </div>
+    </div>
+</div>
+</mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #content let-modal>
+    <div class="modal-header alert-success">
+      <h3 class="modal-title text-center"  style="text-align: center;">Successfully Verified</h3>
+      <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">You have successfully verified your account !</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/"  >Ok</button>
+    </div>
+  </ng-template>

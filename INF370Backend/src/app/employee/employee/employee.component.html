@@ -1,0 +1,702 @@
+<app-is-logged-in></app-is-logged-in>
+  <mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"   >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Manage Employees
+             
+               </div>
+  
+               <div align="right"  class="col-6" >
+                <button class="btn btn-primary" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" data-target="#addEmployeeModal">
+                   
+                  <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                    add
+                    </i>
+                    <span>  
+                     
+                      Add Employee </span>
+  
+                </button>
+
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+      
+            <mat-card-content>  
+
+              <div >
+                <mat-form-field class="w-100">
+                  <mat-label>Search</mat-label>
+                  <input matInput  [(ngModel)]="searchedKeyword" placeholder="Search Keyword">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+               </div>
+               <mat-card-content>  
+                <form [formGroup]="employeeForm"(ngSubmit)="onFormSubmit()">  
+                <table class="mat-elevation-z8 table w-100" >  
+
+                <tr ngclass="btn-primary"> 
+                  <th class="tbl2">Employee ID</th>
+                  <th class="tbl2">Employee Type</th> 
+                  <th class="tbl2">User Type</th> 
+                  <th class="tbl2">National ID</th>
+                  <th class="tbl2">Passport Number</th>
+                  <th class="tbl2">Username</th>
+
+                  <th class="tbl2">Name</th>  
+                  <th class="tbl2">Surname</th>  
+                  <th class="tbl2">Date Employed</th>
+                  <th class="tbl2">Date of birth </th>  
+                  <th class="tbl2">Active </th>   
+                  <th class="tbl2">Update</th>  
+                  <th class="tbl2">Delete</th>  
+                </tr>  
+                <tr *ngFor="let employee of allemployees | async | filter:searchedKeyword">  
+                  <td class="tbl2">{{employee.EMPLOYEEID}}</td>     
+                  <td class="tbl2">{{employee.EMPLOYEETYPEDESCRIPTION}}</td>  
+                  <td class="tbl2">{{employee.USERTYPEDESCRIPTION}}</td>  
+                  <td class="tbl2">{{employee.EMPLOYEENATIONALID}}</td>  
+                  <td class="tbl2">{{employee.EMPLOYEEPASSPORTNO}}</td>  
+                <!-- //  <td class="tbl2">{{employee.USERNAME}</td>  
+               -->
+               <td class="tbl2">{{employee.USERNAME}}</td>  
+                  <td class="tbl2">{{employee.NAME}}</td>  
+                  <td class="tbl2">{{employee.SURNAME}}</td>  
+                  <td class="tbl2">{{employee.DATEEMPLOYED}}</td>  
+                  <td class="tbl2">{{employee.DATEOFBIRTH}}</td> 
+                  <td class="tbl2">{{employee.ACTIVE}}</td>   
+             
+                   <td class="tbl2">  
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateEmployeeModal" matTooltip="Click Edit Button" (click)="loademployeeToEdit(employee.EMPLOYEEID);openWindowCustomClass2() ">Update</button>
+    
+                  </td>  
+                  <td class="tbl2">  
+                     <!-- <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteemployee(employee.EMPLOYEEID)">Deactivate Employee </button>    -->
+                     <button  class="btn btn-danger" type="submit" *ngIf="employee.ACTIVE" matTooltip="Click Deactivate Button"(click)="deleteemployee(employee.EMPLOYEEID)">Deactivate Employee</button>
+                     <button mat-raised-button color="primary" type="submit" *ngIf="!employee.ACTIVE"(click)="Reactivate(employee.EMPLOYEEID)">Reactivate Employee</button>
+                  </td>   
+                </tr>  
+              </table> 
+            </form>  
+          </mat-card-content>    
+           
+            </mat-card-content>  
+
+          </mat-card>                
+        
+                </mat-sidenav-content>
+               
+              </mat-sidenav-container>
+                        
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Location page</h4>
+                    </div>
+                      <div class="modal-body">
+                        <a href="https://motlatso-baps.github.io/HelpInturbidus/pages/5215-manage-employees.html" target="_blank" mat-menu-item>
+                         
+                    <mat-icon class="icons">help_outline</mat-icon>        
+                         Go to Help</a>
+                      </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              
+          
+<!--           
+              <br>
+              <br>
+              <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+          
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#validation">
+                Launch demo modal
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployeeSuccess">
+                addEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatedEmployeeSuccess">
+                updatedEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removedEmployeeSuccess">
+                removedEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchEmployeeSuccess">
+                searchEmployeeSuccess
+              </button>
+
+           -->
+          
+         
+          
+          <!-- Add Area modal -->
+          
+          <!-- Modal -->
+          <form [formGroup]="employeeForm"(ngSubmit)="onFormSubmit()">  
+          <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add New Employee</h3>
+                  <button type="button"  #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body"  style="width: 100%;">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Employee type</label>
+                      <select class="form-control" formControlName="EMPLOYEETYPEID" >
+                        <option *ngFor="let emp of employeetypes | async" value="{{emp.EMPLOYEETYPEID}}">{{emp.EMPLOYEETYPEDESCRIPTION}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">User type</label>
+                      <select class="form-control" formControlName="USERTYPEID" >
+                        <option *ngFor="let emp of usertype | async" value="{{emp.USERTYPEID}}">{{emp.USERTYPEDESCRIPTION}}</option>
+                        </select>
+                    </div> 
+                    <div>
+                      <mat-form-field class="w-100">
+                        <mat-label >Nationality</mat-label>
+                        <select matNativeControl required #Nationality   (change)= "onNationalityChange(Nationality.value)">
+                          <option value="South African">South African</option>
+                          <option value="Non-South African">Non-South African</option>
+
+                         
+                        </select>
+                   
+    
+                      </mat-form-field>
+                    </div>
+    
+                    <div>
+                      <mat-form-field class="w-100" [hidden]="showNotSA">
+                          <mat-label>Passport Number</mat-label>
+                          <input matInput placeholder="Passport Number" #EMPLOYEEPASSPORTNO  formControlName ="EMPLOYEEPASSPORTNO">
+                          <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEEPASSPORTNO'].errors?.required ">Passport Number is required</mat-error>
+                          <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEEPASSPORTNO'].errors?.pattern ">Passport Number is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+    
+                        </mat-form-field>
+                      </div>
+                      <br>
+                      <div >
+                        <mat-form-field class="w-100" [hidden]="showSA" >
+                            <mat-label>ID Number </mat-label>
+                            <input matInput placeholder="ID Number" #EMPLOYEENATIONALID maxlength="13" minlength="13" formControlName ="EMPLOYEENATIONALID">
+                            <mat-error *ngIf=" EMPLOYEENATIONALID.length==0 && updateEmployeeForm.controls['EMPLOYEENATIONALID'].pristine " >ID Number is required </mat-error>
+                            <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEENATIONALID'].errors?.minlength && updateEmployeeForm.controls['EMPLOYEENATIONALID'].dirty" >ID Number is not valid! 13 digits are required </mat-error>
+                                                                                                                                                                                                                                                                                                          
+                            <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEENATIONALID'].errors?.pattern  && updateEmployeeForm.controls['EMPLOYEENATIONALID'].dirty  ">ID Number is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+    
+                          </mat-form-field>
+                        </div>
+                  
+               
+                  <!-- <label for="exampleFormControlInput1">Username</label><br>
+                  <mat-form-field class="demo-full-width">  
+                    <input style="fill: 100%;"  formControlName="USERNAME" matTooltip="Enter Date Employed " matInput placeholder="Employee Username">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!employeeForm.get('USERNAME').value && employeeForm.get('USERNAME').touched"></span>  
+                  </mat-error> -->
+                  <div >
+                    <mat-form-field class="w-100">
+                      <mat-label>Username</mat-label>
+                      <input matInput placeholder="USERNAME" #USERNAME type="text" formControlName ="USERNAME"  >
+                      <mat-error *ngIf="employeeForm.controls['USERNAME'].errors?.required && employeeForm.controls['USERNAME'].touched">Username is required</mat-error>
+                      <mat-error *ngIf="employeeForm.controls['USERNAME'].errors?.pattern && employeeForm.controls['USERNAME'].touched ">Username is not valid. Special characters or spaces are not allowed!</mat-error>
+                    </mat-form-field>
+                 </div>
+                  <label for="exampleFormControlInput1">Password</label><br>
+                  <mat-form-field class="w-100">  
+                    <input formControlName="PASSWORD" matTooltip="Enter Date Employed " matInput placeholder="Employee Password">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!employeeForm.get('PASSWORD').value && employeeForm.get('PASSWORD').touched"></span>  
+                  </mat-error>
+               
+                
+                
+                  
+
+             
+
+                    <label for="exampleFormControlInput1">Employee Name</label><br>
+                    <mat-form-field class="w-100">  
+                      <input formControlName="NAME" matTooltip="Enter Employee Name" matInput placeholder="Employee Name">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!employeeForm.get('NAME').value && employeeForm.get('NAME').touched"></span>  
+                    </mat-error>  
+
+                    <label for="exampleFormControlInput1">Employee Surname</label><br>
+                    <mat-form-field class="w-100">  
+                      <input formControlName="SURNAME" matTooltip="Enter Employee Surname" matInput placeholder="Employee Surname">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!employeeForm.get('SURNAME').value && employeeForm.get('SURNAME').touched"></span>  
+                    </mat-error>  
+                    
+                    <!-- <label for="exampleFormControlInput1">Phone Number</label><br>
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="PHONE_NUMBER" matTooltip="Enter Date Employed " matInput placeholder="">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!employeeForm.get('PHONE_NUMBER').value && employeeForm.get('PHONE_NUMBER').touched"></span>  
+                    </mat-error>
+                    <br>-->
+                    <div > 
+                     <mat-form-field class="w-100">
+                         <mat-label>Phone Number</mat-label>
+                         <input matInput placeholder="Phone Number" maxlength="10" #PHONE_NUMBER formControlName ="PHONE_NUMBER">
+                         <mat-error *ngIf="employeeForm.controls['PHONE_NUMBER'].errors?.required ">Phone Number is required</mat-error>
+                         <mat-error *ngIf="employeeForm.controls['PHONE_NUMBER'].errors?.pattern ">Phone Number is not valid! 10 digits are required and Special characters are not allowed</mat-error>
+                       </mat-form-field>
+                    </div>
+<!-- 
+                    <label for="exampleFormControlInput1">Email </label><br>
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="EMAIL" matTooltip="Enter Date Employed " matInput placeholder="">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!employeeForm.get('EMAIL').value && employeeForm.get('EMAIL').touched"></span>  
+                    </mat-error> -->
+
+                    <div >
+                      <mat-form-field class="w-100">
+                          <mat-label>Email</mat-label>
+                          <input matInput type="EMAIL" placeholder="Email" #EMAIL formControlName ="EMAIL" >
+                          <mat-error *ngIf="employeeForm.controls['EMAIL'].errors?.required ">Email is required</mat-error>
+                          <mat-error *ngIf="employeeForm.controls['EMAIL'].errors?.pattern ">Email is not valid!</mat-error>
+
+                        </mat-form-field>
+                     </div>
+
+                    <label for="exampleFormControlInput1">Date of birth </label><br>
+                    <mat-form-field class="w-100">  
+                      <input type="date" formControlName="DATEOFBIRTH" matTooltip="Enter Employee Date of birth" matInput placeholder="Employee Date of birth">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span  *ngIf="!employeeForm.get('DATEOFBIRTH').value && employeeForm.get('DATEOFBIRTH').touched"></span>  
+                    </mat-error>  
+
+<!--                 
+                    <label for="exampleFormControlInput1">Date Employed</label><br>
+                    <mat-form-field class="demo-full-width">  
+                      <input type="date" formControlName="DATEEMPLOYED" matTooltip="Enter Date Employed " matInput placeholder="Employee Date Employed">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!employeeForm.get('DATEEMPLOYED').value && employeeForm.get('DATEEMPLOYED').touched"></span>  
+                    </mat-error> -->
+
+
+
+                    <div *ngIf="!canadd" class="alert alert-danger">
+                      Username Unavailable.
+                       </div>
+                    
+                  
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <!-- <button type="button" class="btn btn-success">Add New Employee</button> -->
+                  <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!employeeForm.valid">Add New Employee</button>
+                </div>
+           
+              </div>
+            </div>
+         
+          </div>
+       
+           
+         
+        </form>
+          <!-- Edit Area modal -->
+          
+          <!-- Modal -->
+         
+            <div class="modal fade" *ngIf="AddshowModalBox" id="UpdateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <form [formGroup]="updateEmployeeForm"(ngSubmit)="onFormSubmitUpdateEmployee()">  
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Update Employee Datails</h3>
+                  <button type="button"  #closebutton  class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                   <div class="form-group">
+                
+<div>
+                  <mat-form-field class="w-100">
+                    <mat-label >Nationality</mat-label>
+                    <select matNativeControl required #Nationality   (change)= "onNationalityChange(Nationality.value)">
+                      <option value="South African">South African</option>
+                      <option value="Non-South African">Non-South African</option>
+                   
+                     
+                    </select>
+               
+
+                  </mat-form-field>
+                </div>
+
+                <div>
+                  <mat-form-field class="w-100" [hidden]="showNotSA">
+                      <mat-label>Passport Number</mat-label>
+                      <input matInput placeholder="Passport Number" #EMPLOYEEPASSPORTNO  formControlName ="EMPLOYEEPASSPORTNO">
+                      <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEEPASSPORTNO'].errors?.required ">Passport Number is required</mat-error>
+                      <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEEPASSPORTNO'].errors?.pattern ">Passport Number is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                    </mat-form-field>
+                  </div>
+                  <br>
+                  <div >
+                    <mat-form-field class="w-100" [hidden]="showSA" >
+                        <mat-label>ID Number </mat-label>
+                        <input matInput placeholder="ID Number" #EMPLOYEENATIONALID maxlength="13" minlength="13" formControlName ="EMPLOYEENATIONALID">
+                        <mat-error *ngIf=" EMPLOYEENATIONALID.length==0 && updateEmployeeForm.controls['EMPLOYEENATIONALID'].pristine " >ID Number is required </mat-error>
+                        <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEENATIONALID'].errors?.minlength && updateEmployeeForm.controls['EMPLOYEENATIONALID'].dirty" >ID Number is not valid! 13 digits are required </mat-error>
+                                                                                                                                                                                                                                                                                                      
+                        <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEENATIONALID'].errors?.pattern  && updateEmployeeForm.controls['EMPLOYEENATIONALID'].dirty  ">ID Number is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                      </mat-form-field>
+                    </div>
+              
+           
+
+                  <label for="exampleFormControlInput1">Employee Name</label><br>
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="NAME" matTooltip="Enter Employee Name" matInput placeholder="Employee Name">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!updateEmployeeForm.get('NAME').value && updateEmployeeForm.get('NAME').touched"></span>  
+                  </mat-error>  
+
+                  <label for="exampleFormControlInput1">Employee Surname</label><br>
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="SURNAME" matTooltip="Enter Employee Surname" matInput placeholder="Employee Surname">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!updateEmployeeForm.get('SURNAME').value && updateEmployeeForm.get('SURNAME').touched"></span>  
+                  </mat-error>  
+
+                  <label for="exampleFormControlInput1">Date of birth </label><br>
+                  <mat-form-field class="demo-full-width">  
+                    <input type="date" formControlName="DATEOFBIRTH" matTooltip="Enter Employee Date of birth" matInput placeholder="Employee Date of birth">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span  *ngIf="!updateEmployeeForm.get('DATEOFBIRTH').value && updateEmployeeForm.get('DATEOFBIRTH').touched"></span>  
+                  </mat-error>  
+
+                  <div > 
+                    <mat-form-field class="w-100">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput placeholder="Phone Number" maxlength="10" #PHONE_NUMBER formControlName ="PHONE_NUMBER">
+                        <mat-error *ngIf="employeeForm.controls['PHONE_NUMBER'].errors?.required ">Phone Number is required</mat-error>
+                        <mat-error *ngIf="employeeForm.controls['PHONE_NUMBER'].errors?.pattern ">Phone Number is not valid! 10 digits are required and Special characters are not allowed</mat-error>
+                      </mat-form-field>
+                   </div>
+
+                   <div >
+                    <mat-form-field class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="EMAIL" placeholder="Email" #EMAIL formControlName ="EMAIL" >
+                        <mat-error *ngIf="employeeForm.controls['EMAIL'].errors?.required ">Email is required</mat-error>
+                        <mat-error *ngIf="employeeForm.controls['EMAIL'].errors?.pattern ">Email is not valid!</mat-error>
+
+                      </mat-form-field>
+                   </div>
+                  <div *ngIf="!canadd" class="alert alert-danger">
+                    Username Unavailable.
+                     </div>
+                  
+                
+                </div>
+              </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <!--   <button type="submit" class="btn btn-success"  [disabled]='employeeTypeName.value==""'  >Add New Employee Type</button> -->
+                  <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!updateEmployeeForm.valid"  >Update Employee</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+    
+          
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" *ngIf="AddshowModalBox" id="UpdateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Employee?</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Are you sure you want to delete the Employee?</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+            
+            
+
+            <!-- Modal -->
+          <div class="modal fade" id="addEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>You have successfuly added an Employee</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="updatedEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>You have successfuly updated an Employee</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="removedEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Employee has been removed</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="searchEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Not Found</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>No Employees have been Found</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+       
+          <ng-template #content let-modal>
+            <div class="modal-header alert-success">
+              <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+              <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Employed details added</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+  
+              <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+            </div>
+          </ng-template>
+
+          <ng-template #content1 let-modal>
+            <div class="modal-header alert-success">
+              <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+              <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Employed details updated</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+  
+              <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+            </div>
+          </ng-template>
+
+
+          <ng-template #content2 let-modal>
+            <form [formGroup]="updateEmployeeForm"(ngSubmit)="onFormSubmitUpdateEmployee()">  
+
+            <div class="modal-header alert-success">
+              <h3 class="modal-title text-center"  style="text-align: center;">Update Employee</h3>
+              <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body">
+                   <div class="form-group">
+       
+<div>
+                  <mat-form-field class="w-100">
+                    <mat-label >Nationality</mat-label>
+                    <select matNativeControl required #Nationality   (change)= "onNationalityChange(Nationality.value)">
+                      <option value="South African">South African</option>
+                      <option value="Non-South African">Non-South African</option>
+                   
+                     
+                    </select>
+               
+
+                  </mat-form-field>
+                </div>
+
+                <div>
+                  <mat-form-field class="w-100" [hidden]="showNotSA">
+                      <mat-label>Passport Number</mat-label>
+                      <input matInput placeholder="Passport Number" #EMPLOYEEPASSPORTNO  formControlName ="EMPLOYEEPASSPORTNO">
+                      <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEEPASSPORTNO'].errors?.required ">Passport Number is required</mat-error>
+                      <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEEPASSPORTNO'].errors?.pattern ">Passport Number is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                    </mat-form-field>
+                  </div>
+                  <br>
+                  <div >
+                    <mat-form-field class="w-100" [hidden]="showSA" >
+                        <mat-label>ID Number </mat-label>
+                        <input matInput placeholder="ID Number" #EMPLOYEENATIONALID maxlength="13" minlength="13" formControlName ="EMPLOYEENATIONALID">
+                        <mat-error *ngIf=" EMPLOYEENATIONALID.length==0 && updateEmployeeForm.controls['EMPLOYEENATIONALID'].pristine " >ID Number is required </mat-error>
+                        <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEENATIONALID'].errors?.minlength && updateEmployeeForm.controls['EMPLOYEENATIONALID'].dirty" >ID Number is not valid! 13 digits are required </mat-error>
+                                                                                                                                                                                                                                                                                                      
+                        <mat-error *ngIf="updateEmployeeForm.controls['EMPLOYEENATIONALID'].errors?.pattern  && updateEmployeeForm.controls['EMPLOYEENATIONALID'].dirty  ">ID Number is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                      </mat-form-field>
+                    </div>
+              
+           
+
+                  <label for="exampleFormControlInput1">Employee Name</label><br>
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="NAME" matTooltip="Enter Employee Name" matInput placeholder="Employee Name">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!updateEmployeeForm.get('NAME').value && updateEmployeeForm.get('NAME').touched"></span>  
+                  </mat-error>  
+
+                  <label for="exampleFormControlInput1">Employee Surname</label><br>
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="SURNAME" matTooltip="Enter Employee Surname" matInput placeholder="Employee Surname">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!updateEmployeeForm.get('SURNAME').value && updateEmployeeForm.get('SURNAME').touched"></span>  
+                  </mat-error>  
+
+                  <label for="exampleFormControlInput1">Date of birth </label><br>
+                  <mat-form-field class="demo-full-width">  
+                    <input type="date" formControlName="DATEOFBIRTH" matTooltip="Enter Employee Date of birth" matInput placeholder="Employee Date of birth">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span  *ngIf="!updateEmployeeForm.get('DATEOFBIRTH').value && updateEmployeeForm.get('DATEOFBIRTH').touched"></span>  
+                  </mat-error>  
+
+                  <div > 
+                    <mat-form-field class="w-100">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput placeholder="Phone Number" maxlength="10" #PHONE_NUMBER formControlName ="PHONE_NUMBER">
+                        <mat-error *ngIf="employeeForm.controls['PHONE_NUMBER'].errors?.required ">Phone Number is required</mat-error>
+                        <mat-error *ngIf="employeeForm.controls['PHONE_NUMBER'].errors?.pattern ">Phone Number is not valid! 10 digits are required and Special characters are not allowed</mat-error>
+                      </mat-form-field>
+                   </div>
+
+                   <div >
+                    <mat-form-field class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="EMAIL" placeholder="Email" #EMAIL formControlName ="EMAIL" >
+                        <mat-error *ngIf="employeeForm.controls['EMAIL'].errors?.required ">Email is required</mat-error>
+                        <mat-error *ngIf="employeeForm.controls['EMAIL'].errors?.pattern ">Email is not valid!</mat-error>
+
+                      </mat-form-field>
+                   </div>
+                  <div *ngIf="!canadd" class="alert alert-danger">
+                    Username Unavailable.
+                     </div>
+                  
+                
+                </div>
+              </div>
+            <div class="modal-footer">
+              <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+  
+              <button type="submit" ngbAutofocus  class="btn btn-success" matTooltip="Click Submit Button"[disabled]="!updateEmployeeForm.valid"  >Update</button>
+            </div>
+          </form>
+          </ng-template>
+         

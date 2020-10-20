@@ -1,0 +1,165 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row">
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Most Viewed Properties Report
+             
+               </div>
+  
+               <div align="right"  class="col-6">
+               
+                <div>
+                  <i class="fa fa-print"></i> Print Report
+                </div>
+                <div>
+                  <i class="fa fa-external-link"></i>Export Report
+                  
+                </div>
+               </div>
+               <br>
+              
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+              <div >
+                <div>
+                  <mat-form-field class="w-90">
+                    <mat-label>Search</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Enter province,city or town">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+                </div>
+               
+                <div >
+                  <button mat-raised-button color="primary" data-toggle="modal" data-target="#editEmployeeTypeModal">Generate Report</button>
+                 </div>
+               </div>
+
+               <div>
+                
+               <!-- <img class = 'images'  src="../../assets/images/meta-chart.jpeg"style="width:900px;height:400px;"/>  -->
+              
+              </div>
+            
+            </mat-card-content>  
+          </mat-card>  
+  
+  
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Most viewed page</h4>
+                    </div>
+                      <div class="modal-body">
+                        <a href="javascript:alert('This link is purposely disabled, because the document is created with WinCHM TRIAL version!\n(The registered version will not do so!)');" target="_blank" mat-menu-item>
+                         
+                    <mat-icon class="icons">help_outline</mat-icon>        
+                         Go to Help</a>
+                      </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+          
+          
+          
+          
+          <!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+          
+          <!-- Add Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add New Booking</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Employee Type Name</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Add New Booking</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Edit Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="editEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Error Notification</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <p>Please make sure the field is not empty</p>
+              
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="deleteEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Cancel Booking ?</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Are you sure you want to cancel booking?</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>

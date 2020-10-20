@@ -1,0 +1,158 @@
+   [Route("api/User/AddUser")]
+        [HttpPost]
+        public dynamic AddUser(dynamic myUser)
+        {
+
+
+            CLIENT client = new CLIENT();
+            USER user = new USER();
+
+            //Save to DB
+            try
+            {
+                // set random length 6 OTP
+                Random random = new Random();
+                client.OTP = random.Next(100000, 999999).ToString();
+                user.USERNAME = myUser.Username;
+                string passString = myUser["Password"];
+                var hash = GenerateHash(ApplySomeSalt(passString));
+                user.PASSWORD = hash;
+                user.USERTYPEID = 2;
+                user.UserPasswordChangeRequest = false;
+                db.USERs.Add(user);
+                db.SaveChanges();
+                USER createdUser = new USER();
+
+                createdUser = db.USERs.Where(zz => zz.USERNAME == user.USERNAME).FirstOrDefault();
+                client.USERID = createdUser.USERID;
+                client.NAME = myUser.Name;
+                client.SURNAME = myUser.Surname;
+                client.EMAIL = myUser.Email;
+                client.PHONENUMBER = myUser.PhoneNo;
+                client.PASSPORT_NO = myUser.PassportNo;
+                client.ID = myUser.IdNo;
+                client.NATIONALITY = myUser.Nationality;
+                client.DATE_OF_BIRTH = myUser.DOB;
+                client.ISSTUDENT = myUser.IsStudent;
+                client.RESIDENTIAL_ADDRESS = myUser.Residental;
+                client.POSTAL_ADDRESS = myUser.Postal;
+                client.NAME_OF_EMPLOYER = myUser.Employer;
+                client.OCCUPATION = myUser.Occupation;
+                client.WORK_ADDRESS = myUser.WorkAddress;
+                client.WORK_TEL__NO = myUser.WorkTel;
+                client.GROSS_SALARY = myUser.GrossSalary;
+                client.verified = false;
+                db.CLIENTs.Add(client);
+                db.SaveChanges();
+
+                try {
+
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("t4596334@gmail.com");
+                    mail.To.Add(client.EMAIL);
+                    mail.Subject = "Verify User Details";
+                    mail.Body = "Good day " + client.NAME + " " + client.SURNAME + "\n Your Registration was succeesful .Please confirm your details with this OTP: " + client.OTP;
+
+                    SmtpServer.Port = 587;
+                    SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    SmtpServer.UseDefaultCredentials = false;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("t4596334@gmail.com", "test123@123test");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+
+
+
+                }
+                catch (Exception e)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error With client Details");
+                }
+
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error With client Details");
+            }
+            return Request.CreateResponse(HttpStatusCode.Created);
+
+        }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  [Route("api/User/ResendOTP")]
+        [HttpPost]
+        public dynamic ResendWithOTP(dynamic otpObject)
+        {
+            int clientID = otpObject.cID;
+            var clients = db.CLIENTs.Where(z => z.CLIENTID == clientID).FirstOrDefault();
+            if (clients.OTP == null)
+            {
+
+                Random random = new Random();
+                clients.OTP = random.Next(100000, 999999).ToString();
+                db.SaveChanges();
+            }
+
+            
+
+
+            try {
+
+                string otp = otpObject.addr;
+                CLIENT client = db.CLIENTs.Where(I => I.CLIENTID == clientID).FirstOrDefault();
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress("t4596334@gmail.com");
+                mail.To.Add(client.EMAIL);
+                mail.Subject = "Resend OTP";
+                mail.Body = "Good day " + client.NAME + " " + client.SURNAME + "\n Your OTP Is: " + client.OTP;
+
+                SmtpServer.Port = 587;
+                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("t4596334@gmail.com", "test123@123test");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+
+            }
+            catch { return false; }
+
+            return false;
+        }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+[Route("api/User/VerifyWithOTP")]
+        [HttpPost]
+        public bool VerifyWithOTP(dynamic otpObject)
+        {
+            try
+            {
+                int clientID = otpObject.cID;
+                string otp = otpObject.addr;
+                CLIENT clt = db.CLIENTs.Where(I => I.CLIENTID == clientID).FirstOrDefault();
+                if (clt != null)
+                {
+                    if (otp == clt.OTP)
+                    {
+                        clt.verified = true;
+                        db.Entry(clt).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+

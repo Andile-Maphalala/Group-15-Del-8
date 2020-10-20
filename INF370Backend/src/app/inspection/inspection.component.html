@@ -1,0 +1,114 @@
+
+ <mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+    
+  <app-nav></app-nav>
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Schedule Inspection
+             
+               </div>
+  
+               <div text align="right"  class="col-6">
+               
+ 
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+          
+            
+               <mat-card class="my-card">
+                <mat-card-content>
+                        <form [formGroup]="Form" (ngSubmit)="OnSubmit()">
+                           <mat-form-field class="full-width">
+                            <mat-label>Employee</mat-label>
+                            <mat-select matNativeControl placeholder="Select Employee"   formControlName ="EMPLOYEEID">
+                                <!-- <mat-option *ngFor="let area of allArea| async" value="{{area.AREANAME}}" >{{area.AREANAME}}</mat-option> -->
+                                <mat-option *ngFor="let emp of allemployees | async" value="{{emp.EMPLOYEEID}}">{{emp.NAME}} {{emp.SURNAME}}</mat-option>
+
+                            </mat-select>
+
+                            <!-- <input  matInput  placeholder="Name"     formControlName="EMPLOYEEID" name="Name"  required> -->
+                            <mat-error *ngIf="Form.controls['EMPLOYEEID'].errors?.required && Form.controls['EMPLOYEEID'].touched ">Employee Name is required</mat-error>
+                            <mat-error *ngIf="Form.controls['EMPLOYEEID'].errors?.pattern && Form.controls['EMPLOYEEID'].touched ">Employee Name is not valid. Special characters, numbers or spaces are not allowed!</mat-error>
+                         </mat-form-field>
+      
+                         <div>
+                            <mat-form-field>
+                              <mat-label>Inspection Date</mat-label>
+                              <input readonly matInput [matDatepicker]="pickerEnd"  type="text" [min]="date"    #INSPECTIONDATE formControlName="INSPECTIONDATE">
+                              <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                              <mat-datepicker   #pickerEnd></mat-datepicker>
+                            </mat-form-field>
+                           </div>
+      
+                       
+                  <div >
+                    <mat-form-field class="w-100">
+                      <mat-label >Please select the time slot for the Inspection</mat-label>
+                      <mat-select matNativeControl placeholder="Select time slot" required  formControlName ="SLOTID">
+                        <mat-option [value] ='date.SLOTID' *ngFor="let date of allslots| async" >{{date.STARTTIME }}-{{date.ENDTIME }}</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="Form.controls['SLOTID'].errors?.required && Form.controls['SLOTID'].touched">This field  is required</mat-error>
+
+                    </mat-form-field>
+                  </div>
+        
+                             <div>
+                              <mat-card-actions>
+                                <button mat-raised-button color="warn" routerLink ='/ScheduleInspection'>Cancel</button>
+                                   <button mat-raised-button color="primary" [disabled]="!Form.valid"  type ="submit">Submit</button>
+                               </mat-card-actions>
+                             </div>  
+                        </form> 
+
+                         
+
+                </mat-card-content>
+                <mat-card-actions>
+                 
+
+                </mat-card-actions>
+             </mat-card>
+    
+                    
+            </mat-card-content>  
+          </mat-card>  
+ 
+ 
+                
+           
+          <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#addagent">Open Modal</button>
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+              <ng-template #content let-modal>
+                <div class="modal-header alert-success">
+                  <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+                  <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                    <span aria-hidden="true">&times;</span>
+                  </button> -->
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Inspection Scheduled</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+      
+                  <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+                </div>
+              </ng-template>

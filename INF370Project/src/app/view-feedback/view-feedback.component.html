@@ -1,0 +1,73 @@
+<mat-sidenav-container class="example-container" style="  overflow-y: hidden;" >
+    <mat-sidenav mode="side" opened  style="height:100vh;
+     overflow-y: hidden;"> 
+  
+  <app-nav></app-nav>
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"   >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               View Maintenance/Repair Job Feedback
+             
+               </div>
+  
+               
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+              <div >
+                <!-- <mat-form-field class="w-100">
+                  <mat-label>Search</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Search Keyword">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field> -->
+
+               </div>
+            
+               <table class="mat-elevation-z8 table w-100" >
+            <thead class="thead-dark">
+                <tr>
+                    <th>FeedbackID</th>
+                    <th>FeedbackComment</th>
+                    <th>FeedbackDate</th>
+             
+    
+                    
+                 
+                </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let emp of FEEDBACKs">
+                        <th>{{emp.FEEDBACKID}}</th>
+                        <td>{{emp.FEEDBACKCOMMENT}}</td>
+                        <td>{{emp.DATE}}</td>
+              
+                    
+                       
+                    </tr>
+          
+               
+              
+             
+            </tbody>
+          </table>
+            </mat-card-content>  
+          </mat-card>  
+
+
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          

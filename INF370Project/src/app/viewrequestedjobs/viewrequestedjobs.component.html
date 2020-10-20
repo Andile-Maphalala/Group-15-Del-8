@@ -1,0 +1,80 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <app-username></app-username>
+            <mat-card>  
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row"  >
+                <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                 Requested Jobs 
+               
+                 </div>
+    
+                
+                 <br>
+              
+              
+    
+              </div>
+              </mat-toolbar>  
+              <div >
+                <mat-form-field class="w-100">
+                  <mat-label>Search</mat-label>
+                  <input matInput [(ngModel)]="searchedKeyword" placeholder="Search Keyword">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+               </div>
+                 <table class="mat-elevation-z8 table w-100" >
+              
+                <tr ngclass="btn-primary"> 
+
+                      <!-- <th>Username </th>  -->
+                      <th>Job Description</th>
+                
+                      <th>Property Address</th> 
+                      <th>Date Requested </th>
+                      <th>Status</th>
+
+                     </tr>
+    
+                     <tr *ngFor="let job of alljobs | async |  filter:searchedKeyword">  
+               <input hidden value="{{job.JOBID}}">
+                      <!-- <td class="tbl2">{{job.USERNAME}}</td>      -->
+                      <td class="tbl2">{{job.DESCRIPTION}}</td>  
+                      <!-- <td class="tbl2">{{job.JOBTYPE}}</td>  -->
+                      <td class="tbl2">{{job.ADDRESS}}</td>     
+                      <td class="tbl2">{{job.DATEREQUESTED  |  date:'dd/MM/yyyy'}}</td>  
+                      <td class="tbl2">{{job.JOBSTATUS}}</td>  
+                      <!-- <td class="tbl2">{{job.CLIENTNAME}}</td>  
+                      <td class="tbl2">{{job.CLIENTSURNAME}}</td>   -->
+                      <!-- <td class="tbl2">{{job.CLIENTNUMBER}}</td>   -->
+                     
+                     
+                    </tr>
+                  
+            
+                      
+                
+               
+
+            </table>
+            <!-- <button type="button" data-target="#capturejobfeedback" class="btn btn-info" matTooltip="Click Delete Button" mat-raised-button routerLink = "/capturejobfeedback" >Capture Job Details</button>   -->
+          
+            
+
+             
+            </mat-card>  
+  
+  
+                  
+             
+            
+                  </mat-sidenav-content>
+                </mat-sidenav-container>
+            
+            
+            
+    

@@ -1,0 +1,261 @@
+<app-is-logged-in></app-is-logged-in>
+
+<img class = 'images' src="./assets/Logo.png" style="width:200px;height:100px;"/>
+<div class="sidenav">
+<!-- <a href="#about"> 
+      <mat-icon class="icons">home</mat-icon>
+   Home
+ </a>
+
+ <a href="#about">
+   <mat-icon class="icons">info</mat-icon>
+   About</a> -->
+
+
+   <a routerLink="/home"> 
+    <mat-icon class="icons">home</mat-icon>
+ Home
+</a>
+<a *ngIf="currentEmployee=='admin' || currentEmployee=='owner'"  href="#item-9"  data-toggle="collapse">
+  <mat-icon class="icons">description</mat-icon>
+  Administration</a>
+  <div class="collapse" id="item-9">
+
+   <a  routerLink="/review-application" *ngIf="currentEmployee=='admin'"   data-toggle="collapse">
+     <mat-icon class="icons">chevron_right</mat-icon>   Review rental application
+   </a>
+   <a  routerLink="/viewextensionrequest" *ngIf="currentEmployee=='admin'"  data-toggle="collapse">
+     <mat-icon class="icons">chevron_right</mat-icon>  View rental extension request
+   </a>
+   <!-- <a  routerLink="/extend-agreement"  *ngIf="currentEmployee=='admin'"  data-toggle="collapse">
+     <mat-icon class="icons">chevron_right</mat-icon>   Extend Rental Agreement
+
+   </a> -->
+   <a routerLink="/extend-due-date" *ngIf="currentEmployee=='admin'"   data-toggle="collapse">
+     <mat-icon class="icons">chevron_right</mat-icon>  Extend deposit due date
+   </a>
+  
+   <a routerLink="/view-termination-request"  *ngIf="currentEmployee=='admin'"  data-toggle="collapse">
+     <mat-icon class="icons">chevron_right</mat-icon>  View rental termination request 
+
+   </a>
+   <!-- <a  routerLink="/terminate-agreement" *ngIf="currentEmployee=='admin'"   data-toggle="collapse">
+     <mat-icon class="icons">chevron_right</mat-icon> Terminate Rental agreement
+     
+     </a> -->
+     <!-- <a  routerLink="/assign-jobs" *ngIf="currentEmployee=='admin'"   data-toggle="collapse">
+       <mat-icon class="icons">chevron_right</mat-icon> Assign repair/maintenance request job
+       
+       </a> -->
+       <a routerLink="/assign-jobs" *ngIf="currentEmployee=='admin' "  data-toggle="collapse">
+         <mat-icon class="icons">chevron_right</mat-icon> View repair/maintenance request jobs
+
+         
+         </a>     
+         <a routerLink="/Adjusttime"   *ngIf="currentEmployee=='admin'"   data-toggle="collapse">
+          <mat-icon class="icons">chevron_right</mat-icon> Modify logout time
+ 
+          
+          </a>  
+          <a routerLink="/Dashboard" *ngIf="currentEmployee=='owner'"   data-toggle="collapse">
+            <mat-icon class="icons">chevron_right</mat-icon> Dashboard
+   
+            
+            </a>  
+          <a routerLink="/AuditTrail" *ngIf="currentEmployee=='owner'"   data-toggle="collapse">
+            <mat-icon class="icons">chevron_right</mat-icon> View Audit trail
+   
+            
+            </a>  
+     
+              
+                                                             
+   </div>
+
+
+
+   <a *ngIf="currentEmployee=='owner'" href="#item-3" data-toggle="collapse">
+    <mat-icon class="icons">assignment_ind</mat-icon>
+    Employee Management</a>
+    <div class="collapse" id="item-3">
+
+        <a href="#item-1-1" routerLink="/employee" data-toggle="collapse">
+          <mat-icon class="icons">chevron_right</mat-icon>  Employees
+        </a>
+        <a href="#item-1-1" routerLink="/employeeType"  data-toggle="collapse">
+          <mat-icon class="icons">chevron_right</mat-icon> Employee Types
+          
+          </a>
+          
+     
+                                                                                
+        </div>
+    <a *ngIf="currentEmployee=='admin' || currentEmployee=='owner'" href="#item-4" data-toggle="collapse">
+        <mat-icon class="icons">supervised_user_circle</mat-icon>
+        User Management</a>
+        <div class="collapse" id="item-4">
+
+            <a href="#item-1-1" routerLink="/search-user" data-toggle="collapse">
+              <mat-icon class="icons">chevron_right</mat-icon>  Users
+            </a>
+            <a href="#item-1-1" routerLink="/UserType" data-toggle="collapse" *ngIf="currentEmployee=='owner'">
+              <mat-icon class="icons">chevron_right</mat-icon> User Types
+              
+              </a>
+              
+         
+                                                                                    
+            </div>
+
+    <a *ngIf="currentEmployee=='admin' || currentEmployee=='owner'" href="#item-5" data-toggle="collapse">
+    <mat-icon class="icons"> multiline_chart</mat-icon>
+    Reporting</a>
+    <div class="collapse" id="item-5">
+
+        <a href="#item-1-1" routerLink="/OverduePaymentReport"  data-toggle="collapse" >
+          <mat-icon class="icons">chevron_right</mat-icon>  Generate Overdue Payments Report
+
+        </a>
+        <a href="#item-1-1" routerLink="/MonthlyIncomeReport"  data-toggle="collapse" *ngIf="currentEmployee=='owner'">
+          <mat-icon class="icons">chevron_right</mat-icon> Total Monthly Income Report
+          
+          </a>
+
+          <a href="#item-1-1" routerLink="/ClientPaymentReport"  data-toggle="collapse" *ngIf="currentEmployee=='owner'">
+            <mat-icon class="icons">chevron_right</mat-icon> Client Payment Report
+            
+            </a>
+          
+          <a href="#item-1-1" routerLink="/MonthlyinvoiceReport"   data-toggle="collapse" *ngIf="currentEmployee=='time'">
+            <mat-icon class="icons">chevron_right</mat-icon> Generate Monthly Invoice Reports
+
+            
+            </a>
+            <a href="#item-1-1" routerLink="/AdjustableExpenseReport"   data-toggle="collapse" *ngIf="currentEmployee=='owner'">
+                <mat-icon class="icons">chevron_right</mat-icon> Generate expense Report
+                
+                </a>
+                <a href="#item-1-1"  routerLink="/MostViewdProperties"  data-toggle="collapse" >
+                    <mat-icon class="icons">chevron_right</mat-icon>  Generate Most Viewed Properties Report
+                    
+                    </a>
+                            
+          
+     
+                                                                                
+        </div>
+
+    <a routerLink="/search-agent"  *ngIf="currentEmployee=='admin'">
+        <mat-icon class="icons">how_to_reg</mat-icon>
+        Agent Management</a>
+
+        <a *ngIf="currentEmployee=='admin'" href="#item-2" data-toggle="collapse">
+            <mat-icon class="icons">location_city</mat-icon>
+          
+            Property Management</a>
+            <div class="collapse" id="item-2">
+
+                <a href="#item-1-1" routerLink="/Properties"  data-toggle="collapse">
+                  <mat-icon class="icons">chevron_right</mat-icon>  Properties
+                </a>
+                <a href="#item-1-1" routerLink="/Property-Types"   data-toggle="collapse">
+                  <mat-icon class="icons">chevron_right</mat-icon> Property Types
+                  
+                  </a>
+                  
+             
+                                                                                        
+                </div>
+
+
+ <!-- <a *ngIf="currentEmployee=='admin'" href="#item-1" data-toggle="collapse" >
+   <mat-icon class="icons">airline_seat_individual_suite</mat-icon>
+   Rental Management</a>
+ 
+ <div class="collapse" id="item-1">
+
+   <a href="#item-1-1" routerLink="/ViewFeedback"  *ngIf="currentEmployee=='admin'" data-toggle="collapse">
+     <mat-icon class="icons">chevron_right</mat-icon>  View complaints feedback
+   </a>
+ 
+
+                                                                           
+   </div> -->
+   <a *ngIf="currentEmployee=='admin'|| currentEmployee=='maintenance'"  href="#item-133" data-toggle="collapse" >
+    <mat-icon class="icons">assignment_turned_in</mat-icon>
+    Inspection Management</a>
+    <div class="collapse" id="item-133">
+
+    <a  routerLink="/MoveIn"   *ngIf="currentEmployee=='maintenance'"  >
+      <mat-icon class="icons">chevron_right</mat-icon>  Move-In Inspection <br>
+    </a>
+    <a  routerLink="/MoveOut"   *ngIf="currentEmployee=='maintenance'"  >
+      <mat-icon class="icons">chevron_right</mat-icon>  Move-Out Inspection <br>
+    </a>
+    <a  routerLink="/ScheduleInspection" *ngIf="currentEmployee=='admin'" >
+      <mat-icon class="icons">chevron_right</mat-icon>  Schedule Inspection <br>
+    </a>
+  </div>
+
+    <a *ngIf="currentEmployee=='maintenance'" href="#item-123" data-toggle="collapse" >
+        <mat-icon class="icons">build</mat-icon>
+        Maintenance</a>
+        <div class="collapse" id="item-123">
+
+          <a  routerLink="/viewrepairrequestjobs"  *ngIf="currentEmployee=='maintenance'" >
+            <mat-icon class="icons">chevron_right</mat-icon>  View repair/maintenance request jobs
+
+          </a>
+          <a  routerLink="/additems"  *ngIf="currentEmployee=='maintenance'" >
+            <mat-icon class="icons">chevron_right</mat-icon>  Add repair/maintenance items
+
+       
+            </a>
+            <a  routerLink="/setupviewingschedule"  *ngIf="currentEmployee=='maintenance'" >
+              <mat-icon class="icons">chevron_right</mat-icon> Setup viewing schedule
+
+  
+         
+              </a>  
+              
+              <!-- <a  routerLink="/capturejobfeedback"  *ngIf="currentEmployee=='maintenance'" >
+                <mat-icon class="icons">chevron_right</mat-icon>  Capture details on repair /maintenance job feedback
+  
+    
+           
+                </a>  -->
+       
+                                                                                  
+          </div>
+
+    <a *ngIf="currentEmployee=='admin'" routerLink="/view-complaints">
+            <mat-icon class="icons">record_voice_over</mat-icon>        
+      Complaint Management</a>
+
+      <a routerLink="/ViewBooking" *ngIf="currentEmployee=='admin'">
+        <mat-icon class="icons">calendar_today</mat-icon>
+        View Schedule</a>
+     
+
+
+   <a routerLink="/location" *ngIf="currentEmployee=='admin'">
+    <mat-icon class="icons">location_on</mat-icon>
+
+    Location Management</a>
+
+ 
+
+ <a (click)="logout()">
+   <mat-icon class="icons">exit_to_app</mat-icon>
+   Logout</a>
+   <a data-toggle="modal" data-target="#MyModal">
+    <mat-icon class="icons">info</mat-icon>        
+    Hint</a>
+    <a data-toggle="modal" data-target="#myModal">
+      <mat-icon class="icons">help_outline</mat-icon>        
+      Help</a>
+
+</div>
+
+
+

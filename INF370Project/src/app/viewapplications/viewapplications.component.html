@@ -1,0 +1,71 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <app-username></app-username>
+            <mat-card>  
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row"  >
+                <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                 Requested Rental Applications 
+               
+                 </div>
+    
+                
+                 <br>
+              
+              
+    
+              </div>
+              </mat-toolbar>  
+            <br><br>  
+              <mat-card-content>  
+
+                 <table class="mat-elevation-z8 table w-100" >
+              
+                <tr ngclass="btn-primary"> 
+
+                      <!-- <th>Username </th>  -->
+                      <th>Application Reference NO.</th>              
+                      <th>Property Address</th> 
+                      <th>Status</th>
+                      <th>Date Requested </th>
+
+                     </tr>
+    
+                     <tr *ngFor="let app of allapp | async">  
+            
+        
+                      <td class="tbl2">{{app.RENTALAPPLICATIONID}}</td>              
+                      <td class="tbl2">{{app.ADDRESS}}</td>     
+                      <td class="tbl2">{{app.RENTALAPPLICATIONSTATUSDESCR  }}</td>  
+                      <td class="tbl2">{{app.APPLICATIONDATE|  date:'dd/MM/yyyy'}}</td>  
+            
+                     
+                    </tr>
+                  
+            
+                      
+                
+               
+
+            </table>
+            <!-- <button type="button" data-target="#capturejobfeedback" class="btn btn-info" matTooltip="Click Delete Button" mat-raised-button routerLink = "/capturejobfeedback" >Capture Job Details</button>   -->
+
+            
+
+              </mat-card-content>  
+            </mat-card>  
+  
+  
+                  
+             
+            
+                  </mat-sidenav-content>
+                </mat-sidenav-container>
+            
+            
+            
+    

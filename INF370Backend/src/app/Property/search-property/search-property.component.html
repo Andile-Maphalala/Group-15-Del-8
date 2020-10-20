@@ -1,0 +1,226 @@
+<app-is-logged-in></app-is-logged-in>
+<mat-sidenav-container class="example-container" style="  overflow-y: hidden;" >
+    <mat-sidenav mode="side" opened  style="height:100vh;
+     overflow-y: hidden;"> 
+  <app-nav></app-nav>
+  
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"   >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                Properties
+              
+               </div>
+  
+               <div align="right"  class="col-6">
+                <button class="btn btn-primary"  style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" routerLink="/add-property">
+                   
+                  <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                    add
+                    </i>
+                    <span>  
+                     
+                      Add Property</span>
+  
+                </button>
+
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+              <div >
+                <mat-form-field class="w-100">
+                  <mat-label>Search</mat-label>
+                  <input matInput  [(ngModel)]="searchedKeyword" placeholder="Search Keyword">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+                <!--  (keyup)="filterExpenses()" -->
+               </div>
+            
+               <table class="mat-elevation-z8 table table-striped w-100" >
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>AREA</th>
+                    <th>AGENT</th>
+                    <th>PROPERTY DESCRIPTION</th>
+                    <th>PROPERTY ADDRESS</th>
+                   <th style="text-align: center;"><mat-icon class="icons" >info</mat-icon></th>
+
+             
+    
+                    <th style="text-align: center;"> <span class="material-icons">
+                      edit
+                      </span> </th>
+                      <th style="text-align: center;"> <span class="material-icons">
+                        archive
+                        </span> </th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+       
+            <tr *ngFor="let Type of allProperty | filter:searchedKeyword">  
+              <td class="tbl2">{{Type.PROPERTYID}}</td>  
+              <td  class="tbl2 " >
+                <!--Property Details Tree List-->
+                  <ul id="myUL">
+                    <li><a class="caret" href="#item-2{{Type.PROPERTYID}}" data-toggle="collapse">{{Type.AREAID}}</a>
+                     <div class="collapse" id="item-2{{Type.PROPERTYID}}">
+                      <ul  >
+                     
+                        <li><a class="caret"  (click)="showCarret()" href="#item-2-{{Type.PROPERTYID}}"  data-toggle="collapse" >{{Type.CITY}}</a>
+                          <div class="collapse" id="item-2-{{Type.PROPERTYID}}">
+
+                          <ul >
+                            <li class="caret" ><label><b>{{Type.PROVINCE}}</b></label></li>
+                          </ul>
+                          </div>
+                        </li>  
+                      </ul></div>
+                    </li>
+                      </ul>
+      </td>
+              <td class="tbl2" *ngIf="Type.AGENT_ID==' @ '"></td>  
+              <td class="tbl2" *ngIf="Type.AGENT_ID!=' @ '">{{Type.AGENT_ID}}</td>  
+              <td class="tbl2">{{Type.PROPERTYDESCRIPTION}}</td>  
+              <td class="tbl2">{{Type.ADDRESS}}</td> 
+              <!-- <td  class="tbl2" >
+                  <ul id="myUL"> 
+
+                    <li > <label for="checkbox">
+                      <input  type="checkbox" id="checkbox"/>
+                      <a   class="caret" href="#item-1{{Type.PROPERTYID}}" data-toggle="collapse">Property Details</a>
+                    </label>
+                     <div class="collapse" id="item-1{{Type.PROPERTYID}}">
+                      <ul  >
+                      <li style="width: 150px"><b>Rental Amount:</b> R{{Type.RentalAmount}}</li>
+                      <li style="width: 150px"><b>Property Type:</b> {{Type.PROPERTYTYPEID}}</li>
+                        <li><a class="caret"  (click)="showCarret()" href="#item-1-{{Type.PROPERTYID}}"  data-toggle="collapse" >Property Photos</a>
+                          <div class="collapse" id="item-1-{{Type.PROPERTYID}}">
+
+                          <ul >
+                            <li *ngFor="let pro of Type.photo"><label><b>{{pro.PHOTO}}</b></label></li>
+                          </ul>
+                          </div>
+                        </li>  
+                      </ul></div>
+                    </li>
+                      </ul>
+      </td> -->
+      <td class="tbl2">  
+        <button type="button" class="btn btn-success" matTooltip="Click View Button" (click)="viewProperty(Type.PROPERTYID)">View property</button>  
+      </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info" data-toggle="modal"  matTooltip="Click Edit Button" (click)="loadProperty(Type.PROPERTYID)">Update</button>  
+              </td>  
+
+              <td class="tbl2" *ngIf="Type.PROPERTYSTATUSID=='Available'">  
+                <button type="button" class="btn btn-danger" matTooltip="Click Archive Button" (click)="deleteProperty(Type.PROPERTYID)">Archive</button>  
+              </td>  
+              <td class="tbl2" *ngIf="Type.PROPERTYSTATUSID=='Archived'">  
+                <button type="button" class="btn btn-danger" matTooltip="Click Archive Button" (click)="UnarchivePropertyDetails(Type.PROPERTYID)">Unarchive</button>  
+              </td>  
+            
+            </tr>
+          
+               
+              
+             
+            </tbody>
+          </table>
+            </mat-card-content>  
+          </mat-card>  
+
+
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Properties page</h4>
+                    </div>
+                      <div class="modal-body">
+                        <a href="https://motlatso-baps.github.io/HelpInturbidus/pages/5271-property-management.html" target="_blank" mat-menu-item>
+                         
+                    <mat-icon class="icons">help_outline</mat-icon>        
+                         Go to Help</a>
+                      </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+
+          
+          
+              <ng-template #content let-modal>
+                <div class="modal-header alert-success">
+                  <h3 class="modal-title text-center"  style="text-align: center;">Successfully Archived Property</h3>
+                  <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                    <span aria-hidden="true">&times;</span>
+                  </button> -->
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">The property was successfully archived </label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/Properties" >Ok</button>
+                </div>
+              </ng-template>
+
+              <ng-template #content1 let-modal>
+                <div class="modal-header alert-danger">
+                  <h3 class="modal-title text-center"  style="text-align: center;">Error</h3>
+                  <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                    <span aria-hidden="true">&times;</span>
+                  </button> -->
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">The property can't be archived as it is currently has an active rental agreement, rental application or upcoming property viewing  </label>
+                  </div>
+                </div>
+                <div class="modal-footer alert-danger">
+                  <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/Properties" >Ok</button>
+                </div>
+              </ng-template>
+
+              
+              <ng-template #content2 let-modal>
+                <div class="modal-header alert-success">
+                  <h3 class="modal-title text-center"  style="text-align: center;">Successfully Unarchived Property</h3>
+                  <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                    <span aria-hidden="true">&times;</span>
+                  </button> -->
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">The property was successfully unarchived </label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/Properties" >Ok</button>
+                </div>
+              </ng-template>

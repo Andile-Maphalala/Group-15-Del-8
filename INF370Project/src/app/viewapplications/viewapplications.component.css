@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+body {font-family: Arial;}
+    
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.icons{
+    vertical-align: text-bottom;
+
+}
+
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+  }
+  
+
+  .card{
+    width: 50%;
+    margin: 0 auto;
+  }
+
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  .sidenav {
+      height: 100%;
+    
+     
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+    
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 15px;
+      color: #818181;
+      display: block;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+@media only screen and (max-width: 576px) {
+     .container{
+        padding-top:0px;
+    }
+    .celija{
+        text-align: center;
+    }
+    .rightIm{
+        margin-top:0px;
+    }
+    .celija{
+        padding: 0px;
+    }
+
+}
+@media only screen and (max-width: 765px) {
+    label{
+        display: none;
+    }
+}
+@media only screen and (min-width: 576px) {
+    .container{
+       padding-top:20px;
+   }
+   .bordr{
+    margin-left:10px
+   }
+       .rightIm{
+        margin-top:30px;
+    }
+    .celija{
+        padding: 5px;
+        text-align: left;
+    }
+
+}
+
+.opi{
+    opacity: 0.3;
+}
+.overLine{
+    text-decoration: line-through;
+}
+.left{
+    position: absolute;
+    top: 24%;
+    left: 7%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    border: none;
+    cursor: pointer;
+}
+
+.right{
+    position: absolute;
+    top: 24%;
+    left: 93%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    border: none;
+    cursor: pointer;
+}
+
+
+.bordr{
+    border:1px solid #949494;
+    border-radius: .25rem;
+}
+
+.text-center{
+    position:relative;
+}
+
+.iconEdit{
+    height: 40px;
+    width: 40px;
+}
+
+.celija{
+    max-width: 200px;
+    padding-top:20px;
+}
+
+.ikonice{
+    margin-bottom: 20px;
+}
+.img-thumbnail{
+    width: 180px;
+    height: 180px;
+}
+
+.avatar{
+    margin-top:12px;
+    margin-bottom: 5px;
+}

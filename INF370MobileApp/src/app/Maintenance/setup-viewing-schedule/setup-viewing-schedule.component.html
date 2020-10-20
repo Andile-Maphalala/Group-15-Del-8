@@ -1,0 +1,312 @@
+<ion-content >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ul class="nav navbar-nav navbar-right nav-item nav-link">
+        <a routerLink='/Home'><li style=" font-size: 15px; color: white; "><ion-icon name="home-sharp"></ion-icon></li></a>
+      </ul>
+      </ion-buttons>
+  
+    <ion-title style=" font-size: 20px;">Setup Viewing Schedule</ion-title>
+  </ion-toolbar>
+  
+  <form [formGroup]="dateForm"  (ngSubmit)="onDateFormSubmit()"> 
+  
+  
+    <ion-item>
+      <!-- <ion-label >Please select the date you will be available next week</ion-label> -->
+      <ion-select matNativeControl placeholder="Select Date" required  formControlName ="DATEID">
+        <ion-select-option [value] ='date.DATEID' *ngFor="let date of alldates| async" >
+          {{date.DATEDESCRIPTION }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <!-- <ion-label >Please select the time slot you will be available next week</ion-label> -->
+      <ion-select  matNativeControl placeholder="Select timeslot" required  formControlName ="SLOTID">
+        <ion-select-option  [value] ='date.SLOTID' *ngFor="let date of allslots| async" >
+          {{date.STARTTIME }}-{{date.ENDTIME }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
+
+    <ion-item>
+      <!-- <ion-label >Please select the Province you will be available in next week</ion-label> -->
+      <ion-select #searchProvince   placeholder="Select Province" required   formControlName="searchProvince"  (ionChange)="getCity(searchProvince.value)">
+        <ion-select-option [value] ='select.ID' *ngFor="let select of allData "  >
+          {{select.Name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+<ion-item>
+<!-- <ion-label >Please select the City you will be available in next week</ion-label> -->
+<ion-select  #searchCity   placeholder="Select City" required   formControlName="searchCity" (ionChange)="getArea(searchCity.value)">
+  <ion-select-option [value] ='select.ID' *ngFor="let select of allCity"  >
+    {{select.Name}}
+  </ion-select-option>
+</ion-select>
+</ion-item>
+      <!-- <ion-label >Please select the City you will be available in next week</ion-label>
+      <ion-select #searchCity  formControlName="searchCity" (ionChange)="getArea(searchCity.value)"  [(ngModel)]="selectedArea" >
+        <ion-select-option [value] ='select.ID' *ngFor="let select of allCity "  >
+          {{select.Name}}
+        </ion-select-option>
+      </ion-select> -->
+
+      <ion-item>
+      <!-- <ion-label >Please select the Area you will be available in next week</ion-label> -->
+      <ion-select   #searchArea   placeholder="Select Area"   formControlName="searchArea"   >
+        <ion-select-option *ngFor="let select of allArea "[value] ='select.ID' >
+          {{select.Name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+  
+
+<div class="ion-padding">
+  <!-- <ion-button  routerLink='/search-complaint'>Cancel</ion-button> -->
+  <ion-button type="submit"  [disabled]="!dateForm.valid"  >Add Viewing Slot</ion-button>
+</div>
+  
+  </form>
+
+<br><br>
+
+
+
+  <ion-toolbar color="primary">
+    <ion-title style=" font-size: 20px; text-align: center;"> My viewing slots              
+    </ion-title>
+  </ion-toolbar>
+
+
+  <br>
+
+
+  <div>
+
+    <mbsc-page theme="ios" themeVariant="light" lang="en">
+      <mbsc-eventcalendar [data]="events" [options]="eventSettings"></mbsc-eventcalendar>
+  </mbsc-page>
+  
+  
+  
+  </div>
+  <div style="overflow-x:auto">
+  <table class="mat-elevation-z8 table w-100" >
+    <thead class="thead-dark">
+        <tr>
+
+          <th>Area</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Status</th>
+
+            <th>Update</th>
+            <th>Cancel</th>
+                
+        </tr>
+    </thead>
+    <tbody>
+              <tr *ngFor="let item of mySlots ">
+                <td hidden>{{item.EmployeeDateTimeSLotID}}</td> 
+                <td>{{item.Area}}</td> 
+                <td>{{item.Date}}</td> 
+                <td>{{item.Startime}}</td>  
+                <td>{{item.Endtime}}</td> 
+                <td>{{item.Status}}</td> 
+
+                  
+              <td *ngIf="item.Status=='Available'"  > <ion-button   color="primary" (click)="UpdateSlot(item.EmployeeDateTimeSLotID)">Update Slot</ion-button></td>
+              <td *ngIf="item.Status=='Available'"> <ion-button color="danger" (click)="ShowCancelModel(item.EmployeeDateTimeSLotID)"  >Cancel Slot</ion-button></td>
+            
+            </tr>
+
+     
+    </tbody>
+    <tfoot>
+      
+      <!-- <td *ngIf="!noBoookings"> <button   class="btn btn-info rounded-0" (click)="Export()">Export to my calendar</button></td> -->
+<td></td><td></td><td></td>
+
+
+    </tfoot>
+  </table> 
+
+  </div>
+  <ng-template #showcancel  let-modal>
+    <div class="modal-header alert-danger">
+      <h3 class="modal-title text-center"  style="text-align: center;">Remove Slot</h3>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1" alert-danger> Are you sure you want to cancel this slot  </label><br> 
+    </div>
+  
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-danger" (click)="modal.close()"  >Cancel</button>
+      <button type="button" ngbAutofocus  class="btn btn-success" (click)="deleteSlot()"  >Yes</button>
+    </div>
+  </ng-template>
+
+
+  <ng-template #successdelete  let-modal>
+    <div class="modal-header alert-success">
+      <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1" alert-success> Slot has been successfully canceled. </label><br> 
+    </div>
+  
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+    </div>
+  </ng-template>
+
+
+
+
+
+  <ng-template #success  let-modal>
+    <div class="modal-header alert-success">
+      <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1" alert-success>Your slot was added.You will recieve an email when a client makes a booking.  </label><br> 
+    </div>
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+    </div>
+  </ng-template>
+
+
+  <ng-template #wrong  let-modal>
+    <div class="modal-header alert-success">
+      <h3 class="modal-title text-center"  style="text-align: center;">Error</h3>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1" alert-danger>Something went wrong please contact Administrator for assistance  </label><br> 
+    </div>
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+    </div>
+  </ng-template>
+
+  <ng-template #updatesuccess  let-modal>
+    <div class="modal-header alert-success">
+      <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1" alert-success>Your slot was updated.You will recieve an email when a client makes a booking.  </label><br> 
+    </div>
+  
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+    </div>
+  </ng-template>
+
+  <ng-template #errorUpdate  let-modal>
+    <div class="modal-header alert-danger">
+      <h3 class="modal-title text-center"  style="text-align: center;">Error</h3>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1" alert-danger>Your cannot update your booking to a date earlier than tomorrow </label><br> 
+    </div>
+  
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+    </div>
+  </ng-template>
+
+
+
+
+  <ng-template #error  let-modal>
+    <div class="modal-header alert-success">
+      <h3 class="modal-title text-center"  style="text-align: center;">Error</h3>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1" alert-danger> You have already chosen this slot.Please Select a different one.  </label><br> 
+    </div>
+  
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+    </div>
+  </ng-template>
+  <!-- ////////////////////////////////////////// -->
+
+
+  <ng-template #Update  let-modal>
+    <div class="modal-header alert-success">
+      <h3 class="modal-title text-center"  style="text-align: center;">Update Slot</h3>
+    </div>
+    <form [formGroup]="UpdatedateForm" (ngSubmit)="OnUpdate()">
+
+
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Please select the date you will be available</label>
+        <select class="form-control"    formControlName ="DATEID" >
+          <option [selected]="DateTimeSlot.DATEID" [value] ='date.DATEID' *ngFor="let date of alldates| async" > 
+            {{date.DATEDESCRIPTION }}
+          </option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Please select the slot you will be available </label>
+        <select class="form-control"   formControlName ="SLOTID"  >
+          <option [selected]="DateTimeSlot.SLOTID" [value] ='date.SLOTID' *ngFor="let date of allslots| async"  > 
+            {{date.STARTTIME }}-{{date.ENDTIME }}
+          </option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Please select the Province you will be available in </label>
+        <select class="form-control"  #searchProvince   placeholder="Select Province" required   formControlName="searchProvince"  (change)="getCity(searchProvince.value)"> >
+          <option [value] ='select.ID' *ngFor="let select of allData "    > 
+            {{select.Name}}
+          </option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Please select the City you will be available in </label>
+        <select class="form-control"   #searchCity   placeholder="Select City" required   formControlName="searchCity" (change)="getArea(searchCity.value)"> >
+          <option  [value] ='select.ID' *ngFor="let select of allCity"    > 
+            {{select.Name}}
+          </option>
+          </select>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Please select the Area you will be available in </label>
+        <select class="form-control"    #searchArea   placeholder="Select Area"   formControlName="searchArea" [disabled]="disabledArea" >
+          <option  *ngFor="let select of allArea "[value] ='select.ID'  > 
+            {{select.Name}}
+          </option>
+          </select>
+      </div>
+
+
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus  class="btn btn-danger" (click)="modal.close()"  >Cancel</button>
+      <button type="button" ngbAutofocus  class="btn btn-success"  [disabled]= "!UpdatedateForm.valid" type="submit" >Update Slot</button>
+    </div>
+    </form>
+  </ng-template>
+
+
+
+
+
+  </ion-content>

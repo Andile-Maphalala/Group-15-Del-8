@@ -1,0 +1,153 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row">
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                Monthly Invoice Report 
+             
+               </div>
+  
+               <div align="right"  class="col-6">
+                
+                   
+                  
+                  <!-- <div>
+                    <i class="fa fa-print"></i> Print Report
+                  </div> -->
+                  <div>
+                    <!-- <button class="btns" mat-raised-button color="primary" (click)="DownloadPDF()">Export as PDF</button> -->
+  
+                  </div>
+                  
+  
+                
+  
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+      
+            <mat-card-content>  
+  
+              
+              <form [formGroup]="dateForm"  (ngSubmit)="onSubmit()" novalidate>
+        
+               <div>
+                <button mat-raised-button color="primary" [disabled]="!dateForm.valid" type="submit">Generate Report</button>
+               </div>
+              </form>
+               <br>
+            
+                <table class="mat-elevation-z8 table w-100" id="test"  >
+            <thead class="thead-dark">
+                <tr>
+     
+                  <th>Reference Number</th>
+          
+                    <th>Current Amount Due</th>
+                    <th>Address</th>
+                    <th>Payment</th>
+                    <th>Payment Date</th>
+                    
+                        
+                </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let orderDetail of PAYMENTs">
+                      
+                      <td>{{orderDetail.Reference}}</td>
+                     <!-- // <td>{{orderDetail.Date |  date:'dd/MM/yyyy' }}</td> -->
+                      <td>{{orderDetail.Amount}}</td>
+                      <td>{{orderDetail.Address}}</td>
+                      <td>{{orderDetail.thismonthpayment}} (last 30 Days)</td>
+                      <td>{{orderDetail.dateofpay | date:'dd/MM/yyyy'}}</td>
+                    </tr>
+             
+            </tbody>
+         
+           
+          </table> 
+         
+    
+          <div *ngIf="chart" class="reportChart chartW" >
+  
+            <canvas id="canvas" >
+            
+            {{chart}}
+            </canvas>
+            
+          </div>
+          
+            </mat-card-content>  
+     </mat-card>  
+     </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+  
+               <!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+          
+          <!-- Add Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add New Booking</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Employee Type Name</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Add New Booking</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Edit Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="editEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header  alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Error Notification</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <p>Please make sure that the entered dates are correct!</p>
+               
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          <!-- Delete Area modal -->
+          
+          
+          

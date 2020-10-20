@@ -1,0 +1,141 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Audit Trail
+             
+               </div>
+               <div align ="right"  class="col-6">
+                <!-- <button type="button" routerLink ='/add-agent' class="btn btn-primary"  style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" >
+                   
+                  <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                    add
+                    </i>
+                    <span>  
+                     
+                      Add Agent</span>
+  
+                </button> -->
+
+               </div>
+               
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+              <div >
+                <mat-form-field class="w-100">
+                  <mat-label>Search</mat-label>
+                  <input matInput  [(ngModel)]="searchedKeyword"  autocomplete="off" placeholder="Search by table name, user or date">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+  
+               </div>
+<!-- 
+               <script>var ele = document.querySelector('.break-field');
+
+                ele.innerHTML = ele.contains.replace(/,/g, ',<br/>')</script> -->
+            <div class="table-responsive">
+               <table class="mat-elevation-z8 table w-100  table-striped table-bordered " >
+            <thead class="thead-dark">
+                <tr>
+                    <th width="10%">Date Accessed</th>
+                    <th >TableAccessed</th>
+                    <th>User</th>
+                    <th>Transaction Type</th>
+                    <th>Description</th>
+                    <th>Changed Fields</th>
+ 
+                 
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor ="let agent of allAgents |  filter:searchedKeyword  ">
+<ng-container *ngIf="agent.Type=='Update'" >
+                  <td [innerHTML]="agent.DateAccessed | highlight:searchedKeyword"></td>
+                  <td [innerHTML]="agent.TableAccessed | highlight:searchedKeyword"></td>
+                  <td [innerHTML]="agent.User | highlight:searchedKeyword"></td>
+                  <td [innerHTML]="agent.Type | highlight:searchedKeyword"></td>                 
+                  <td ><span [innerHTML]="'Changes made to ' | highlight:searchedKeyword"> </span><span [innerHTML]="agent.TableAccessed | highlight:searchedKeyword"></span> <br>
+                    <b><span>Old Data: </span></b><br>
+                    <div class="break-field">
+                    <span [innerHTML]="agent.OldDescription | highlight:searchedKeyword">{{agent.OldDescription }}</span><br></div>
+                   <b> <span>New Data: </span></b><br>
+                      <span [innerHTML]="agent.NewDescription | highlight:searchedKeyword">{{agent.NewDescription }}</span>
+                  </td>
+                  <td [innerHTML]="agent.ChangedColumn | highlight:searchedKeyword"></td>
+                </ng-container>
+                <ng-container class="break-field" *ngIf="agent.Type=='Create'">
+                    <td [innerHTML]="agent.DateAccessed | highlight:searchedKeyword"></td>
+                    <td [innerHTML]="agent.TableAccessed | highlight:searchedKeyword"></td>
+                    <td [innerHTML]="agent.User | highlight:searchedKeyword"></td>
+                    <td [innerHTML]="agent.Type | highlight:searchedKeyword"></td>                 
+                    <td ><span >New addition made to {{agent.TableAccessed}} </span><br>
+                      <!-- <b><span>Old Data: </span></b><br>
+                      <span>{{agent.OldDescription}}</span><br> -->
+                     <b> <span>New Data: </span></b><br>
+                        <span [innerHTML]="agent.NewDescription | highlight:searchedKeyword">{{agent.NewDescription }}</span>
+                    </td>
+                    <td [innerHTML]="'None' |  filter:searchedKeyword | highlight:searchedKeyword "></td>
+                  </ng-container >
+                  <ng-container class="break-field" *ngIf="agent.Type=='Delete'">
+                    <td [innerHTML]="agent.DateAccessed | highlight:searchedKeyword"></td>
+                    <td [innerHTML]="agent.TableAccessed | highlight:searchedKeyword"></td>
+                    <td [innerHTML]="agent.User | highlight:searchedKeyword"></td>
+                    <td [innerHTML]="agent.Type | highlight:searchedKeyword"></td>                 
+                    <td ><span>Deletion made in {{agent.TableAccessed}} </span><br>
+                      <!-- <b><span>Old Data: </span></b><br>
+                      <span>{{agent.OldDescription}}</span><br> -->
+                     <b> <span>Deleted Data: </span></b><br>
+                        <span  [innerHTML]="agent.OldDescription | highlight:searchedKeyword">{{agent.OldDescription}}</span>
+                    </td>
+                    <td>None</td>
+                  </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+            </mat-card-content>  
+          </mat-card>  
+  
+  
+    
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">view audit page</h4>
+                    </div>
+                      <div class="modal-body">
+                        <a href="https://motlatso-baps.github.io/HelpInturbidus/pages/5219-view-audit-trail.html" target="_blank" mat-menu-item>
+                         
+                    <mat-icon class="icons">help_outline</mat-icon>        
+                         Go to Help</a>
+                      </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              

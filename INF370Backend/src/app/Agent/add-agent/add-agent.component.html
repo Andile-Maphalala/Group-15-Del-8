@@ -1,0 +1,148 @@
+
+
+ <mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+    
+  
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Register Agent
+             
+               </div>
+  
+               <div text align="right"  class="col-6">
+               
+ 
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+          
+            
+               <mat-card class="my-card">
+                <mat-card-content>
+                        <form [formGroup]="agentForm" (ngSubmit)="OnSubmit()">
+                           <mat-form-field class="full-width">
+                            <mat-label>Name</mat-label>
+                            <input  matInput  placeholder="Name"     formControlName="Name" name="Name"  required>
+                            <mat-error *ngIf="agentForm.controls['Name'].errors?.required && agentForm.controls['Name'].touched ">Name is required</mat-error>
+                            <mat-error *ngIf="agentForm.controls['Name'].errors?.pattern && agentForm.controls['Name'].touched ">Name is not valid. Special characters, numbers or spaces are not allowed!</mat-error>
+                         </mat-form-field>
+      
+                         <mat-form-field class="full-width">
+                            <mat-label>Surname</mat-label>
+                            <input  matInput  placeholder="Surname"   formControlName="Surname" name="Surname" required>
+                            <mat-error *ngIf="agentForm.controls['Surname'].errors?.required ">Surname is required</mat-error>
+                            <mat-error *ngIf="agentForm.controls['Surname'].errors?.pattern ">Surname is not valid. Special characters , numbers or spaces are not allowed!</mat-error>
+ 
+                         </mat-form-field>
+      
+                         <mat-form-field class="full-width">
+                          <mat-label>Phone Number</mat-label>
+                          <input  matInput  placeholder="Phone Number" maxlength="10"  formControlName="PHONE_NUMBER" name="PhoneNo" required>
+                          <mat-error *ngIf="agentForm.controls['PHONE_NUMBER'].errors?.pattern ">Phone Number is not valid! 10 digits are required and Special characters are not allowed</mat-error>
+                       </mat-form-field>
+ 
+                       <mat-form-field class="full-width">
+                          <mat-label>Email</mat-label>
+                          <input  matInput type="email" placeholder="Email"   formControlName="Email" name="Email" required>
+                          <mat-error *ngIf="agentForm.controls['Email'].errors?.required ">Email is required</mat-error>
+                          <mat-error *ngIf="agentForm.controls['Email'].errors?.pattern ">Email is not valid!</mat-error>
+                       </mat-form-field>
+                       <mat-form-field class="full-width">
+                          <mat-label>Company</mat-label>
+                          <input  matInput  placeholder="Company"   formControlName="Company" name="Company" required>
+                          <mat-error *ngIf="agentForm.controls['Company'].errors?.required ">Company name is required</mat-error>
+                       </mat-form-field>
+                             <div>
+                              <mat-card-actions>
+                                <button mat-raised-button color="primary" routerLink ='/search-agent'>Cancel</button>
+                                   <button mat-raised-button color="primary" [disabled]="!agentForm.valid"  type ="submit">Add Agent</button>
+                               </mat-card-actions>
+                             </div>  
+                        </form> 
+                </mat-card-content>
+                <mat-card-actions>
+                 
+
+                </mat-card-actions>
+             </mat-card>
+            </mat-card-content>  
+          </mat-card>  
+ 
+ 
+                
+           
+          <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#addagent">Open Modal</button>
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Add agent  page</h4>
+                    </div>
+                      <div class="modal-body">
+                        <a href="javascript:alert('This link is purposely disabled, because the document is created with WinCHM TRIAL version!\n(The registered version will not do so!)');" mat-menu-item>
+                         
+                    <mat-icon class="icons">help_outline</mat-icon>        
+                         Go to Help</a>
+                      </div>
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+          
+              <br>
+              <br>
+              <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+          
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+          
+          
+    
+        
+        <!-- Modal -->
+        <div class="modal fade" id="addagent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert-success ">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Successful</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Successfully registered Agent</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)='Go()'>Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+  
+ 
+ 

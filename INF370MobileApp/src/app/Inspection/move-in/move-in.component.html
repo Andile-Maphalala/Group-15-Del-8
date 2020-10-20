@@ -1,0 +1,96 @@
+
+  <ion-app>
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar color ="primary">
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ul class="nav navbar-nav navbar-right nav-item nav-link">
+              <a routerLink='/Home'><li style=" font-size: 15px; color: white; "><ion-icon name="home-sharp"></ion-icon></li></a>
+            </ul>
+          </ion-buttons>
+          <ion-title style=" font-size: 15px;"> Move-In Inspection</ion-title>
+        </ion-toolbar>
+        
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <div *ngIf="Schedule==null" class="alert alert-danger">
+          No move in inspections have been assigned!
+        </div>
+<ng-container *ngIf="Schedule" >
+         <ion-item *ngFor ="let Type of  Schedule  ">
+
+        
+          <ion-label class="decision" position="stacked"><strong>Inspection ID: </strong>{{Type.INSPECTIONID}}</ion-label>
+          <ion-label class="decision" position="stacked"><strong>Inspection Date Time: </strong>{{Type.INSPECTIONDATE  | date:'yyyy/MM/dd'}}</ion-label>
+          <ion-label class="decision" position="stacked"><strong>Inspection Time: </strong>{{Type.TIME}}</ion-label>
+          <br>
+          <div class="row" > 
+          <ion-item>
+            <ion-button type="button" (click)="loadToEdit(Type.INSPECTIONID)"  >Complete Move In Inspection </ion-button> 
+          </ion-item>   
+          </div>
+          
+    
+
+        </ion-item> 
+      </ng-container>
+      </ion-content>
+    </div>
+
+    
+    <!-- /////////////////////////////////////////////////////////////////////////////// -->
+    <ng-template #content  let-modal>
+      <div class="modal-header alert-success">
+        <h3 class="modal-title text-center"  style="text-align: center;"> Complete Move In Inspection</h3>
+      </div>
+      <form [formGroup]="Form" (ngSubmit)="OnSubmit()">
+    
+    
+        <div class="form-group">
+      <label for="exampleFormControlInput1">Inspection Note </label><br> 
+        <textarea matInput  class="form-control" rows="5" placeholder="Inspection notes and Maintenance required" formControlName="INSPECTIONNOTE"></textarea>   
+      </div>
+    
+      <div>
+            <label >Is Maintenance Required?</label>
+            <select class="form-control"  #INSPECTIONPASSED formControlName ="INSPECTIONPASSED"  >
+              <option value="True">Yes</option>
+              <option value="False">No</option>
+            </select>
+            <br>
+             <mat-error *ngIf="Form.controls['INSPECTIONPASSED'].errors?.required ">This field is required</mat-error> 
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button color="warn" (click)="modal.close()">Cancel</button>
+        <button mat-raised-button color="primary" *ngIf="INSPECTIONPASSED.value=='True'" [disabled]="!Form.valid"  type ="submit">Request Maintenance Job</button>
+        <button mat-raised-button color="primary" *ngIf="INSPECTIONPASSED.value=='False'" [disabled]="!Form.valid"  type ="submit">Submit</button>
+      </div>
+      </form>
+    </ng-template>
+
+<!-- /////////////////////////////////////////////////// -->
+<ng-template #success  let-modal>
+  <div class="modal-header alert-success">
+    <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+  </div>
+  <div class="form-group">
+  <label for="exampleFormControlInput1">Inspection Completed</label>
+  </div>
+  <div class="modal-footer">
+    <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()">OK</button>
+  </div> 
+</ng-template>
+
+  </ion-app>
+
+
+
+
+
+
+       
+   

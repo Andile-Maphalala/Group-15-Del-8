@@ -1,0 +1,83 @@
+<img class = 'images'  src="assets/logo.jpg" routerLink ='/' style="width:200px;height:100px;"/> 
+     <div class="sidenav" >
+      <a href="https://mamphakee.wixsite.com/mysite"  target="_blank">
+        <mat-icon class="icons">info</mat-icon>
+        About us</a>
+
+      <a routerLink="/view-user" >
+        <mat-icon class="icons">supervised_user_circle</mat-icon>
+        Manage My Account</a>
+
+
+        <a href="#item-1" data-toggle="collapse" >
+          <mat-icon class="icons">airline_seat_individual_suite</mat-icon>
+          Rental Management</a>
+        
+        <div class="collapse" id="item-1">
+ 
+          <a  routerLink="/" data-toggle="collapse">
+            <mat-icon class="icons">chevron_right</mat-icon> Browse Properties 
+          </a>
+          <a   routerLink="/ApprovedApplicationComponent" data-toggle="collapse">
+            <mat-icon class="icons">chevron_right</mat-icon> Accept Rental agreement 
+            
+            </a>
+            
+            <a routerLink="/Payment"   data-toggle="collapse">
+              <mat-icon class="icons">chevron_right</mat-icon>  Make payment
+              </a>
+              <a routerLink="/ViewPayments"   data-toggle="collapse">
+                <mat-icon class="icons">chevron_right</mat-icon>  View payments
+                </a>
+              <a  routerLink="/RequestToTerminateRentalAgreement"  data-toggle="collapse">
+                <mat-icon class="icons">chevron_right</mat-icon>  Request to terminate rental agreement
+
+                </a>
+                <a routerLink="/RequestToExtendRentalAgreement"  data-toggle="collapse">
+                  <mat-icon class="icons">chevron_right</mat-icon> Request to extend rental agreement
+                  </a>
+                  <a routerLink="/RequestMaintenanceJob" data-toggle="collapse">
+                    <mat-icon class="icons">chevron_right</mat-icon> Request repair job
+                    </a>
+                    <a routerLink="/viewapplications" data-toggle="collapse">
+                      <mat-icon class="icons">chevron_right</mat-icon> View Applications
+                      </a>
+           
+                                                                                  
+          </div>
+
+
+      <a routerLink="/search-complaint">
+        <mat-icon class="icons">record_voice_over</mat-icon>        
+        Complaint Management</a>
+
+
+     
+ 
+      <a routerLink="/ViewBooking" data-toggle="collapse" >
+        <mat-icon class="icons">calendar_today</mat-icon>
+        Booking Management</a>
+        
+        <!-- <div class="collapse" id="item-2">
+ 
+          <a routerLink="/ViewBooking"  data-toggle="collapse">
+            <mat-icon class="icons">chevron_right</mat-icon> View my bookings 
+          </a>
+                                                                 
+          </div> -->
+
+      <a (click)="logout()">
+        <mat-icon class="icons">exit_to_app</mat-icon>
+        Logout</a>
+
+        <a data-toggle="modal" data-target="#MyModal">
+          <mat-icon class="icons">info</mat-icon>        
+          Hint</a>
+          <a data-toggle="modal" data-target="#MyModal1">
+            <mat-icon class="icons">help_outline</mat-icon>        
+            Help</a>
+
+</div>
+
+
+

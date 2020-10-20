@@ -1,0 +1,491 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"   >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Add Items
+             
+               </div>
+  
+               <div align="right"  class="col-6" >
+                <button class="btn btn-primary" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" data-target="#additemModal">
+                   
+                  <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                    add
+                    </i>
+                    <span>  
+                     
+                      Add Item </span>
+  
+                </button>
+                <button class="btn btn-primary" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" data-target="#addsupplierModal">
+                   
+                    <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                      add
+                      </i>
+                      <span>  
+                       
+                        Add Supplier </span>
+    
+                  </button>
+  
+
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+      
+            <mat-card-content>  
+
+          
+               <mat-card-content>  
+                <form [formGroup]="itemForm"(ngSubmit)="onItemFormSubmit()">  
+                <!-- <table class="mat-elevation-z8 table w-100" >                
+                   <tr ngclass="btn-primary"> 
+                  <th class="tbl2">Item Reference</th>
+                  <th class="tbl2">Item Name</th>
+                  <th class="tbl2">Item Description</th> 
+                </tr>  
+                <tr *ngFor="let item of allitems | async">  
+                  <td class="tbl2">{{item.ITEMID}}</td>     
+                  <td class="tbl2">{{item.NAME}}</td>  
+                  <td class="tbl2">{{item.DESCRIPTION}}</td>         
+                </tr>  
+              </table>  -->
+            </form>  
+            <h1>Please select the corresponding Supplier and input the purchase Details </h1>
+            <form [formGroup]="supplierForm"(ngSubmit)="onSuppplierFormSubmit()">  
+              <table class="mat-elevation-z8 table w-100" >                
+                <tr ngclass="btn-primary"> 
+                <!-- <th class="tbl2">Supplier Reference</th> -->
+                <th class="tbl2">Supplier Name</th>
+                <th class="tbl2">Supplier Address</th> 
+                <th class="tb12">Add Purchase Details</th>
+              </tr>  
+              <tr *ngFor="let supplier of allsuppliers | async">  
+                <!-- <td class="tbl2">{{supplier.SUPPLIERID}}</td>      -->
+                <td class="tbl2">{{supplier.NAME}}</td>  
+                <td class="tbl2">{{supplier.ADDRESS}}</td>  
+               
+                <td class="tbl2">  
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addpurchaseModal"  matTooltip="Click Edit Button" (click)="loadpurchaseToEdit(supplier.SUPPLIERID); Addopen()">Capture Purchase Details</button>
+  
+                </td>          
+              </tr>  
+            </table> 
+          </form>  
+          <h1>Match corresponding Items and purchase Details to Complete the Purchase Form </h1>
+          <form [formGroup]="purchaseForm"(ngSubmit)="onPurFormSubmit()">  
+            <table class="mat-elevation-z8 table w-100" >                
+              <tr ngclass="btn-primary"> 
+              <!-- <th class="tbl2">purchase Reference</th>
+              <th class="tbl2">Supplier Reference</th> -->
+              <th class="tbl2">Quantity</th> 
+              <th class="tbl2">Price</th>
+              <th class="tbl2">Date</th> 
+              <th class="tb12">Add Purchaseline Details</th>
+            </tr>  
+            <tr *ngFor="let purchase of allpurchases | async">  
+              <!-- <td class="tbl2">{{purchase.PURCHASEID}}</td>     
+              <td class="tbl2">{{purchase.SUPPLIERID}}</td>   -->
+              <td class="tbl2">{{purchase.QUANTITY}}</td>  
+              <td class="tbl2">{{purchase.PRICE}}</td>  
+              <td class="tbl2">{{purchase.DATE}}</td> 
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#AddPurchaseLine"  matTooltip="Click Edit Button" (click)="loadpurchaselineToEdit(purchase.PURCHASEID); Addopen()">Complete Purchase Form</button>
+              </td>          
+            </tr>  
+          </table> 
+        </form>  
+        <form [formGroup]="purchaselineForm"(ngSubmit)="onPurlineFormSubmit()">  
+          <!-- <table class="mat-elevation-z8 table w-100" >                
+            <tr ngclass="btn-primary"> 
+            <th class="tbl2">Item Name</th>
+            <th class="tbl2">Item Description</th>
+            <th class="tbl2">Purchase Quantity</th> 
+            <th class="tbl2">Purchase Price</th> 
+          </tr>  
+          
+          <tr *ngFor="let purline of allpurchaseline| async">  
+            <td class="tbl2">{{purline.NAME}}</td>     
+            <td class="tbl2">{{purline.DESCRIPTION}}</td>  
+            <td class="tbl2">{{purline.QUANTITY}}</td> 
+            <td class="tbl2">{{purline.PRICE}}</td> 
+          </tr>  
+        </table>  -->
+      </form>   
+          </mat-card-content>    
+           
+            </mat-card-content>  
+
+          </mat-card>                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+              <br>
+              <br>
+              <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+          
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#validation">
+                Launch demo modal
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployeeSuccess">
+                addEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatedEmployeeSuccess">
+                updatedEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removedEmployeeSuccess">
+                removedEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchEmployeeSuccess">
+                searchEmployeeSuccess
+              </button>
+
+          
+          
+         
+          
+          <!-- Add Area modal -->
+          
+          <!-- Modal -->
+          <form [formGroup]="itemForm"(ngSubmit)="onItemFormSubmit()">  
+          <div class="modal fade" id="additemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add Item</h3>
+                  <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                  
+                    <label for="exampleFormControlInput1">Item Name </label><br>
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="NAME" matTooltip="Enter User ID" matInput placeholder="">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!itemForm.get('NAME').value && itemForm.get('NAME').touched"></span>  
+                    </mat-error>  
+                    
+                    <label for="exampleFormControlInput1">Item Description</label><br>
+                    <mat-form-field class="demo-full-width">  
+                      <input  formControlName="DESCRIPTION" matTooltip="Enter Date Employed " matInput placeholder="">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!itemForm.get('DESCRIPTION').value && itemForm.get('DESCRIPTION').touched"></span>  
+                    </mat-error>
+                 
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <!-- <button type="button" class="btn btn-success">Add New Employee</button> -->
+                  <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!itemForm.valid">Add  Item</button>
+                </div>
+           
+              </div>
+            </div>
+         
+          </div>
+        </form>
+          <!-- supplier  modal -->
+          <form [formGroup]="supplierForm"(ngSubmit)="onSuppplierFormSubmit()">  
+            <div class="modal fade" id="addsupplierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header alert-primary ">
+                    <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add Supplier</h3>
+                    <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                    
+                      <label for="exampleFormControlInput1">Supplier Name </label><br>
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="NAME" matTooltip="Enter User ID" matInput placeholder="">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!supplierForm.get('NAME').value && supplierForm.get('NAME').touched"></span>  
+                      </mat-error>  
+                      
+                      <label for="exampleFormControlInput1">Phone Number</label><br>
+                      <mat-form-field class="demo-full-width">  
+                        <input type="number"  formControlName="PHONENUMBER" matTooltip="" matInput placeholder="">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!supplierForm.get('PHONENUMBER').value && supplierForm.get('PHONENUMBER').touched"></span>  
+                      </mat-error>
+
+                      <label for="exampleFormControlInput1">Address</label><br>
+                      <mat-form-field class="demo-full-width">  
+                        <input  formControlName="ADDRESS" matTooltip="Enter Date Employed " matInput placeholder="">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!supplierForm.get('ADDRESS').value && supplierForm.get('ADDRESS').touched"></span>  
+                      </mat-error>
+
+                      <label for="exampleFormControlInput1">Email</label><br>
+                      <mat-form-field class="demo-full-width">  
+                        <input  formControlName="EMAIL" matTooltip="Enter Date Employed " matInput placeholder="">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!supplierForm.get('EMAIL').value && supplierForm.get('EMAIL').touched"></span>  
+                      </mat-error>
+                   
+                   
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!supplierForm.valid">Add Supplier</button>
+                  </div>
+             
+                </div>
+              </div>
+           
+            </div>
+          </form>
+                 <!-- purchase  modal -->
+                 <form [formGroup]="purchaseForm"(ngSubmit)="onPurFormSubmit()">  
+                    <div class="modal fade" id="addpurchaseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header alert-primary ">
+                            <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add Purchase Details</h3>
+                            <button type="button"  #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="form-group">
+                            
+                              <!-- <label for="exampleFormControlInput1">Supplier ID </label><br>
+                              <mat-form-field class="demo-full-width">  
+                                <input type="number" formControlName="SUPPLIERID" matTooltip="Supplier ID" matInput placeholder="">  
+                              </mat-form-field>  
+                              <mat-error>  
+                                <span *ngIf="!purchaseForm.get('SUPPLIERID').value && purchaseForm.get('SUPPLIERID').touched"></span>  
+                              </mat-error>   -->
+                              
+                              <label for="exampleFormControlInput1">Item Quantity</label><br>
+                              <mat-form-field class="demo-full-width">  
+                                <input type="number" formControlName="QUANTITY" matTooltip="Enter Date Employed " matInput placeholder="">  
+                              </mat-form-field>  
+                              <mat-error>  
+                                <span *ngIf="!purchaseForm.get('QUANTITY').value && purchaseForm.get('QUANTITY').touched"></span>  
+                              </mat-error>
+
+                              <label for="exampleFormControlInput1">Item Price</label><br>
+                              <mat-form-field class="demo-full-width">  
+                                <input type="number" min="0" value="0" step="0.1" formControlName="PRICE" matTooltip="Enter Date Employed " matInput placeholder="">  
+                              </mat-form-field>  
+                              <mat-error>  
+                                <span *ngIf="!purchaseForm.get('PRICE').value && purchaseForm.get('PRICE').touched"></span>  
+                              </mat-error>
+
+                              <label for="exampleFormControlInput1">Date</label><br>
+                              <mat-form-field class="demo-full-width">  
+                                <input type="date" formControlName="DATE" matTooltip="Enter Date Employed " matInput placeholder="">  
+                              </mat-form-field>  
+                              <mat-error>  
+                                <span *ngIf="!purchaseForm.get('DATE').value && purchaseForm.get('DATE').touched"></span>  
+                              </mat-error>
+                           
+                           
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            <!-- <button type="button" class="btn btn-success">Add New Employee</button> -->
+                            <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!purchaseForm.valid">Capture  Details</button>
+                          </div>
+                     
+                        </div>
+                      </div>
+                   
+                    </div>
+                  </form>
+          
+          <!-- Modal -->
+         
+            <div class="modal fade" *ngIf="AddshowModalBox" id="AddPurchaseLine" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <form [formGroup]="purchaselineForm"(ngSubmit)="onPurlineFormSubmit()">  
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add Purchase Line</h3>
+                  <button type="button"  #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    
+                     <!--<label for="exampleFormControlInput1">Purchase Details</label><br>
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="PURCHASEID" matTooltip="Enter User ID" matInput placeholder="User ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!purchaselineForm.get('PURCHASEID').value && purchaselineForm.get('PURCHASEID').touched"></span>  
+                    </mat-error>   -->
+
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Purchase Details</label>
+                      <select class="form-control" formControlName="PURCHASEID" >
+                        <option *ngFor="let pur of allpurchases | async" value="{{pur.PURCHASEID}}"> QUANTITY:{{pur.QUANTITY}} // PRICE:{{pur.PRICE}} // DATE:{{pur.DATE}} </option>
+                        </select>
+                    </div>
+                  
+                    <!-- <label for="exampleFormControlInput1">Item ID</label><br>
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="ITEMID" matTooltip="Enter User ID" matInput placeholder="User ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!purchaselineForm.get('ITEMID').value && purchaselineForm.get('ITEMID').touched"></span>  
+                    </mat-error>   -->
+                    
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Item Details</label>
+                      <select class="form-control" formControlName="ITEMID" >
+                        <option *ngFor="let item of allitems | async" value="{{item.ITEMID}}">Item Name:{{item.NAME}} // Item Description {{item.DESCRIPTION}}  </option>
+                        </select>
+                    </div>
+                
+          
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <!--   <button type="submit" class="btn btn-success"  [disabled]='employeeTypeName.value==""'  >Add New Employee Type</button> -->
+                  <button type="submit" mat-raised-button data-toggle="modal" data-target="#UpdateEmployeeModal" color="accent"matTooltip="Click Submit Button"[disabled]="!purchaselineForm.valid">Capture Details</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+    
+          
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" *ngIf="AddshowModalBox" id="UpdateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Employee?</h3>
+                  <button type="button" #addTypeclosebutton class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Your Puchase has been logged!</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+            
+            
+
+            <!-- Modal -->
+          <div class="modal fade" id="addEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>You have successfuly added an Employee</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="updatedEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>You have successfuly updated an Employee</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="removedEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Employee has been removed</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="searchEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Not Found</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>No Employees have been Found</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+       
+         

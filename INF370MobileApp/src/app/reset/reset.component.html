@@ -1,0 +1,104 @@
+
+<div class="container">
+      
+  <div class="col-md-6" style="margin:auto; margin-bottom: 75px;">
+      <!--This is the help icon, when clicked, modal pops up-->
+  <div>
+      <button type="button" mat-raised-button  color="primary" block="true"  mdbWavesEffect routerLink="/Login">Cancel</button>
+  </div>
+      <form [formGroup]="userForm" *ngIf="firstPanel" class="text-center border border-light p-5" action="#!" style="background-color: #c8f0ea">
+          <p class="h4 mb-4">Reset Password</p>
+          <div *ngIf="noUsrEntered" class="alet alert-danger">Please enter a username</div> 
+          <mat-form-field >
+          <input  id="username" matInput formControlName="Username" name="username" placeholder="Username" [(ngModel)]="usrname"> 
+          <mat-error *ngIf="userForm.controls['Username'].errors?.pattern && userForm.controls['Username'].touched ">Username is not valid. Special characters, numbers or spaces are not allowed!</mat-error>
+          <mat-error *ngIf="userForm.controls['Username'].errors?.required ">Username is required</mat-error>
+
+      </mat-form-field>
+      <br>
+      <div>
+          <button mat-raised-button  color="primary"  block="true"  (click)="requestReset()"mdbWavesEffect type="submit" [disabled]="!userForm.valid">Reset</button>
+      </div>
+      </form>
+
+      <div *ngIf="failedToSend" class="alert alert-danger">
+          User does not exist !
+      </div>
+
+      <form *ngIf="emailResent" class="text-center border border-light p-5" action="#!" style="background-color: #c8f0ea">
+          <p class="h4 mb-4">Enter OTP</p>
+          <div *ngIf="noOTPentered" class="alet alert-danger">Please enter an OTP (6-digits)</div> 
+          <input type="text" id="otp" name="username" class="form-control mb-4" maxlength="6" placeholder="OTP" [(ngModel)]="enteredOTP">
+          <button mat-raised-button  color="primary" block="true"  (click)="checkOTP()" mdbWavesEffect type="submit">Submit</button>
+      </form>
+
+      <div *ngIf="failedOTP" class="alert alert-danger">
+          OTP incorrect! Please resubmit!
+      </div>
+
+      <form *ngIf="otpMatch" class="text-center border border-light p-5" action="#!" style="background-color: #c8f0ea;">
+          <p class="h4 mb-4">New Password</p>
+          <div *ngIf="noMatch" class="alet alert-danger">Passwords must match</div> 
+          <input type="password" id="pssw1" name="passw1" class="form-control mb-4" placeholder="Password" [(ngModel)]="pss1">
+        
+          <div *ngIf="noMatch" class="alet alert-danger">Passwords must match</div> 
+          <input type="password" id="pssw2" name="passw2" class="form-control mb-4" placeholder="Confirm Password" [(ngModel)]="pss2">
+          <button mat-raised-button  color="primary" block="true" (click)="setNewPass()" mdbWavesEffect type="submit">Submit</button>
+      </form>
+
+      <div *ngIf="newPassFailed" class="alert alert-danger">
+              Please enter a password!
+          </div>
+
+      <form *ngIf="complete" class="text-center border border-light p-5" action="#!" style="background-color: #c8f0ea">
+              <p class="h4 mb-4">Password Reset!</p>
+              <button mat-raised-button  color="primary" block="true"  routerLink="/Login" mdbWavesEffect type="submit">Login</button>
+      </form>
+  </div>
+
+
+  
+</div>
+
+
+
+<div id="overlay">
+      <span id="nav" *ngIf="saveInProgress">
+          <div class="spinner" style="display: block; position: fixed">
+          </div>
+      </span>
+      <span id="nav" *ngIf="saveInProgress">
+          <div class="submit-message" style="display: block; color: #FFFFFF; position: fixed; left: 49.7%; top: 54.5%;">
+              Requesting...
+          </div>
+      </span>
+  </div>
+
+
+  <!--HTML for HELP MODAL. Load help message from database-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" >
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:green">Reset Password</h4>
+          </div>
+          <div class="modal-body">
+            <p >This is the reset password screen.</p><br/>
+            <p style="color:green; font-weight: bold">The process follows:</p>
+            <p>-Enter your username and click RESET</p>
+            <p>-Enter your OTP that we mailed to you then click SUBMIT</p>
+            <p>-Enter your new password and click SUBMIT</p>
+            <p>-If you did not receive our email, simply navigate back to the Account menu and then click Reset My Password again</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"  mdbWavesEffect>Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End of help modal-->
+
+  

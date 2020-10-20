@@ -1,0 +1,411 @@
+<app-is-logged-in></app-is-logged-in>
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+     
+      <!-- <app-nav></app-nav> -->
+
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+  
+      <app-username></app-username>
+        <!-- <nav class="navbar  navbar-dark "  style="  background-color: #111;  ">
+           
+            
+            <div class="container-fluid" class="col-4">
+                
+                    <h1 style="color:blue;">Welcome to Inturbidus </h1>
+                
+               
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+     
+                    
+                
+              </div>
+           
+        
+            </div>
+          </nav> -->
+           
+           
+            <mat-card-content > 
+              <br>
+<div class="container">
+
+
+
+              <div class="row round-0">
+
+                <div  *ngIf="currentEmployee=='admin' ||currentEmployee=='owner'" class="col-4 round-0" style="margin-top: 10px; border-radius:0px;">
+              
+              <mat-card class="example-card round-0 "  style="background-color:#35b0e0 ;border-radius:0px; ">
+              <mat-card-content >
+                       <img mat-card-image src="./assets/admin1.png" alt="">
+              
+                 <mat-expansion-panel style="width:100%; background-color:#a4edff ;border-radius:0px;" >
+                  <mat-expansion-panel-header  style="background-color:#35b0e0 ;border-radius:0px;">
+              <b>Administration </b>
+              
+                </mat-expansion-panel-header >
+                <a  routerLink="/review-application" *ngIf="currentEmployee=='admin'"  >
+                   <mat-icon class="icons">chevron_right</mat-icon> Review rental application<br>
+                </a>
+
+                <a  routerLink="/viewextensionrequest" *ngIf="currentEmployee=='admin'" >
+                   <mat-icon class="icons">chevron_right</mat-icon> View rental extension request<br>
+                </a>
+<!-- 
+                <a  routerLink="/extend-agreement"  *ngIf="currentEmployee=='admin'" >
+                   <mat-icon class="icons">chevron_right</mat-icon>  Extend Rental Agreement<br>
+                </a> -->
+
+                <a  routerLink="/extend-due-date" *ngIf="currentEmployee=='admin'" >
+                   <mat-icon class="icons">chevron_right</mat-icon> Extend deposit due date <br>
+                </a>
+                <a  routerLink="/view-termination-request" *ngIf="currentEmployee=='admin'" >
+                   <mat-icon class="icons">chevron_right</mat-icon> View rental termination request  <br>
+                </a>
+                <!-- <a  routerLink="/terminate-agreement" *ngIf="currentEmployee=='admin'"  >
+                   <mat-icon class="icons">chevron_right</mat-icon> Terminate Rental agreement <br>
+                </a> -->
+                   <!-- <a  routerLink="/assign-jobs" *ngIf="currentEmployee=='admin'" >
+                   <mat-icon class="icons">chevron_right</mat-icon> Assign repair/maintenance request job <br>
+                   </a> -->
+                   <a  routerLink="/assign-jobs" *ngIf="currentEmployee=='admin'" >
+                   <mat-icon class="icons">chevron_right</mat-icon> View repair/maintenance request jobs<br>
+                   </a>
+
+                   <a routerLink="/Adjusttime"   *ngIf="currentEmployee=='admin'"   data-toggle="collapse">
+                    <mat-icon class="icons">chevron_right</mat-icon> Modify logout time
+           
+                    
+                    </a>  
+                    <a routerLink="/AuditTrail" *ngIf="currentEmployee=='owner'"   data-toggle="collapse">
+                      <mat-icon class="icons">chevron_right</mat-icon> View Audit trail
+             
+                      
+                      </a>  
+                      <a routerLink="/Dashboard" *ngIf="currentEmployee=='owner'"   data-toggle="collapse">
+                        <mat-icon class="icons">chevron_right</mat-icon> Dashboard
+               
+                        
+                        </a>  
+
+              
+                 </mat-expansion-panel>
+              </mat-card-content>
+              </mat-card>
+              
+              
+                </div>
+                <div *ngIf="currentEmployee=='owner'" class="col-4" style="margin-top: 10px;">
+              
+              <mat-card class="example-card "  style="background-color:#35b0e0;border-radius:0px;  ">
+              <mat-card-content >
+                       <img mat-card-image src="./assets/employee.png" alt="Photo of a Shiba Inu">
+              
+                 <mat-expansion-panel style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                  <mat-expansion-panel-header  style="background-color:#35b0e0 ;border-radius:0px;">
+              <b> Employee Management </b>
+              
+                </mat-expansion-panel-header>
+                <a routerLink="/employee" >
+                  <mat-icon class="icons">chevron_right</mat-icon>  Employees<br>
+                </a>
+                <a routerLink="/employeeType"  >
+                  <mat-icon class="icons">chevron_right</mat-icon> Employee Types
+                  
+                  </a>
+                  
+              
+                 </mat-expansion-panel>
+              </mat-card-content>
+              </mat-card>
+              
+              
+                </div>
+              
+                 <div *ngIf="currentEmployee=='admin' || currentEmployee=='owner'" class="col-4" style="margin-top: 10px;">
+              
+              <mat-card class="example-card "  style="background-color:#35b0e0;border-radius:0px;  ">
+              <mat-card-content >
+                       <img mat-card-image src="./assets/user (2).png" alt="Photo of a Shiba Inu">
+              
+                 <mat-expansion-panel style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                  <mat-expansion-panel-header  style="background-color:#35b0e0 ;border-radius:0px;">
+              <b>  User Management </b>
+              
+                </mat-expansion-panel-header>
+                <a routerLink="/search-user" >
+                  <mat-icon class="icons">chevron_right</mat-icon>  Users<br>
+                </a>
+                <a  routerLink="/UserType"  *ngIf="currentEmployee=='owner'">
+                  <mat-icon class="icons">chevron_right</mat-icon> User Types<br>
+                  
+                  </a>
+                  
+              
+                 </mat-expansion-panel>
+              </mat-card-content>
+              </mat-card>
+              
+              
+                </div>
+
+                <div *ngIf="currentEmployee=='admin' || currentEmployee=='owner'" class="col-4"style="margin-top: 10px;">
+              
+                  <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                  <mat-card-content >
+                           <img mat-card-image src="./assets/report.png" alt="Photo of a Shiba Inu">
+                  
+                     <mat-expansion-panel style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                      <mat-expansion-panel-header  style="background-color:#35b0e0 ;border-radius:0px;">
+                  <b>Reporting</b>
+                  
+                    </mat-expansion-panel-header>
+                    <a  routerLink="/OverduePaymentReport"   >
+                      <mat-icon class="icons">chevron_right</mat-icon>  Generate Overdue Payments Report <br>
+            
+                    </a>
+                    <a  routerLink="/MonthlyIncomeReport"  *ngIf="currentEmployee=='owner'">
+                      <mat-icon class="icons">chevron_right</mat-icon> Total Monthly Income Report<br>
+                      
+                      </a>
+                      <a  routerLink="/ClientPaymentReport"  *ngIf="currentEmployee=='owner'">
+                        <mat-icon class="icons">chevron_right</mat-icon>  Client Payment Report<br>
+                        
+                        </a>
+                     
+                      <a routerLink="/MonthlyinvoiceReport"   *ngIf="">
+                        <mat-icon class="icons">chevron_right</mat-icon> Generate Monthly Invoice Reports <br>
+            
+                        
+                        </a>
+                        <a  routerLink="/AdjustableExpenseReport"    *ngIf="currentEmployee=='owner'">
+                            <mat-icon class="icons">chevron_right</mat-icon> Generate expense Report<br>
+                            
+                            </a>
+                            <a   routerLink="/MostViewdProperties"  >
+                                <mat-icon class="icons">chevron_right</mat-icon>  Generate Most Viewed Properties Report <br>
+                                
+                                </a>
+                  
+                     </mat-expansion-panel>
+                  </mat-card-content>
+                  </mat-card>
+                  
+                  
+                    </div>
+
+                    <div class="col-4" style="margin-top: 10px;" *ngIf="currentEmployee=='admin'">
+              
+                      <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                      <mat-card-content >
+                               <img mat-card-image src="./assets/agent.png" alt="Photo of a Shiba Inu">
+                      
+                         <mat-expansion-panel hideToggle style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                          <mat-expansion-panel-header routerLink="/search-agent"   style="background-color:#35b0e0 ;border-radius:0px;">
+                      <b> Agent Management </b>
+                      
+                        </mat-expansion-panel-header>
+                      
+                      
+                         </mat-expansion-panel>
+                      </mat-card-content>
+                      </mat-card>
+                      
+                      
+                        </div>
+              
+                        <div *ngIf="currentEmployee=='admin'" class="col-4" style="margin-top: 10px;" >
+              
+                          <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                          <mat-card-content >
+                                   <img mat-card-image src="./assets/property (2).png" alt="Photo of a Shiba Inu">
+                          
+                             <mat-expansion-panel style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                              <mat-expansion-panel-header  style="background-color:#35b0e0 ;border-radius:0px;">
+                          <b>Property Management</b>
+                          
+                            </mat-expansion-panel-header>
+                            <a  routerLink="/Properties"  >
+                              <mat-icon class="icons">chevron_right</mat-icon>  Properties<br>
+                            </a>
+                            <a  routerLink="/Property-Types"   >
+                              <mat-icon class="icons">chevron_right</mat-icon> Property Types<br>
+                              
+                              </a>
+                          
+                             </mat-expansion-panel>
+                          </mat-card-content>
+                          </mat-card>
+                          
+                          
+                            </div>
+              
+                            <!-- <div *ngIf="currentEmployee=='admin'" class="col-4" style="margin-top: 10px;">
+              
+                              <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                              <mat-card-content >
+                                       <img mat-card-image src="./assets/rental.png" alt="Photo of a Shiba Inu">
+                              
+                                 <mat-expansion-panel style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                                  <mat-expansion-panel-header  style="background-color:#35b0e0 ;border-radius:0px;">
+                              <b>Rental Management </b>
+                              
+                                </mat-expansion-panel-header>
+                                <a  routerLink="/ViewFeedback"  *ngIf="currentEmployee=='admin'" >
+                                  <mat-icon class="icons">chevron_right</mat-icon>  View repair/maintenance job feedback <br>
+                                </a>
+                              
+                                 </mat-expansion-panel>
+                              </mat-card-content>
+                              </mat-card>
+                              
+                              
+                                </div> -->
+                                <div *ngIf="currentEmployee=='admin'|| currentEmployee=='maintenance'" class="col-4" style="margin-top: 10px;">
+              
+                                  <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                                  <mat-card-content >
+                                           <img mat-card-image src="./assets/inspection.png" alt="Photo of a Shiba Inu">
+                                  
+                                     <mat-expansion-panel style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                                      <mat-expansion-panel-header  style="background-color:#35b0e0 ;border-radius:0px;">
+                                  <b>Inspection Management </b>
+                                  
+                                    </mat-expansion-panel-header>
+                                    <a  routerLink="/MoveIn" *ngIf="currentEmployee=='maintenance'"   >
+                                      <mat-icon class="icons">chevron_right</mat-icon>  Move-In Inspection <br>
+                                    </a>
+                                    <a  routerLink="/MoveOut" *ngIf="currentEmployee=='maintenance'"   >
+                                      <mat-icon class="icons">chevron_right</mat-icon>  Move-Out Inspection <br>
+                                    </a>
+                                    <a  routerLink="/ScheduleInspection" *ngIf="currentEmployee=='admin'"  >
+                                      <mat-icon class="icons">chevron_right</mat-icon>  Schedule Inspection <br>
+                                    </a>
+                                     </mat-expansion-panel>
+                                  </mat-card-content>
+                                  </mat-card>
+                                  
+                                  
+                                    </div>
+                                    <div *ngIf="currentEmployee=='maintenance'" class="col-4" style="margin-top: 10px;">
+              
+                                      <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                                      <mat-card-content >
+                                               <img mat-card-image src="./assets/maintain.png" alt="Photo of a Shiba Inu">
+                                      
+                                         <mat-expansion-panel style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                                          <mat-expansion-panel-header  style="background-color:#35b0e0 ;border-radius:0px;">
+                                      <b>Maintenance</b>
+                                      
+                                        </mat-expansion-panel-header>
+                                        <a  routerLink="/viewrepairrequestjobs"  *ngIf="currentEmployee=='maintenance'" >
+                                          <mat-icon class="icons">chevron_right</mat-icon>  View repair/maintenance request jobs<br>
+                              
+                                        </a>
+                                        <a  routerLink="/additems"  *ngIf="currentEmployee=='maintenance'" >
+                                          <mat-icon class="icons">chevron_right</mat-icon>  Add repair/maintenance items<br>
+                              
+                                     
+                                          </a>
+                                          <a  routerLink="/setupviewingschedule"  *ngIf="currentEmployee=='maintenance'" >
+                                            <mat-icon class="icons">chevron_right</mat-icon> Setup viewing schedule<br>
+                              
+                                
+                                       
+                                            </a>  
+                                         </mat-expansion-panel>
+                                      </mat-card-content>
+                                      </mat-card>
+                                      
+                                      
+                                        </div>
+                                        <div *ngIf="currentEmployee=='admin'"  class="col-4" style="margin-top: 10px;">
+              
+                                          <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                                          <mat-card-content >
+                                                   <img mat-card-image src="./assets/complaint.png" alt="Photo of a Shiba Inu">
+                                          
+                                             <mat-expansion-panel hideToggle style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                                              <mat-expansion-panel-header routerLink="/view-complaints"  style="background-color:#35b0e0 ;border-radius:0px;">
+                                          <b>Complaint Management</b>
+                                          
+                                            </mat-expansion-panel-header>
+                                            
+                                             </mat-expansion-panel>
+                                          </mat-card-content>
+                                          </mat-card>
+                                          
+                                          
+                                            </div>
+                                            <div *ngIf="currentEmployee=='admin'" class="col-4" style="margin-top: 10px;">
+              
+                                              <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                                              <mat-card-content >
+                                                       <img mat-card-image src="./assets/booking.png" alt="Photo of a Shiba Inu">
+                                              
+                                                 <mat-expansion-panel hideToggle style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                                                  <mat-expansion-panel-header routerLink="/ViewBooking"  style="background-color:#35b0e0 ;border-radius:0px;">
+                                              <b> View schedule</b>
+                                              
+                                                </mat-expansion-panel-header>
+                                                
+                                                 </mat-expansion-panel>
+                                              </mat-card-content>
+                                              </mat-card>
+                                              
+                                              
+                                                </div>
+                                                <div *ngIf="currentEmployee=='admin'" class="col-4" style="margin-top: 10px;">
+              
+                                                  <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                                                  <mat-card-content >
+                                                           <img mat-card-image src="./assets/location.jpg" alt="Photo of a Shiba Inu">
+                                                  
+                                                     <mat-expansion-panel hideToggle style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                                                      <mat-expansion-panel-header routerLink="/location" style="background-color:#35b0e0 ;border-radius:0px;">
+                                                  <b> Location Management</b>
+                                                  
+                                                    </mat-expansion-panel-header>
+                                                    
+                                                     </mat-expansion-panel>
+                                                  </mat-card-content>
+                                                  </mat-card>
+                                                  
+                                                  
+                                                    </div>
+                                                    <div class="col-4" style="margin-top: 10px;">
+              
+                                                      <mat-card class="example-card "  style="background-color:#35b0e0 ;border-radius:0px; ">
+                                                      <mat-card-content >
+                                                               <img mat-card-image src="./assets/out.png" alt="Photo of a Shiba Inu">
+                                                      
+                                                         <mat-expansion-panel hideToggle style="width:100%; background-color:#a4edff ;border-radius:0px;" class="">
+                                                          <mat-expansion-panel-header  (click)="logout()"  style="background-color:#35b0e0 ;border-radius:0px;">
+                                                      
+ <b>Logout</b>
+                                                      
+                                                        </mat-expansion-panel-header>
+                                                        
+                                                         </mat-expansion-panel>
+                                                      </mat-card-content>
+                                                      </mat-card>
+                                                      
+                                                      
+                                                        </div>
+                                                              
+
+                                      
+              
+              </div>
+            </div>
+                
+            </mat-card-content>  
+        
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          

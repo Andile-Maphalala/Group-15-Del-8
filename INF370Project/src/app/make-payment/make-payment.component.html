@@ -1,0 +1,172 @@
+<app-is-logged-in></app-is-logged-in>
+
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+  
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row" >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">Make Payment
+             
+               </div>
+  
+               <div align="right"  class="col-6">
+                
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br> 
+          
+            <mat-card-content  *ngIf="hasApplied">  
+              <ng-container>
+ <form #form action="https://sandbox.payfast.co.za/eng/process" method="POST"> 
+              <div>
+                <mat-form-field class="w-100">
+                  <mat-label>Please select the rental agreement you want to make payment for</mat-label>
+                  <mat-select #ReferenceNo  (selectionChange)="GetAmount(ReferenceNo.value);" >
+                    <mat-option  matInput *ngFor="let selectCity of allRentals " value="{{selectCity.ReferenceNo}}"  selected>{{selectCity.PropertyAddress }} || {{selectCity.ReferenceNo }}
+
+
+                    </mat-option>
+                    
+
+                  </mat-select>
+
+                </mat-form-field>
+              </div>
+            <br>
+
+              <div>
+                <input type="hidden" name="merchant_id" value="10000100">
+                <input type="hidden" name="merchant_key" value="46f0cd694581a">
+                <!-- <input type="hidden" name="return_url" value="http://localhost:30135/notify">
+                <input type="hidden" name="cancel_url" value="http://localhost:30135/cancel"> -->
+                <input type="hidden" name="return_url" value="https://inturbidus.azurewebsites.net/notify">
+                <input type="hidden" name="cancel_url" value="https://inturbidus.azurewebsites.net/cancel">
+
+                <input type="hidden" name="amount" value="{{AmountDue1.value}}">
+                <!-- <input type="hidden" name="item_name" value="{{names}} {{ReferenceNo.value}}"> -->
+                <input *ngIf="status.value==1" type="hidden" name="item_name" value="{{names}} {{ReferenceNo.value}} -- Deposit Payment">
+                <input *ngIf="status.value==5"  type="hidden" name="item_name" value="{{names}} {{ReferenceNo.value}} -- Rental Payment">
+                <!-- <input type="hidden" name="email_confirmation" value="1">
+                <input type="hidden" name="confirmation_address" value="{{email}}"> -->
+                <input type="hidden" name="signature" value="{{MD5string}}"> 
+            
+                <div   *ngIf="AmountDue==0" class="alert alert-danger">There is no amount due for this rental agreement.</div>
+               </div>
+  
+               <div [hidden]="AmountDue==0">
+                <div  *ngIf="status.value==5"  class="alert alert-info"><h3>Payment due for Rental</h3>
+                  <mat-label   *ngIf='ReferenceNo.value'>Amount Due: R{{AmountDue}}</mat-label>   </div>
+
+                <div  *ngIf="status.value==1"    class="alert alert-info"><h3>Payment due for Deposit</h3> 
+                  <mat-label   *ngIf='ReferenceNo.value'>Amount Due: R{{AmountDue}}</mat-label>
+                </div>
+
+                                 
+                    <input #AmountDue1 type="hidden"  value="{{AmountDue}}">
+                    <input #status type="hidden"  value="{{Status}}">
+
+               </div>
+                  
+  
+                <div >
+                <button  [hidden]="AmountDue==0" *ngIf="payable" type="submit" class="btn aqua-gradient" (click)="form.submit();setID(ReferenceNo.value,AmountDue1.value,status.value);" mat-raised-button color="primary" data-toggle="modal" data-target="#editEmployeeTypeModal">Procced to Pay</button>
+               </div> 
+              </form> 
+              </ng-container>
+            </mat-card-content>  
+            <div *ngIf="!hasApplied" class="alert alert-danger">
+              You currently don't have any rental agreements.
+          </div> 
+          </mat-card>  
+  
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+                
+                <!-- Modal -->
+        <div class="modal fade" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert-primary ">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add New Booking</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Employee Type Name</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success">Add New Booking</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal" (click)="basicModal.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel" style="color:rgb(60, 191, 196)">Make Payment Page</h4>
+              </div>
+              <div class="modal-body">
+                <p>Make Payment Page.</p><br/>
+                <p style="color:rgb(60, 191, 196); font-weight: bold">Here you can select to:</p>
+                <p>-Click SELECT RENTAL AGREEMENT DROPDOWN to choose rental agreement </p>
+                <p>-Click RENTAL to make rental payment </p>
+                <p>-Click DEPOSIT to make deposit payment </p>
+                <p>-Click PROCCED to procced with payment </p>
+             
+             
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="MyModal1"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel" style="color:green">Make payement Page</h4>
+              </div>
+              <div class="modal-body">
+                <div class="modal-body">
+                  <a href="https://motlatso-baps.github.io/HelpInturbidus/index.html?page=6267-make-payment.html"target="_blank" mat-menu-item>
+                   
+                    <mat-icon class="icons">help_outline</mat-icon>        
+                   Go to Help</a>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        <!-- <form #form action="https://sandbox.payfast.co.za/eng/process" method="POST"> -->

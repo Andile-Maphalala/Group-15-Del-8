@@ -1,0 +1,96 @@
+
+          
+        
+        <mat-sidenav-container class="example-container"  >
+        
+          <mat-sidenav mode="side" opened> 
+           <app-nav></app-nav>
+        
+          </mat-sidenav>
+          <mat-sidenav-content>
+        <app-username></app-username>
+                <mat-card>  
+                  <mat-toolbar color="primary">  
+                    <div class="container w-100 row">
+                    <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                     Most Rented Property Report 
+                   
+                     </div>
+        
+                     <div align="right"  class="col-6">
+                      
+                         
+                      <!-- <div  *ngIf="data">
+                        <button style="font-weight:bold;" mat-raised-button color="secondary" (click)="download()">Export as PDF</button>
+                      </div> -->
+                     
+                        
+        
+                      
+        
+                     </div>
+                     <br>
+                  
+                  
+        
+                  </div>
+                  </mat-toolbar>  
+                <br><br>  
+                  <mat-card-content>  
+ 
+                    <form [formGroup]="dateForm"  (ngSubmit)="onSubmit()" novalidate> 
+  
+                      <mat-form-field >
+                        <mat-label>Choose start date</mat-label>
+                        <input matInput readonly [matDatepicker]="pickerStart"  type="text " [max]="date" #startDate formControlName="startDate"  
+                      >
+                        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerStart  ></mat-datepicker>
+                        <mat-error *ngIf="dateForm.controls['startDate'].errors?.required ">This field is required</mat-error>
+                
+                      </mat-form-field>
+                  
+                      &nbsp; &nbsp;
+                      <mat-form-field >
+                        <mat-label>Choose end date</mat-label>
+                        <input matInput readonly [matDatepicker]="pickerEnd" [min]="startDate.value |date:'yyyy-MM-dd'" [max]="date"  type="text"  #endDate formControlName="endDate"  
+                       >
+                        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerEnd></mat-datepicker>
+                        <mat-error *ngIf="dateForm.controls['endDate'].errors?.required ">This field is required</mat-error>
+                
+                      </mat-form-field>
+    
+                      <br><br>
+                      <button class="btns"  mat-raised-button color="primary" type="submit" [disabled]="!dateForm.valid ||(startDate.value |date:'yyyy-MM-dd')> (endDate.value |date:'yyyy-MM-dd')">Generate</button> <br><br>
+                      <div  *ngIf="dateForm.hasError('notValid')" class="alert alert-danger">
+                        End Date can't be before start date
+                     </div>
+                
+                    </form>
+                    <div *ngIf="chart" class="reportchart" id="elemetToPrint">
+                        <canvas id = "canvas">{{chart}}</canvas>
+                      </div> 
+                    
+               
+                  </mat-card-content>  
+                </mat-card>  
+        
+        
+                      
+                 
+                
+                      </mat-sidenav-content>
+                    </mat-sidenav-container>
+                
+                
+       
+                    
+                
+                
+                 
+        
+      
+        <!-- Delete Area modal -->
+        
+        

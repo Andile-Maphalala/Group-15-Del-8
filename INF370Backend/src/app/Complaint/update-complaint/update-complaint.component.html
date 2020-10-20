@@ -1,0 +1,158 @@
+
+
+ <mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened>
+      <app-nav></app-nav>
+
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Update Complaint
+             
+               </div>
+  
+               <div text align="right"  class="col-6">
+               
+ 
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+          
+            
+               <mat-card class="my-card">
+                <mat-card-content>
+                  <form [formGroup]="complaintForm" (ngSubmit)="OnSubmit()">
+                    <mat-form-field class="full-width">
+                           <mat-label>Description</mat-label>
+                           <textarea   matInput formControlName ="Details" placeholder="Please enter description of complaint here"  name="uname"  required></textarea>
+                        </mat-form-field>
+
+                        <br><br>
+                        <label>
+                          Complaint Image
+                          <br>
+                    
+                          <img [src]="complaint.Photo" (change)="handleFileInput($event.target.files)" style="width: 200; height: 200px" >
+                        <input type="file" formControlName="Photo" id="productImage" name="productImage" #Image accept="image/png" (change)="handleFileInput($event.target.files)" class="form-control" >
+                        </label> 
+                        <br><br>
+                        <mat-card-actions>
+                         <button mat-raised-button color="primary"  routerLink = "/search-complaint" >Cancel</button>
+                            <button mat-raised-button color="primary"   type ="submit">Update Complaint</button>
+                        </mat-card-actions>
+                        <input type="number" [(ngModel)]="complaint.UserID" formControlName="UserID" [hidden]="true"  >
+                        <input type="number" [(ngModel)]="complaint.ComplaintID" formControlName="ComplaintID" [hidden]="true"  >
+                 </form> 
+                </mat-card-content>
+             </mat-card>
+            </mat-card-content>  
+          </mat-card>  
+ 
+ 
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+              <br>
+              <br>
+              <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+          
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+
+          
+          
+          
+          <!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+          
+          <!-- Add Area modal -->
+          
+          <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-success ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Successful</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Successfully updated complaint</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Edit Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="editEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Update Employee Type</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Employee Type Name</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="EmployeeType1">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary">Update Employee Type</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="deleteEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Employee Type ?</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Are you sure you want to delete the Employee Type?</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+ 
+ 

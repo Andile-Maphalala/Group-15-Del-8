@@ -1,0 +1,420 @@
+<app-is-logged-in></app-is-logged-in>
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened>
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row" >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">Apply For Rental Agreement
+             
+               </div>
+  
+               <div align="right"  class="col-6">
+                
+               </div>
+               <br>
+      </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content *ngFor="let emp of CLIENTs">  
+              <form [formGroup]="saveFileForm" (ngSubmit)="onExpSubmit()">
+              <!-- <div >
+                <mat-form-field class="w-100">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" value="{{emp.Name}}" disabled>
+                  </mat-form-field>
+  
+               </div>
+               <div >
+                <mat-form-field class="w-100">
+                    <mat-label>Surname</mat-label>
+                    <input matInput placeholder="surname" value="{{emp.Surname}}" disabled>
+                  </mat-form-field>
+               </div>
+               <div >
+                <mat-form-field class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" value="{{emp.Email}}" disabled >
+                  </mat-form-field>
+               </div>
+               <div >
+                <mat-form-field class="w-100">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput placeholder="Phone Number" value="{{emp.PhoneNumber}}" disabled>
+                  </mat-form-field>
+               </div>
+             
+               <div >
+                <mat-form-field class="w-100">
+                    <mat-label>ID/Passport No</mat-label>
+                    <input matInput placeholder="ID/Passport No" value="{{emp.IDPassport}}" disabled>
+                  </mat-form-field>
+                  <mat-form-field class="w-100">
+                    <mat-label >Nationality</mat-label>
+                    <select matNativeControl required disabled>
+                      <option value="">{{emp.Nationality}}</option>
+                      
+                    </select>
+                  </mat-form-field>
+                <div>
+            <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+            <input matInput placeholder="Residential Address" value="{{emp.DateofBirth}}" disabled>
+            </mat-form-field>
+                </div>
+                  <div>
+                    <mat-form-field class="w-100">
+                        <mat-label >Are You a Student?</mat-label>
+                        <select matNativeControl required disabled>
+                          <option value="" ng-model="all">{{emp.isStudent}}</option>
+                          
+                        </select>
+                      </mat-form-field>
+                  </div>
+                  <div >
+                    <mat-form-field class="w-100">
+                        <mat-label>Residential Address</mat-label>
+                        <input disabled matInput placeholder="Residential Address" value="{{emp.ResidentialAddress}}">
+                      </mat-form-field>
+      
+                   </div>
+                   <div >
+                    <mat-form-field class="w-100">
+                        <mat-label>Postal Address</mat-label>
+                        <input disabled matInput placeholder="Postal Address" value="{{emp.PostalAddress}}">
+                      </mat-form-field>
+      
+                   </div>
+                   <div  *ngIf="!isStudent">
+                    <mat-form-field class="w-100" >
+                        <mat-label>Name of Employer</mat-label>
+                        <input disabled matInput placeholder="Name of Employer" value="{{emp.NameOFEmployer}}">
+                      </mat-form-field>
+      
+                   </div>
+                   <div *ngIf="!isStudent" >
+                    <mat-form-field class="w-100">
+                        <mat-label>Occupation</mat-label>
+                        <input disabled matInput placeholder="Occupation" value="{{emp.Occupation}}">
+                      </mat-form-field>
+      
+                   </div>
+                   <div *ngIf="!isStudent">
+                    <mat-form-field class="w-100">
+                        <mat-label>Work Address</mat-label>
+                        <input disabled matInput placeholder="Work Address" value="{{emp.WorkAddress}}">
+                      </mat-form-field>
+      
+                   </div>
+                   <div *ngIf="!isStudent">
+                    <mat-form-field class="w-100">
+                        <mat-label>Work Tel.No</mat-label>
+                        <input disabled matInput placeholder="Work Tel.No" value="{{emp.WorkTel}}">
+                      </mat-form-field>
+                    </div>
+                    <div *ngIf="!isStudent" >
+                        <mat-form-field class="w-100">
+                            <mat-label>Gross Salary</mat-label>
+                            <input disabled matInput placeholder="Gross Salary" value="{{emp.GrossSalary}}">
+                          </mat-form-field>
+                        </div>
+ -->        <div>
+  <!-- <mat-label>Rental application for property at <b>{{allProperty.ADDRESS}}</b></mat-label><br><br>
+  <mat-label>This property is available from <b>{{allProperty.AVAILABLEDATE |date:'dd MMMM yyyy'}}</b></mat-label>
+   -->
+  <table class="table table-striped text-center " style="table-layout: fixed;width: 100%;">
+    <tbody>
+      <tr >
+        <td class="text-center" colspan="4">Property Reference No : {{allProperty.PROPERTYID}}</td>
+      </tr>
+    <tr >
+      <td style="text-align:right;">Property Address:</td><td>{{allProperty.ADDRESS}}</td>
+     <td style="text-align:right;">Available from :</td><td>{{allProperty.AVAILABLEDATE |date:'dd MMMM yyyy'}}</td>
+    </tr> 
+    <tr >
+   <td></td>   <td></td>
+   <td></td>
+   <td></td>
+
+    </tr> 
+   </tbody>
+   </table>
+</div>
+
+                        <div>
+                
+                          <mat-form-field class="w-100">
+                              <mat-label>Preferred Rental Start Date</mat-label>
+                              <input #PREFERREDDATE formControlName="PREFERREDDATE" matInput [matDatepicker]="picker" [min]="minDate" readonly> 
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                              <mat-hint></mat-hint>
+                              </mat-form-field>
+                              <mat-error>  
+                                <span *ngIf="!applicationForm.get('APPLICATIONDATE').value && applicationForm.get('APPLICATIONDATE').touched"></span>  
+                              </mat-error> 
+                      </div>
+<br>
+                        <div>
+                  <label>Upload ID *</label>
+                <h5>Maximum File Upload Size:2MB</h5>
+           
+                 
+                    <div class="file-field">
+                      <div class="btn btn-primary btn-sm ">
+                     
+                        <input type="file"  id="identity"  (change)="id()"   #resumeInput accept=".doc,.docx,.pdf">
+                      </div>
+                 
+                    </div>
+                    <br>
+                  <!-- <input type="file" #resumeInput /> -->
+                      </div>
+                      <div [hidden]="isStudent">
+                        <label>Upload Payslip *</label>
+                        <h5 disabled>Maximum File Upload Size:2MB</h5>
+                        <div class="file-field">
+                          <div class="btn btn-primary btn-sm ">
+                         
+                            <input type="file" (change)="payslip()" #logoInput accept=".doc,.docx,.pdf">
+                          </div>
+                     
+                        </div>
+                       <br>
+                        <!-- <div class="custom-file">
+                          <input type="file" class="custom-file-input" #logoInput id="customFile">
+                          <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                         -->
+                      <!-- <input  type="file" #logoInput/> -->
+                      </div>
+                      <div [hidden]="!isStudent">
+                        <label>Upload Proof of Funds * (parent's payslip or letter from bursar)</label>
+                        <h5 disabled>Maximum File Upload Size:2MB</h5>
+                         
+                    <div class="file-field">
+                      <div class="btn btn-primary btn-sm ">
+                     
+                        <input type="file" (change)="bursary()" #Bursary accept=".doc,.docx,.pdf">
+                      </div>
+                 
+                    </div>
+                  
+               
+                      </div>
+      
+               <!-- </div> -->
+               <div>
+                 <br>
+                <button [hidden]="isStudent" type="submit" mat-raised-button color="primary"  [disabled]='PREFERREDDATE.value==""|| noID==true ||noPayslip==true'>Apply For Rental Agreement</button>
+                <button [hidden]="!isStudent" type="submit" mat-raised-button color="primary"  [disabled]='PREFERREDDATE.value==""|| noID==true ||noBursary==true'>Apply For Rental Agreement</button>
+
+                &nbsp;
+                <button type="button" routerLink="/" mat-raised-button color="warn">Cancel</button>
+
+               </div>
+              </form>  
+            </mat-card-content>  
+            <div class="loader text-center" *ngIf="searching">
+              <div class="loader-inner">
+            
+                  <!-- Animated Spinner -->
+                  <div class="lds-roller mb-3">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                  </div>
+                  
+                  <!-- Spinner Description Text [For Demo Purpose]-->
+                  <h4 class="text-uppercase font-weight-bold">Sending Rental Application</h4>
+            
+              </div>
+            </div>
+          </mat-card>  
+  
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+              <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal" (click)="basicModal.hide()">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title w-100" id="myModalLabel" style="color:rgb(60, 191, 196)">Rental Application Form Page</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Rental Application Form.</p><br/>
+                      <p style="color:rgb(60, 191, 196); font-weight: bold">Here you can select to:</p>
+                      <p>-Click RENTAL PREFFERED START DATE to choose the rental start date  </p>
+                      <p>-Click CHOOSE FILE to upload ID DOCUMENT</p>
+                      <p>-Click CHOOSE FILE to upload PROOF OF FUNDS </p>
+                     
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title w-100" id="myModalLabel" style="color:green">Apply for rental agreement Page</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="modal-body">
+                        <a href="https://motlatso-baps.github.io/HelpInturbidus/pages/6264-apply-for-rental-agreement.html" mat-menu-item>
+                         
+                          <mat-icon class="icons">help_outline</mat-icon>        
+                          Go to Help</a>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+    
+     
+        <script>
+          var uploadField = document.getElementById("identity");
+
+uploadField.onchange = function() {
+    if(this.files[0].size > 2097152){
+       alert("File is too big! Upload a document smaller than 2mb");
+       this.value = "";
+    };
+};
+          </script>
+          
+         
+          <!-- <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="customFile" name="filename">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01">
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
+          <form class="md-form">
+          <div class="input-group mb-3">
+
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" multiple formControlName="importFile" id="importFile">
+                            <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose file</label>
+            </div>
+          </div>
+        </form> -->
+
+
+        <!-- <div id="mModal" class="modal d-block"  #modal  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="myModalLabel">Modal header</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+        <div class="modal fade" #modal  id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert-success ">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               <h2>Successfully applied for rental agreement.  </h2>
+               <h2>We will be in touch</h2>
+              </div>
+              <div class="modal-footer " >
+                <button type="button" class="btn btn-success" data-dismiss="modal">Okay</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #content let-modal>
+          <div class="modal-header alert-success">
+            <h3 class="modal-title text-center"  style="text-align: center;">Successfully Applied</h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Your application was successfully received.We will be in touch</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/" >Ok</button>
+          </div>
+        </ng-template>
+
+        <ng-template #content1 let-modal>
+          <div class="modal-header alert-danger">
+            <h3 class="modal-title text-center"  style="text-align: center;">Rental Application Exists</h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">You have already applied for this property,you will be notified when your application is reviewed.</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/" >Ok</button>
+          </div>
+        </ng-template>
+        <ng-template #content2 let-modal>
+          <div class="modal-header alert-danger">
+            <h3 class="modal-title text-center"  style="text-align: center;">Rental Agreement Exists</h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">You have an active rental agreement for this property.Please contact us on 0123456789 if you would like to extend your agreement.</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/" >Ok</button>
+          </div>
+        </ng-template>
+

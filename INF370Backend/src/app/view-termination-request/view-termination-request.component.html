@@ -1,0 +1,283 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+ <app-nav></app-nav>
+    
+      </mat-sidenav>
+      <mat-sidenav-content>
+         <app-username></app-username>
+            <mat-card>  
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row"  >
+                <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                 Termination Requests 
+               
+                 </div>
+    
+                
+                 <br>
+              
+              
+    
+              </div>
+              </mat-toolbar>  
+            <br><br>  
+              <mat-card-content>  
+                <form [formGroup]="agreementsForm"(ngSubmit)="onFormSubmit()">  
+                 <table class="mat-elevation-z8 table w-100" >
+              
+                <tr ngclass="btn-primary"> 
+
+                      <th>Rental Agreement ID</th> 
+                      <!-- <th>Rental Status ID</th>
+                      <th>User ID</th>  -->
+                      <!-- <th>Client ID</th> -->
+                      <!-- <th>Rental Application ID</th> -->
+                      <!-- <th>Property ID</th>
+                      <th>Rental Start Date </th> 
+                 -->
+                      <th>Name</th> 
+                      <th>Surname  </th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <!-- <th>Username</th> -->
+                      <!-- <th>Owing ?</th> -->
+                      <th> Rental End Date</th>
+                      <th>Terminate Agreement Date</th>
+                      <th>Approve</th>
+                      <th>Reject</th>
+                     </tr>
+    
+                     <tr *ngFor="let agreements of allagreements | async">  
+                      <td class="tbl2">{{agreements.RENTALAGREEMENTID}}</td>     
+                      <!-- <td class="tbl2">{{agreements.RENTALSTATUSID}}</td>   -->
+                      <!-- <td class="tbl2">{{agreements.USERID}}</td>      -->
+                      <!-- <td class="tbl2">{{agreements.CLIENTID}}</td>   -->
+                      <!-- <td class="tbl2">{{agreements.RENTALAPPLICATIONID}}</td>   -->
+                      <!-- <td class="tbl2">{{agreements.PROPERTYID}}</td>      -->
+                      <!-- <td class="tbl2">{{agreements.RENTALSTARTDATE |date:'dd/MM/yyyy'}}</td>  
+                         -->
+                      <td class="tbl2">{{agreements.NAME}}</td>  
+                      <td class="tbl2">{{agreements.SURNAME}}</td>  
+                      <td class="tbl2">{{agreements.EMAIL}}</td>     
+                      <td class="tbl2">{{agreements.ADDRESS}}</td>  
+                      <!-- <td class="tbl2">{{agreements.EMAIL}}</td>      -->
+                      <td class="tbl2">{{agreements.RENTALENDDATE |date:'dd/MM/yyyy'}}</td>  
+                      <td class="tbl2">{{agreements.TerminateRentalDate|date:'dd/MM/yyyy'}}</td>  
+                      <!-- <td class="tbl2">{{agreements.USERNAME}}</td>  -->
+                      <!-- <td class="tbl2">{{agreements.Owing}}</td>  
+  -->
+                      <td style="text-align: center;" class="">  
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateAgreement"  matTooltip="Click Edit Button" (click)="loadagreementToEdit(agreements.RENTALAGREEMENTID); Addopen()">Approve Termination Request</button>
+                        </td>
+                        <td style="text-align: center;" class="">  
+                          <button type="button" class="btn btn-danger" data-toggle="modal"   matTooltip="Click Edit Button" (click)="loadagreementToEdit(agreements.RENTALAGREEMENTID); openWindowCustomClass2()">Reject Termination Request</button>
+                          </td>
+                    </tr>
+                  
+            
+                      
+                
+               
+
+            </table>
+                </form>
+
+                <!-- <form [formGroup]="PayForm"(ngSubmit)="onFormPaySubmit()">  
+                  <table class="mat-elevation-z8 table w-100" >
+               
+                 <tr ngclass="btn-primary"> 
+ 
+                       <th>Payment ID</th> 
+                       <th>Rental Agreement ID</th> 
+                       <th>Reference No.</th> 
+                       
+                       <th>Amount</th>
+                       <th>Date</th>
+                       
+                      </tr>
+     
+                      <tr *ngFor="let pay of allpay | async">  
+                       <td class="tbl2">{{pay.PAYMENTID}}</td>     
+                       <td class="tbl2">{{pay.RENTALAGREEMENTID}}</td>  
+                       <td class="tbl2">{{pay.PAYMENT_REFERENCE_NO}}</td>     
+                       <td class="tbl2">{{pay.PAYMENT_AMOUNT}}</td>  
+                       <td class="tbl2">{{pay.PAYMENTDATETIME}}</td>  
+                  
+                      
+             
+                       
+                 
+                
+ 
+             </table>
+                 </form> -->
+              </mat-card-content>  
+            </mat-card>  
+  
+  
+                  
+             
+            
+                  </mat-sidenav-content>
+                </mat-sidenav-container>
+            
+            
+            
+            
+                <form [formGroup]="agreementsForm"(ngSubmit)="onFormSubmit()">  
+                  <div class="modal fade" *ngIf="AddshowModalBox" id="UpdateAgreement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header alert-primary ">
+                          <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Termination Request Confirmatoin</h3>
+                          <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                                      <h1>Please confirm you wish to Terminate the Rental Agreement</h1>
+                            <!-- <label for="exampleFormControlInput1">Confirm you wish to Terminate Rental Agreement:</label><br>
+                            <mat-form-field class="demo-full-width">  
+                              <input formControlName="RENTALAGREEMENTID" matTooltip="Enter User ID" matInput placeholder="">  
+                            </mat-form-field>  
+                            <mat-error>  
+                              <span *ngIf="!agreementsForm.get('RENTALAGREEMENTID').value && agreementsForm.get('RENTALAGREEMENTID').touched"></span>  
+                            </mat-error>  
+      
+                           -->
+      
+      
+                           
+                            
+      
+                            
+                           
+      
+                          
+                         
+                         
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      
+                          <button type="submit"  mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!agreementsForm.valid ">Confirm</button>
+
+                        </div>
+                   
+                      </div>
+                    </div>
+                 
+                  </div>
+                </form>
+            
+            
+                <form [formGroup]="agreementsForm"(ngSubmit)="onFormPaySubmit()">  
+                  <div class="modal fade" *ngIf="AddshowModalBox" id="UpdateAgreementRej" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header alert-danger ">
+                          <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Termination Request Rejection</h3>
+                          <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                                  <h1>Please confirm you wish to Reject the Termination Request</h1>  <!-- 
+                            <label for="exampleFormControlInput1">Confirm you wish to Reject the Terminate Rental Request:</label><br>
+                            <mat-form-field class="demo-full-width">  
+                              <input formControlName="RENTALAGREEMENTID" matTooltip="Enter User ID" matInput placeholder="">  
+                            </mat-form-field>  
+                            <mat-error>  
+                              <span *ngIf="!agreementsForm.get('RENTALAGREEMENTID').value && agreementsForm.get('RENTALAGREEMENTID').touched"></span>  
+                            </mat-error>  
+         -->
+                          
+      
+      
+                           
+                            
+      
+                            
+                           
+      
+                          
+                         
+                         
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      
+                          <button type="submit"  mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!agreementsForm.valid ">Confirm</button>
+
+                        </div>
+                   
+                      </div>
+                    </div>
+                 
+                  </div>
+                </form>
+            
+            
+            
+    
+            
+                <ng-template #content1 let-modal>
+                  <div class="modal-header alert-success">
+                    <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+                    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                      <span aria-hidden="true">&times;</span>
+                    </button> -->
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Termination Rejected</label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+        
+                    <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+                  </div>
+                </ng-template>
+    
+                <ng-template #content let-modal>
+                  <div class="modal-header alert-success">
+                    <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+                    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                      <span aria-hidden="true">&times;</span>
+                    </button> -->
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Termination successfully Approved</label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+        
+                    <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+                  </div>
+                </ng-template>
+
+                <ng-template #content2 let-modal>
+                  <form [formGroup]="agreementsForm"(ngSubmit)="onFormPaySubmit()">  
+                  <div class="modal-header alert-success">
+                    <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+                   
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Please confirm you wish to Reject the Termination Request</label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+        
+                    <button type="submit"  mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!agreementsForm.valid ">Confirm</button>
+                  </div>
+                  </form>
+                </ng-template>

@@ -1,0 +1,575 @@
+
+
+    <mat-sidenav-container class="example-container"  >
+      <mat-sidenav mode="side" opened> 
+        <app-nav></app-nav>
+    
+    
+      </mat-sidenav>
+      <mat-sidenav-content>
+
+
+
+        <app-username></app-username>
+
+        <ul class="nav nav-pills" style="width: 100%;  " id="pills-tab" role="tablist">
+          <li class="nav-item border rounded" style="width: 33.33%;">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Areas</a>
+          </li>
+          <li class="nav-item border rounded" style="width: 33.3%;">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Cities</a>
+          </li>
+          <li class="nav-item border rounded" style="width: 33.3%;">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Provinces</a>
+          </li>
+        </ul>
+        <br>
+    
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <mat-card>  
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row" >
+                <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                 Manage Areas 
+               
+                 </div>
+    
+                 <div align="right"  class="col-6">
+                  <button class="btn btn-primary" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" data-target="#addAreaModal">
+                     
+                    <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                      add
+                      </i>
+                      <span>  
+                       
+                        Add Area</span>
+    
+                  </button>
+
+                 </div>
+                 <br>
+              
+              
+    
+              </div>
+              </mat-toolbar>  
+            <br><br>  
+              <mat-card-content>  
+                <div >
+                  <mat-form-field class="w-100">
+                    <mat-label>Search</mat-label>
+                    <input matInput [(ngModel)]="searchedKeyword1" placeholder="Search Keyword">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+
+                 </div>
+              
+                 <table class="mat-elevation-z8 table w-100" >
+              <thead class="thead-dark">
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>City</th>
+               
+      
+                      <th style="text-align: center;"> <span class="material-icons">
+                        edit
+                        </span> </th>
+                        <th style="text-align: center;"> <span class="material-icons">
+                          delete
+                          </span> </th>
+                   
+                  </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let area of allArea | async| filter:searchedKeyword1">  
+                  <td class="tbl2">{{area.AREAID}}</td>  
+                  <td class="tbl2">{{area.AREANAME}}</td>  
+                  <td class="tbl2">{{area.CITYID}}</td>  
+
+    
+                  <td class="tbl2">  
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editAreaModal"  matTooltip="Click Edit Button" (click)="loadAreaToEdit(area.AREAID);">Update</button>  
+                  </td>  
+    
+                  <td class="tbl2">  
+                    <button type="button" class="btn btn-danger"matTooltip="Click Delete Button" (click)="deleteArea(area.AREAID)">Delete</button>  
+                  </td>  
+                </tr>
+                 
+                
+               
+              </tbody>
+            </table>
+              </mat-card-content>  
+            </mat-card>  
+    
+          </div>
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <mat-card  >  
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row" >
+                  <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                   Manage Cities 
+                 
+                   </div>
+      
+                   <div align="right"  class="col-6">
+                    <button class="btn btn-primary" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" data-target="#addCityModal">
+                     
+                      <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                        add
+                        </i>
+                        <span>  
+                         
+                          Add City</span>
+    
+                    </button>
+                   </div>
+      
+                </div>
+              </mat-toolbar>  
+            <br><br>  
+              <mat-card-content>  
+                <div >
+                  <mat-form-field class="w-100">
+                    <mat-label>Search</mat-label>
+                    <input matInput [(ngModel)]="searchedKeyword2" placeholder="Search Keyword">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+
+                 </div>
+              
+                 <table class="mat-elevation-z8 table w-100" >
+              <thead class="thead-dark">
+                  <tr>
+                    <th>ID</th>
+                      <th>Name</th>
+                      <th>ProvinceID</th>
+                      <th style="text-align: center;"> <span class="material-icons">
+                        edit
+                        </span> </th>
+                        <th style="text-align: center;"> <span class="material-icons">
+                          delete
+                          </span> </th>
+                   
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let city of allCity | async | filter:searchedKeyword2">  
+                  <td class="tbl2">{{city.CITYID}}</td>  
+                  <td class="tbl2">{{city.CITYNAME}}</td>  
+                  <td class="tbl2">{{city.PROVINCEID}}</td>  
+
+    
+                  <td class="tbl2">  
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editCityModal"  matTooltip="Click Edit Button" (click)="loadCityToEdit(city.CITYID); CityOpen()">Update</button>  
+                  </td>  
+    
+                  <td class="tbl2">  
+                    <button type="button" class="btn btn-danger"matTooltip="Click Delete Button" (click)="deleteCity(city.CITYID)">Delete</button>  
+                  </td>  
+                </tr>
+                 
+            
+                 
+                
+               
+              </tbody>
+            </table>
+              </mat-card-content>  
+            </mat-card>  
+    
+          </div>
+          <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <mat-card  >  
+              <mat-toolbar color="primary">  
+                <div class="container w-100 row" >
+                  <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                   Manage Provinces 
+                 
+                   </div>
+      
+                   <div align="right" class="col-6">
+                    <button class="btn btn-primary" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" data-target="#addProvinceModal">
+                     
+                      <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                        add
+                        </i>
+                        <span>  
+                         
+                          Add Province</span>
+    
+                    </button>
+                 
+    
+            
+                   </div>
+      
+                </div>   
+              </mat-toolbar>  
+            <br><br>  
+              <mat-card-content>  
+                <div >
+                  <mat-form-field class="w-100">
+                    <mat-label>Search</mat-label>
+                    <input matInput [(ngModel)]="searchedKeyword3" placeholder="Search Keyword">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+
+                 </div>
+              
+                 <table class="mat-elevation-z8 table w-100" >
+              <thead class="thead-dark">
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      
+      
+                      <th style="text-align: center;"> <span class="material-icons">
+                        edit
+                        </span> </th>
+                        <th style="text-align: center;"> <span class="material-icons">
+                          delete
+                          </span> </th>
+                   
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let province of allProvince | async| filter:searchedKeyword3">  
+                  <td class="tbl2">{{province.PROVINCEID}}</td>  
+                  <td class="tbl2">{{province.PROVINCENAME}}</td>  
+                  
+
+    
+                  <td class="tbl2">  
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editProvinceModal"  matTooltip="Click Edit Button" (click)="loadProvinceToEdit(province.PROVINCEID); ProvinceOpen()">Update</button>  
+                  </td>  
+    
+                  <td class="tbl2">  
+                    <button type="button" class="btn btn-danger"matTooltip="Click Delete Button" (click)="deleteProvince(province.PROVINCEID)">Delete</button>  
+                  </td>  
+                </tr>
+                 
+            
+                 
+                
+               
+              </tbody>
+            </table>
+              </mat-card-content>  
+            </mat-card>  
+          </div>
+        </div>
+    
+ 
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+
+
+
+ 
+
+
+
+
+<!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+
+<!-- Add Area modal -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="areaForm" (ngSubmit)="onFormSubmitArea()"> 
+      <div class="modal-header alert-primary ">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add New Area</h3>
+        <button type="button" #addAreaclosebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Area Name</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" #AREANAME formControlName="AREANAME">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">City </label>
+          <select class="form-control" formControlName="CITYID" #CITYID >
+            <option *ngFor="let selectCity of allCity | async" value="{{selectCity.CITYID}}" [ngValue]="selectCity" selected>{{selectCity.CITYNAME}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success" [disabled]='AREANAME.value=="" || CITYID.value==""'>Add New Area</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Area modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="editAreaModal" #editAreaModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="updateAreaForm" (ngSubmit)="onFormSubmitUpdateArea()"> 
+      <div class="modal-header alert-primary ">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Update Area</h3>
+        <button type="button"  #closebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Area Name</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" #AREANAME  formControlName="AREANAME">
+          <input type="text" class="form-control"  placeholder="" formControlName="AREAID" hidden>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">City </label>
+          <select class="form-control" formControlName="CITYID" >
+            <option *ngFor="let selectCity of allCity | async" value="{{selectCity.CITYID}}">{{selectCity.CITYNAME}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" >Cancel</button>
+        <button type="submit"  class="btn btn-primary" [disabled]='!updateAreaForm.valid' >Update Area</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete Area modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert-danger ">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Area ?</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h2>Are you sure you want to delete the Area ?</h2>
+      </div>
+      <div class="modal-footer " >
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /////////////////////////////////////////City Modals //////////////////////////-->
+
+<!-- Add City modal -->
+<!-- Modal -->
+<div class="modal fade" id="addCityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="cityForm" (ngSubmit)="onFormSubmitCity()"> 
+      <div class="modal-header alert-primary ">
+        <h3 class="modal-title text-center" id="exampleModalLabel">Add New City</h3>
+        <button type="button" #addCityclosebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">City Name</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" #CITYNAME formControlName="CITYNAME">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Province </label>
+          <select class="form-control" formControlName="PROVINCEID" #PROVINCEID >
+            <option *ngFor="let selectProvince of allProvince | async" value="{{selectProvince.PROVINCEID}}" selected>{{selectProvince.PROVINCENAME}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success" [disabled]='CITYNAME.value=="" || PROVINCEID.value==""'>Add New City</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit City modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="editCityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="updateCityForm" (ngSubmit)="onFormSubmitUpdateCity()"> 
+      <div class="modal-header alert-primary ">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Update City</h3>
+        <button type="button" #UpdateCityclosebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">City Name</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" #CITYNAME  formControlName="CITYNAME">
+          <input type="text" class="form-control"  placeholder="" formControlName="CITYID" hidden>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Province </label>
+          <select class="form-control" formControlName="PROVINCEID" >
+            <option *ngFor="let selectCity of allProvince | async" value="{{selectCity.PROVINCEID}}">{{selectCity.PROVINCENAME}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary"  [disabled]="!updateCityForm.valid">Update City</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete City modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteCityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert-danger ">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete City ?</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h2>Are you sure you want to delete the City ?</h2>
+      </div>
+      <div class="modal-footer " >
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /////////////////////////////////////////Province Modals //////////////////////////-->
+
+<!-- Add Province modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="addProvinceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="provinceForm" (ngSubmit)="onFormSubmitProvince()"> 
+      <div class="modal-header alert-primary ">
+        <h3 class="modal-title text-center" id="exampleModalLabel">Add New Province</h3>
+        <button type="button" #addProvinceclosebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Province Name</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""  #PROVINCENAME formControlName="PROVINCENAME">
+        </div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!provinceForm.valid">Add Province</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Province modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="editProvinceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="updateProvinceForm" (ngSubmit)="onFormSubmitUpdateProvince()"> 
+      <div class="modal-header alert-primary ">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Update Province</h3>
+        <button type="button" #UpdateProvinceclosebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Province Name</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""  #PROVINCENAME formControlName="PROVINCENAME">
+        </div>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!updateProvinceForm">Update Province</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Province modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteProvinceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert-danger ">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Province ?</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h2>Are you sure you want to delete the Province ?</h2>
+      </div>
+      <div class="modal-footer " >
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Validation modal -->
+<!-- Modal -->
+<div class="modal fade" id="validation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert-danger ">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Validation Error</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h2>The entered details are not in the correct format or not all the fields were not completed. </h2>
+       <!-- <h2>The entered details are not in the correct format or not all the fields were not completed. </h2> -->
+
+      </div>
+      <div class="modal-footer " >
+        <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button> -->
+        <button type="button" class="btn btn-info">Correct Errors</button>
+      </div>
+    </div>
+  </div>
+</div>

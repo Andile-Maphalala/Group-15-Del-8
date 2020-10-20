@@ -1,0 +1,110 @@
+
+ <mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+    
+  <app-nav></app-nav>
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+              Complete Schedule Inspection
+             
+               </div>
+  
+               <div text align="right"  class="col-6">
+               
+ 
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+          
+            
+               <mat-card class="my-card">
+                <mat-card-content>
+                        <form [formGroup]="Form" (ngSubmit)="OnSubmit()">
+                            <div>
+
+                                <mat-form-field appearance="fill"  class="w-100">
+                                  <mat-label>Inspection Note</mat-label>
+                                <textarea  matInput  class="form-control" rows="5" placeholder="Inspection notes and Maintenance required" formControlName="INSPECTIONNOTE"  ></textarea>
+                                <mat-error *ngIf="Form.controls['INSPECTIONNOTE'].errors?.required && Form.controls['INSPECTIONNOTE'].touched ">This field is required</mat-error>
+                                <mat-hint>Please input the Inspection notes </mat-hint>
+                              </mat-form-field>
+                                <!-- <mat-form-field class="w-100"> -->
+      
+                      
+                            </div> 
+
+                         
+                         <div>
+                            <mat-form-field class="w-100">
+                                <mat-label >Is Maintenance Required?</mat-label>
+                                <select matNativeControl required  #INSPECTIONPASSED formControlName ="INSPECTIONPASSED"  >
+                                  <option value="True">Yes</option>
+                                  <option value="False">No</option>
+                                </select>
+                                <mat-error *ngIf="Form.controls['INSPECTIONPASSED'].errors?.required ">This field is required</mat-error>
+
+                              </mat-form-field>
+                          </div>
+      
+                       
+       
+        
+                             <div>
+                              <mat-card-actions>
+                                <button mat-raised-button color="warn" routerLink ='/MoveIn'>Cancel</button>
+                                <button mat-raised-button color="primary" *ngIf="INSPECTIONPASSED.value=='True'" [disabled]="!Form.valid"  type ="submit">Request Maintenance Job</button>
+
+                                   <button mat-raised-button color="primary" *ngIf="INSPECTIONPASSED.value=='False'" [disabled]="!Form.valid"  type ="submit">Submit</button>
+                               </mat-card-actions>
+                             </div>  
+                        </form> 
+
+                         
+
+                </mat-card-content>
+                <mat-card-actions>
+                 
+
+                </mat-card-actions>
+             </mat-card>
+            
+            </mat-card-content>  
+          </mat-card>  
+ 
+ 
+                
+           
+          <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#addagent">Open Modal</button>
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+              <ng-template #content let-modal>
+                <div class="modal-header alert-success">
+                  <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+                  <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                    <span aria-hidden="true">&times;</span>
+                  </button> -->
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Inspection Completed</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+      
+                  <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+                </div>
+              </ng-template>

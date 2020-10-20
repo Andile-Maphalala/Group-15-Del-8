@@ -1,0 +1,50 @@
+<body>
+  <ion-app>
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar color ="primary">
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ul class="nav navbar-nav navbar-right nav-item nav-link">
+              <a routerLink='/Home'><li style=" font-size: 15px; color: white; "><ion-icon name="home-sharp"></ion-icon></li></a>
+            </ul>
+          </ion-buttons>
+          <ion-title style=" font-size: 15px;">View Completed Jobs</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div textalign="right"  >
+          <button class="btn btn-primary" style="text-align: left; display: inline-flex; line-height: 24px;" type="button" routerLink='/ViewRepairRequsts'>
+             
+            <i style=" color: rgb(66, 252, 9);" class="material-icons">
+              arrow_right_alt
+              </i>
+              <span>  
+               
+                Return</span>
+
+          </button>
+
+         </div>
+     
+      
+
+        <ion-item *ngFor ="let job of alljobs | async  ">
+          <ion-label class="decision" position="stacked"><strong>Job Description:</strong>{{job.DESCRIPTION}}</ion-label>
+          <ion-label class="decision" position="stacked"><strong>Job Type:</strong>{{job.JOBTYPE}}</ion-label>
+          <ion-label class="decision" position="stacked"><strong>Property Address:</strong>{{job.ADDRESS}}</ion-label>
+          <ion-label class="decision" position="stacked"><strong>Date Completed:</strong>{{job.DATECOMPLETED}}</ion-label>
+          <ion-label class="decision" position="stacked"><strong>Client Name:</strong>{{job.CLIENTNAME}}  {{job.CLIENTSURNAME}}</ion-label>
+          <ion-label class="decision" position="stacked"><strong>Client Number:</strong>{{job.CLIENTNUMBER}}</ion-label>
+          <br>
+        </ion-item>
+      </ion-content>
+    </div>
+
+    <br><br>
+  </ion-app>
+
+
+</body>

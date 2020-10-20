@@ -1,0 +1,178 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"   >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                Capture Job Details
+             
+               </div>
+  
+              
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+                <form [formGroup]="jobfeedbackForm"(ngSubmit)="onFormSubmitUpdateJob()">  
+                    <table class="mat-elevation-z8 table w-100" >
+                 
+                   <tr ngclass="btn-primary"> 
+                         <th>Job Reference</th>
+                         <th>Username </th> 
+                         <th>Description</th>
+                         <th>Address</th> 
+                         <th>Date Requested </th>
+                         <th>Status</th>
+                         <th>Capture Details</th>
+
+                        </tr>
+       
+                        <tr *ngFor="let job of alljobs | async">  
+                        <td class="tbl2">{{job.JOBID}}</td> 
+                         <td class="tbl2">{{job.USERNAME}}</td>     
+                         <td class="tbl2">{{job.DESCRIPTION}}</td>  
+                         <td class="tbl2">{{job.ADDRESS}}</td>     
+                         <td class="tbl2">{{job.DATEREQUESTED}}</td>  
+                         <td class="tbl2">{{job.JOBSTATUS}}</td>  
+                      
+                         <td style="text-align: center;" class="">  
+                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateJob"  matTooltip="Click Edit Button" (click)="loadjobToEdit(job.JOBID); Addopen()">Update Job Details</button>
+                           </td>
+                       </tr>
+                     
+               
+                         
+                   
+                  
+   
+               </table>
+              
+                     
+                   </form>
+        
+            </mat-card-content>  
+          </mat-card>  
+
+
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+<!--           
+              <br>
+              <br>
+              <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+          
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#captured">
+                captured
+              </button> -->
+          
+              <form [formGroup]="jobfeedbackForm"(ngSubmit)="onFormSubmitUpdateJob()">  
+                <div class="modal fade" id="UpdateJob" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header alert-primary ">
+                        <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add Job Details</h3>
+                        <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+
+                          <!-- <label for="exampleFormControlInput1">Job ID</label><br>
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="JOBID" matTooltip="Enter User ID" matInput placeholder="">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!jobfeedbackForm.get('JOBID').value && jobfeedbackForm.get('JOBID').touched"></span>  
+                          </mat-error>   -->
+
+                          <!-- <label for="exampleFormControlInput1">Rental agreement ID</label><br>
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="RENTALAGREEMENTID" matTooltip="Enter User ID" matInput placeholder="">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!jobfeedbackForm.get('RENTALAGREEMENTID').value && jobfeedbackForm.get('RENTALAGREEMENTID').touched"></span>  
+                          </mat-error>   -->
+
+                          <!-- <label for="exampleFormControlInput1">Job Type ID</label><br>
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="JOBTYPEID" matTooltip="Enter User ID" matInput placeholder="">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!jobfeedbackForm.get('JOBTYPEID').value && jobfeedbackForm.get('JOBTYPEID').touched"></span>  
+                          </mat-error>   -->
+
+                          <!-- <label for="exampleFormControlInput1">Employee ID</label><br>
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="EMPLOYEEID" matTooltip="Enter User ID" matInput placeholder="">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!jobfeedbackForm.get('EMPLOYEEID').value && jobfeedbackForm.get('EMPLOYEEID').touched"></span>  
+                          </mat-error>   -->
+
+                          <!-- <label for="exampleFormControlInput1">Job Status ID</label><br>
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="JOBSTATUSID" matTooltip="Enter User ID" matInput placeholder="">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!jobfeedbackForm.get('JOBSTATUSID').value && jobfeedbackForm.get('JOBSTATUSID').touched"></span>  
+                          </mat-error>  -->
+
+                          <label for="exampleFormControlInput1">Date Requested</label><br>
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="DATEREQUESTED" matTooltip="Enter User ID" matInput placeholder="">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!jobfeedbackForm.get('DATEREQUESTED').value && jobfeedbackForm.get('DATEREQUESTED').touched"></span>  
+                          </mat-error>  
+                          
+
+                          <label for="exampleFormControlInput1">Job Decription</label><br>
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="DESCRIPTION" matTooltip="Enter User ID" matInput placeholder="">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!jobfeedbackForm.get('DESCRIPTION').value && jobfeedbackForm.get('DESCRIPTION').touched"></span>  
+                          </mat-error>  
+                          
+                          <label for="exampleFormControlInput1">Date Completed</label><br>
+                          <mat-form-field class="demo-full-width">  
+                            <input type="date"  formControlName="DATECOMPLETED" matTooltip="Enter Date Employed " matInput placeholder="">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!jobfeedbackForm.get('DATECOMPLETED').value && jobfeedbackForm.get('DATECOMPLETED').touched"></span>  
+                          </mat-error>
+    
+                        
+                       
+                       
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!jobfeedbackForm.valid">Add Job Details</button>
+                      </div>
+                 
+                    </div>
+                  </div>
+               
+                </div>
+              </form>
+          

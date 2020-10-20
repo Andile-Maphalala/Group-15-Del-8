@@ -1,0 +1,237 @@
+<app-is-logged-in></app-is-logged-in>
+<mat-sidenav-container class="example-container" style="  overflow-y: hidden;" >
+    <mat-sidenav mode="side" opened  style="height:100vh;
+     overflow-y: hidden;"> 
+     <app-nav></app-nav>
+
+  
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"   >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Manage Property Types 
+              
+               </div>
+  
+               <div align="right"  class="col-6">
+                <button class="btn btn-primary" (click)="Addopen()" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" data-target="#addAreaModal">
+                   
+                  <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                    add
+                    </i>
+                    <span>  
+                     
+                      Add Property type</span>
+  
+                </button>
+
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+              <div >
+                <mat-form-field class="w-100">
+                  <mat-label>Search</mat-label>
+                  <input matInput  [(ngModel)]="searchedKeyword" placeholder="Search Keyword">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+
+               </div>
+            
+               <table class="mat-elevation-z8 table w-100" >
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <!-- <th>Times Visited</th> -->
+                             
+             
+    
+                    <th style="text-align: center;"> <span class="material-icons">
+                      edit
+                      </span> </th>
+                      <th style="text-align: center;"> <span class="material-icons">
+                        delete
+                        </span> </th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+       
+            <tr *ngFor="let Type of  allemployees |filter:searchedKeyword ">  
+              <td class="tbl2">{{Type.PROPERTYTYPEID}}</td>  
+              <td class="tbl2">{{Type.PROPERTTYPEDESCRIPTION}}</td>  
+              <!-- <td class="tbl2">{{Type.TIMESVISTED}}</td>   -->
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"  matTooltip="Click Edit Button" (click)="  loademployeeToEdit(Type.PROPERTYTYPEID); open()">Update</button>  
+              </td>  
+
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button" (click)="deleteemployee(Type.PROPERTYTYPEID)">Delete</button>  
+              </td>  
+            </tr>
+          
+               
+              
+             
+            </tbody>
+          </table>
+            </mat-card-content>  
+          </mat-card>  
+
+
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+
+          
+          
+          
+          <!-- /////////////////////////////////////////EmployeeType Modals //////////////////////////-->
+          
+          <!-- Add EmployeeType modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" *ngIf="AddshowModalBox" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <form [formGroup]="propertytypeForm" (ngSubmit)="onFormSubmit()"> 
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add New Property Type</h3>
+                  <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                 
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Property Type</label>
+                    <input type="text" class="form-control" #PROPERTTYPEDESCRIPTION id="exampleFormControlInput1" formControlName="PROPERTTYPEDESCRIPTION"  placeholder="">
+                  </div>
+                </div>
+                <!-- <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Times Visited</label>
+                    <input type="text" class="form-control" #employeeTypeName id="exampleFormControlInput2" formControlName="TIMESVISITED"  placeholder="">
+                  </div>
+                </div> -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-success"  [disabled]='PROPERTTYPEDESCRIPTION.value==""'  >Add Property Type</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Edit Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" *ngIf="showModalBox" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <form [formGroup]="updatePropertytypeForm" (ngSubmit)="onFormSubmitUpdateProperty()"> 
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Update property type</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Property Type Name</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" #PROPERTTYPEDESCRIPTION placeholder="" formControlName="PROPERTTYPEDESCRIPTION" >
+                    <input type="text" class="form-control" id="exampleFormControlInput1"  placeholder="" formControlName="PROPERTYTYPEID"  hidden>
+ 
+                  </div>
+          
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-primary" [disabled]='PROPERTTYPEDESCRIPTION.value==""' >Update Property type </button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="deleteEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Employee Type ?</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Are you sure you want to delete property type?</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+                 <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-success ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Successfully deleted property!</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="MyModal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close pull-right" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-100" id="myModalLabel" style="color:rgb(60, 191, 196)">Add Property Type Page</h4>
+                </div>
+                <div class="modal-body">
+                  <p>This is the Add Property Page.</p><br/>
+                  <p style="color:rgb(60, 191, 196); font-weight: bold">Here you can select to:</p>
+                  <p>-Click ADD PROPERTY   button to add property type details</p>
+                  <p>-Click UPDATE  button to update property type details</p>
+                  <p>-Click DELETE  button to remove property type details</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>  

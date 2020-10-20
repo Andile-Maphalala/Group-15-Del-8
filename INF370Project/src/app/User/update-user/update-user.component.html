@@ -1,0 +1,345 @@
+<app-is-logged-in></app-is-logged-in>
+<mat-sidenav-container class="example-container"  >
+  <mat-sidenav mode="side" opened> 
+    <app-nav></app-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-username></app-username>
+        <mat-card>  
+          <mat-toolbar color="primary">  
+            <div class="container w-100 row"  >
+            <div align="center" style="color:white; text-align: left;  " class="col-6">  
+             Update Details
+           
+             </div>
+
+             <div text align="right"  class="col-6">
+             
+
+             </div>
+             <br>
+          
+          
+
+          </div>
+          </mat-toolbar>  
+        <br><br>  
+          <mat-card-content>  
+        
+          
+             <mat-card class="my-card">
+              <mat-card-content>
+                <form [formGroup]="userForm" (ngSubmit)="OnSubmit()">
+                  <mat-card-content>
+                    <!-- <div > -->
+                      <!-- <mat-form-field class="w-100">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Username" #Username type="text" formControlName ="Username" >
+                      </mat-form-field> -->
+                      <!-- <mat-error *ngIf="Username.hasError('text') && !Username.hasError('required')">
+                        Please enter a valid email address
+                      </mat-error>
+                      <mat-error *ngIf="Username.hasError('required')">
+                        Username is <strong>required</strong>
+                      </mat-error> -->
+                  
+                   <!-- </div>
+                   <div >
+                    <mat-form-field class="w-100">  
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" #Password placeholder="Password" formControlName ="Password" >
+                      </mat-form-field>
+                   </div> -->
+                   <div>
+                      <mat-form-field class="w-100">
+                          <mat-label>Name</mat-label>
+                          <input matInput placeholder="Name" #Name formControlName ="Name">
+                          <mat-error *ngIf="userForm.controls['Name'].errors?.required && userForm.controls['Name'].touched ">Name is required</mat-error>
+                          <mat-error *ngIf="userForm.controls['Name'].errors?.pattern && userForm.controls['Name'].touched ">Name is not valid. Special characters, numbers or spaces are not allowed!</mat-error>
+
+                        </mat-form-field>
+        
+                     </div>
+                     <div >
+                      <mat-form-field class="w-100">
+                          <mat-label>Surname</mat-label>
+                          <input matInput placeholder="Surname" #Surname formControlName ="Surname">
+                          <mat-error *ngIf="userForm.controls['Surname'].errors?.required ">Surname is required</mat-error>
+                          <mat-error *ngIf="userForm.controls['Surname'].errors?.pattern ">Surname is not valid. Special characters , numbers or spaces are not allowed!</mat-error>
+
+                        </mat-form-field>
+                     </div>
+                     <div >
+                      <mat-form-field class="w-100">
+                          <mat-label>Email</mat-label>
+                          <input matInput type="email" placeholder="Email" #Email formControlName ="Email">
+                          <mat-error *ngIf="userForm.controls['Email'].errors?.required ">Email is required</mat-error>
+                          <mat-error *ngIf="userForm.controls['Email'].errors?.pattern ">Email is not valid!</mat-error>
+
+                        </mat-form-field>
+                     </div>
+                     <div >
+                      <mat-form-field class="w-100">
+                          <mat-label>Phone Number</mat-label>
+                          <input matInput placeholder="Phone Number" maxlength="10" #PhoneNo formControlName ="PhoneNo">
+                          <mat-error *ngIf="userForm.controls['PhoneNo'].errors?.required ">Phone Number is required</mat-error>
+                          <mat-error *ngIf="userForm.controls['PhoneNo'].errors?.pattern ">Phone Number is not valid! 10 digits are required and Special characters are not allowed</mat-error>
+                       
+                        </mat-form-field>
+                     </div>
+                     <div >
+                      <mat-form-field class="w-100">
+                        <mat-label >Nationality</mat-label>
+                        <select matNativeControl required  #Nationality formControlName ="Nationality" (change)= "onNationalityChange(Nationality.value)">
+                          <option value="South African">South African</option>
+                          <option value="Non-South African">Non-South African</option>
+                        </select>
+                        <mat-error *ngIf="userForm.controls['Nationality'].errors?.required ">Nationality is required</mat-error>
+                        <mat-error *ngIf="userForm.controls['Nationality'].errors?.pattern ">Nationality is not valid! </mat-error>
+
+                      </mat-form-field>
+                    </div>
+
+                     <div >
+                      <mat-form-field class="w-100" [hidden]="showNotSA">
+                          <mat-label>Passport No</mat-label>
+                          <input matInput placeholder="Passport Number" #PassportNo  formControlName ="PassportNo">
+                          <mat-error *ngIf="userForm.controls['PassportNo'].errors?.required ">Passport Number is required</mat-error>
+                          <mat-error *ngIf="userForm.controls['PassportNo'].errors?.pattern ">Passport Number is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                        </mat-form-field>
+                      </div>
+                      <div >
+                        <mat-form-field class="w-100" [hidden]="showSA" >
+                            <mat-label>ID Number </mat-label>
+                            <input matInput placeholder="ID Number"   #IdNo maxlength="13" minlength="13" formControlName ="IdNo">
+                            <mat-error *ngIf=" IdNo.length==0 && userForm.controls['IdNo'].pristine " >ID Number is required </mat-error>
+                            <mat-error *ngIf="userForm.controls['IdNo'].errors?.minlength && userForm.controls['IdNo'].dirty" >ID Number is not valid! 13 digits are required </mat-error>
+                                                                                                                                                                                                                                                                                                          
+                            <mat-error *ngIf="userForm.controls['IdNo'].errors?.pattern  && userForm.controls['IdNo'].dirty  ">ID Number is not valid! Special characters, letters and spaces are not allowed!</mat-error>
+
+                          </mat-form-field>
+                        </div>
+                    
+                      <div>
+                  <mat-form-field class="w-100">
+                  <mat-label>Date Of Birth</mat-label>
+                  <input matInput [matDatepicker]="picker" #DOB  formControlName ="DOB" readonly>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="userForm.controls['DOB'].errors?.required ">Date of Birth is required</mat-error>
+
+                  </mat-form-field>
+                      </div> 
+                        <div>
+                          <mat-form-field class="w-100">
+                              <mat-label >Are You a Student?</mat-label>
+                              <select matNativeControl required  #IsStudent formControlName ="IsStudent"  (change)= "onCountryChange(IsStudent.value)">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                              </select>
+                              <mat-error *ngIf="userForm.controls['IsStudent'].errors?.required ">This field is required</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div >
+                          <mat-form-field class="w-100">
+                              <mat-label>Residential Address</mat-label>
+                              <input matInput placeholder="Residential Address" #Residental placeholder="1158 Burnett St, Hatfield, Pretoria, 0028"  formControlName ="Residental">
+                              <mat-error *ngIf="userForm.controls['Residental'].errors?.required ">Residential Address is required</mat-error>
+
+                            </mat-form-field>
+            
+                         </div>
+                         <div >
+                          <mat-form-field class="w-100">
+                              <mat-label>Postal Address</mat-label>
+                              <input matInput placeholder="Postal Address" #Postal formControlName ="Postal">
+                              <mat-error *ngIf="userForm.controls['Postal'].errors?.required ">Postal Address is required</mat-error>
+
+                            </mat-form-field>
+            
+                         </div>
+                        
+                         <div *ngIf="!isStudent">
+                          <mat-form-field class="w-100">
+                              <mat-label>Name of Employer</mat-label>
+                              <input matInput placeholder="Name of Employer" #Employer  formControlName ="Employer">
+                              <mat-error *ngIf="userForm.controls['Employer'].errors?.required ">Employer detail is required</mat-error>
+                              <mat-error *ngIf="userForm.controls['Employer'].errors?.pattern ">Employer detail is not valid! Special characters are not allowed</mat-error>
+
+                            </mat-form-field>
+            
+                         </div>
+                         <div *ngIf="!isStudent">
+                          <mat-form-field class="w-100">
+                              <mat-label>Occupation</mat-label>
+                              <input matInput placeholder="Occupation" #Occupation  formControlName ="Occupation">
+                              <mat-error *ngIf="userForm.controls['Occupation'].errors?.required ">Occupation detail is required</mat-error>
+                              <mat-error *ngIf="userForm.controls['Occupation'].errors?.pattern ">Occupation is not valid! Special characters are not allowed</mat-error>
+
+                            </mat-form-field>
+            
+                         </div>
+                         <div *ngIf="!isStudent">
+                          <mat-form-field class="w-100">
+                              <mat-label>Work Address</mat-label>
+                              <input matInput placeholder="Work Address" #WorkAddress  formControlName ="WorkAddress">
+                              <mat-error *ngIf="userForm.controls['WorkAddress'].errors?.required ">Work Address is required</mat-error>
+
+                            </mat-form-field>
+            
+                         </div>
+                         <div *ngIf="!isStudent" >
+                          <mat-form-field class="w-100">
+                              <mat-label>Work Tel.No</mat-label>
+                              <input matInput placeholder="Work Tel.No" maxlength="10"  #WorkTel  formControlName ="WorkTel">
+                              <mat-error *ngIf="userForm.controls['WorkTel'].errors?.required ">Work Tel.No is required</mat-error>
+                              <mat-error *ngIf="userForm.controls['WorkTel'].errors?.pattern ">Work Tel.No is not valid! 10 digits are required and Special characters are not allowed</mat-error>
+
+                            </mat-form-field>
+                          </div>
+                          <div *ngIf="!isStudent">
+                              <mat-form-field class="w-100">
+                                  <mat-label>Gross Salary</mat-label>
+                                  <input matInput placeholder="Gross Salary"   #GrossSalary  formControlName ="GrossSalary">
+                                  <mat-error *ngIf="userForm.controls['GrossSalary'].errors?.required ">GrossSalary is required</mat-error>
+                                  <mat-error *ngIf="userForm.controls['GrossSalary'].errors?.pattern ">GrossSalary is not valid! Spaces, letters and Special characters are not allowed!</mat-error>
+
+                                </mat-form-field>
+                              </div>
+                              <div>
+                            
+                              
+                     </div>
+                     <div>
+                      <mat-card-actions>
+                        <div *ngIf="usrEx" class="alert alert-danger">
+                          The username already exists!
+                      </div>
+                        <button mat-raised-button color="primary" type="button" routerLink="/login" >Cancel</button>
+                           <button mat-raised-button color="primary" *ngIf="!isStudent" [disabled]='(!userForm.valid || ( PassportNo.value=="" && ((userForm.controls["IdNo"].errors?.minlength || IdNo.value=="")  || (userForm.controls["IdNo"].errors?.pattern || IdNo.value=="") )))' type ="submit">Update Details</button>
+                           <button mat-raised-button color="primary" *ngIf="isStudent" [disabled]=' Name.value==""|| Surname.value==""|| Email.value==""|| PhoneNo.value==""|| Nationality.value==""|| DOB.value=="" || IsStudent.value==""||Residental.value==""||Postal.value=="" || ( PassportNo.value=="" && ((userForm.controls["IdNo"].errors?.minlength || IdNo.value=="")  || (userForm.controls["IdNo"].errors?.pattern || IdNo.value=="") ))' type ="button" 
+                           (click)="AddStudent()">Update Details </button>
+                          </mat-card-actions>
+                          <!-- (click)="addStudent(Username.value,Password.value,Name.value,Surname.value,Email.value,PhoneNo.value,Nationality.value,PassportNo.value,DOB.value,IsStudent.value,Residental.value,Postal.value)" -->
+                      
+                     </div>  
+                     <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#adduser">Open Modal</button>
+   
+                  </mat-card-content>
+                 </form> 
+                 <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#update">Open Modal</button>
+              </mat-card-content>
+           </mat-card>
+          </mat-card-content>  
+        </mat-card>  
+
+
+              
+         
+        
+              </mat-sidenav-content>
+            </mat-sidenav-container>
+        
+        
+        
+ 
+
+            <ng-template #content let-modal>
+              <div class="modal-header alert-success">
+                <h3 class="modal-title text-center"  style="text-align: center;">Details Successfully Updated </h3>
+                <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                  <span aria-hidden="true">&times;</span>
+                </button> -->
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Your details have been successfully updated.</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()"  >Ok</button>
+              </div>
+            </ng-template>
+        
+        
+        
+        
+        <!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+        
+        <!-- Add Area modal -->
+        
+        <!-- Modal -->
+        
+        <!-- Edit Area modal -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert-success ">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Successful</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Successfully updated details</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal" (click)="basicModal.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel" style="color:rgb(60, 191, 196)">Update Details Page</h4>
+              </div>
+              <div class="modal-body">
+                <p>This is Update Details Page.</p><br/>
+                <p style="color:rgb(60, 191, 196); font-weight: bold">Here you can select to:</p>
+                <p>-Click UPDATE DETAILS  to update details  </p>
+                <p>-Click CANCEL  to cancel the procces to update details  </p>
+             
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel" style="color:green">Update user  Page</h4>
+              </div>
+              <div class="modal-body">
+                <div class="modal-body">
+                  <a href="https://motlatso-baps.github.io/HelpInturbidus/pages/6268request-to-terminate-rentals-agreement.html" mat-menu-item>
+                   
+                    <mat-icon class="icons">help_outline</mat-icon>        
+                    Go to Help</a>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        

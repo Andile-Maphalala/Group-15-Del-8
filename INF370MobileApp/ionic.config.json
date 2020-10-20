@@ -1,0 +1,8 @@
+{
+  "name": "INF370MobileApp",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

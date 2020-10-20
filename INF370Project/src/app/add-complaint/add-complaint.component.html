@@ -1,0 +1,162 @@
+
+<app-is-logged-in></app-is-logged-in>
+ <mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <img class = 'images' class="images" src="./assets/Logo.png" style="width:200px;height:100px;"/>
+       <div style="overflow-y: hidden;" class="sidenav">
+   <a href="#about"> 
+             <mat-icon class="icons">home</mat-icon>
+          Home
+        </a>
+  
+        <a href="#about">
+          <mat-icon class="icons">info</mat-icon>
+          About</a>
+ 
+          <a href="#contact">
+          <mat-icon class="icons">attach_money</mat-icon>
+  
+          Payments</a>
+            
+          <a href="#contact">
+            <mat-icon class="icons">record_voice_over</mat-icon>
+    
+            Complaint Tasks</a>
+            
+          <a href="#contact">
+            <mat-icon class="icons">build</mat-icon>
+    
+            Maintenance Tasks</a>
+
+        <a href="#contact">
+          <mat-icon class="icons">exit_to_app</mat-icon>
+          Logout</a>
+  
+  
+  
+  </div>
+  
+  
+  
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <nav class="navbar  navbar-dark "  style="  background-color: #111;  ">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+              </div>
+           
+              <ul class="nav navbar-nav navbar-right nav-item nav-link">
+                <a><li style=" font-size: 20px; color: gray; ">{{Username}} <mat-icon class="icons">account_circle</mat-icon></li></a>
+              </ul>
+            </div>
+          </nav>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               Add  A Complaint
+             
+               </div>
+  
+               <div text align="right"  class="col-6">
+               
+ 
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+          
+            
+               <mat-card class="my-card">
+                <mat-card-content>
+                        <form [formGroup]="complaintForm" (ngSubmit)="OnSubmit()">
+                           <mat-form-field class="full-width">
+                                  <mat-label>Description</mat-label>
+                                  <textarea   matInput formControlName ="Details" placeholder="Please enter description of complaint here"  name="uname"  required></textarea>
+                               </mat-form-field>
+
+                               <br><br>
+                               <label>
+                                 Complaint Image
+                                 <br>
+                           
+                                 <img src="{{imageUrl}}" (change)="handleFileInput($event.target.files)" style="width: 200; height: 200px" >
+                               <input type="file" formControlName="Photo" id="productImage" name="productImage" #Image accept="image/png" (change)="handleFileInput($event.target.files)" class="form-control" >
+                               </label> 
+                               <br><br>
+                               <mat-card-actions>
+                                <button mat-raised-button color="primary" routerLink ="/search-complaint"  >Cancel</button>
+                                   <button mat-raised-button color="primary" [disabled]= "!complaintForm.valid"   type ="submit">Add Complaint</button>
+                               </mat-card-actions>
+                               <input type="number" [(ngModel)]="complaint.UserID" formControlName="UserID" [hidden]="true"  >
+                        </form> 
+                </mat-card-content>
+                <mat-card-actions>
+
+                </mat-card-actions>
+             </mat-card>
+            </mat-card-content> 
+            <app-my-loader></app-my-loader>
+
+          </mat-card>  
+ 
+ 
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+              <br>
+              <br>
+              <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+          
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+          
+          
+          
+          <!-- /////////////////////////////////////////Area Modals //////////////////////////-->
+          
+          <!-- Add Area modal -->
+          
+
+          
+          
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" id="editEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-success ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Successful</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Successfully added a complaint</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+ 
+  

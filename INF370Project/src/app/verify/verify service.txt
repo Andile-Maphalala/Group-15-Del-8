@@ -1,0 +1,12 @@
+checkOTP(ID: number): Observable<Client> {  
+  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.get<Client>(this.ApiUrl + 'api/User/check/' + ID,httpOptions);  
+  } 
+
+public verifyWithOTP(otpObj:Otp) {
+    return this.http.post(this.ApiUrl+'api/User/VerifyWithOTP',otpObj, httpOptions);
+  }
+
+public ResendOTP(otpObj:Otp) {
+  return this.http.post(this.ApiUrl+'api/User/ResendOTP',otpObj, httpOptions);
+}

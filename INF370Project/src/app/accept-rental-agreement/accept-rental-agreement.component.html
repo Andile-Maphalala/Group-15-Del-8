@@ -1,0 +1,214 @@
+<app-is-logged-in></app-is-logged-in>
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+   <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row" >
+              <div style="color:white; text-align: left;  " class="col-6">Accept Rental Agreement
+             
+               </div>
+  
+               <div   class="col-6">
+                
+               </div>
+               <br>
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+          <div *ngFor="let item of allAgreements">
+            <mat-card-content>  
+                
+                 
+                 
+                  <h3>This Agreement is made by and between:</h3>
+                  <p>Name  of lessee:{{item.Name}} {{item.Surname}}</p>
+                  <p>Name of lessor:Panashe Chitumba</p>
+                  The Landlord hereby agrees to lease the property located in:{{item.PropertyAddress}}:South Africa
+                  The lease period shall be for term of 1 year and may be renewed/extended
+                  thereafter, on the agreed amount of R {{item.RentalAmount}} to be paid monthly, and the amount of
+                  R {{item.RentalAmount}} to be paid upon the execution of this Agreement.
+                 <h3>Term and Conditions</h3>
+                 <h4> 1. Use of Propery</h4>
+                  The Property leased shall only be used for residential purposes.
+                 <h4> 2. Utilities</h4>
+                  The Tenant agrees to pay for the utilities and other services used in the property on the continuity of the
+                  lease of the Property.
+                  <h4>3. Furnishings</h4>
+                  The leased premises contains the following property furnishings: 8 cubic feet Refrigerator, gas stove,
+                  microwave oven, dishwasher, fully automatic washing machine, telephone. Damages and repairs shall be
+                  borne by the tenant.
+                  <h4>4. Acknowledgment</h4>
+                  The parties hereby acknowledge and understand the terms herein set forth in this Agreement.
+                  <br><br>
+                  <p> Clicking <b>Accept</b> serves as a signature</p>
+                 
+                  <input type="hidden" value="{{item.PropertyID}}">
+                 
+                
+                
+             <div>
+
+                <mat-checkbox (change)="ChangeToTrue()" value="Accept"  [disabled]="Do_not_Accept.checked" #Accept>Accept</mat-checkbox>
+
+                <mat-checkbox (change)="ChangeToFalse()" value="Do_not_Accept" [disabled]="Accept.checked" #Do_not_Accept>Do not Accept</mat-checkbox>
+             </div>
+
+             <div>
+              
+
+                <button (click)="Submit(item.PropertyID)"  [disabled]="!Accept.checked && !Do_not_Accept.checked" mat-raised-button color="primary" >Submit</button>
+               </div>
+              
+            </mat-card-content>  
+
+         
+          </div>
+          </mat-card>  
+  
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+              <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title w-100" id="myModalLabel" style="color:green">accept rental agreement</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="modal-body">
+                        <a href="https://motlatso-baps.github.io/HelpInturbidus/index.html?page=6261rental-management.html" target="_blank" mat-menu-item>
+                         
+                          <mat-icon class="icons">help_outline</mat-icon>        
+                          Go to Help</a>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal1">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                        
+                           
+               
+              <!-- data-toggle="modal" data-target="#editEmployeeTypeModal" -->
+           <!-- Modal -->
+        <div class="modal fade" id="editEmployeeTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header  alert-info">
+                <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Payment</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               <p>Do you want to pay now or later? </p>
+             
+              <div class="modal-footer">
+                <button  mat-raised-button color="primary" data-dismiss="modal">Pay Now</button>
+                &nbsp;
+                <button  mat-raised-button color="primary" data-dismiss="modal">Pay Later</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+          
+
+
+
+
+        <!-- If Accepted -->
+        <ng-template #content let-modal>
+          <div class="modal-header alert-success">
+            <h3 class="modal-title text-center"  style="text-align: center;">Successfully Accepeted Rental Agreement</h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">You have successfully accepted the rental agreement.</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" ngbAutofocus  class="btn btn-success" (click)="payment(); modal.close()"   >Ok</button>
+          </div>
+        </ng-template>
+          
+                
+
+
+
+
+
+        <!-- If rejected -->
+
+        <ng-template #content1 let-modal>
+          <div class="modal-header alert-success">
+            <h3 class="modal-title text-center"  style="text-align: center;">Successfully Rejected Rental Agreement</h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">You have successfully rejected the rental agreement.Have a good day</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close()" routerLink="/ApprovedApplicationComponent" >Ok</button>
+          </div>
+        </ng-template>
+          
+        <!-- Payment Modal -->
+         
+        <ng-template #content2 let-modal>
+          <div class="modal-header alert-success">
+            <h3 class="modal-title text-center"  style="text-align: center;">Payment</h3>
+            <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Would you like to pay the deposit now or later?</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button  type="button"  ngbAutofocus mat-raised-button color="primary" (click)="modal.close()"  data-dismiss="modal" routerLink="/Payment">Pay Now</button>
+            &nbsp;
+            <button type="button" mat-raised-button color="primary" data-dismiss="modal" (click)="modal.close()" routerLink="/ApprovedApplicationComponent">Pay Later</button>          </div>
+        </ng-template>        
+          
+        <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal" (click)="basicModal.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel" style="color:rgb(60, 191, 196)">Accept Rental Agreement Page</h4>
+            </div>
+            <div class="modal-body">
+              <p>This is the Accept Rental Agreement Page.</p><br/>
+              <p style="color:rgb(60, 191, 196); font-weight: bold">Here you can select to:</p>
+              <p>-Click ACCEPT to accept rental agreement </p>
+              <p>-Click DO NOT ACCEPT to cancel  rental agreement </p>
+              <p>-Click SUBMIT  to send the selected response</p>
+            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          </div>
+          </div>

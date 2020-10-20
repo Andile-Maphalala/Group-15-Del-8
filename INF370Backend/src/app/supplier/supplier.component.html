@@ -1,0 +1,404 @@
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"   >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+                Manage Suppliers
+               </div>
+  
+               <div align="right"  class="col-6" >
+              
+                <button class="btn btn-primary" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" data-toggle="modal" data-target="#addsupplierModal">
+                   
+                    <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                      add
+                      </i>
+                      <span>  
+                       
+                        Add Supplier </span>
+    
+                  </button>
+  
+
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+      
+            <mat-card-content>  
+
+          
+               <mat-card-content>  
+              
+           
+            <form [formGroup]="supplierForm"(ngSubmit)="onFormSubmit()">  
+              <table class="mat-elevation-z8 table w-100" >                
+                <tr ngclass="btn-primary"> 
+                <!-- <th class="tbl2">Supplier Reference</th> -->
+                <th class="tbl2">Supplier Name</th>
+                <th class="tbl2">Supplier Address</th> 
+                <th class="tb12">Supplier Phone Number</th>
+                <th class="tb12">Email </th>
+                <th class="tb12">Update Supplier </th>
+                <th class="tb12">Delete Supplier </th>
+              </tr>  
+              <tr *ngFor="let supplier of allsuppliers | async">  
+                <!-- <td class="tbl2">{{supplier.SUPPLIERID}}</td>      -->
+                <td class="tbl2">{{supplier.NAME}}</td>  
+                <td class="tbl2">{{supplier.ADDRESS}}</td>  
+                <td class="tbl2">{{supplier.PHONENUMBER}}</td> 
+                <td class="tbl2">{{supplier.EMAIL}}</td>  
+               
+               
+                <td class="tbl2">  
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#updateSupplier"  matTooltip="Click Edit Button" (click)="loadToEdit(supplier.SUPPLIERID); Addopen()">Update supplier</button>
+  
+                </td>         
+                <td class="tbl2">  
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateEmployeeModal"  matTooltip="Click Edit Button" (click)="deleteSupplier(supplier.SUPPLIERID); Addopen()">Delete supplier</button>
+    
+                  </td>   
+              </tr>  
+            </table> 
+          </form>  
+        
+         
+        
+          </mat-card-content>    
+           
+            </mat-card-content>  
+
+          </mat-card>                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+          
+          
+              <br>
+              <br>
+              <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+              <br> <br> <br> <br> <br> <br>
+          
+              <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>    
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#validation">
+                Launch demo modal
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployeeSuccess">
+                addEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatedEmployeeSuccess">
+                updatedEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removedEmployeeSuccess">
+                removedEmployeeSuccess
+              </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchEmployeeSuccess">
+                searchEmployeeSuccess
+              </button>
+
+          
+          
+         
+          
+          <!-- Add Area modal -->
+          
+      
+          <!-- supplier  modal -->
+          <form [formGroup]="supplierForm"(ngSubmit)="onFormSubmit()">  
+            <div class="modal fade" id="addsupplierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header alert-primary ">
+                    <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Add Supplier</h3>
+                    <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                    
+                      <label for="exampleFormControlInput1">Supplier Name </label><br>
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="NAME" matTooltip="Enter User ID" matInput placeholder="">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!supplierForm.get('NAME').value && supplierForm.get('NAME').touched"></span>  
+                      </mat-error>  
+                      
+                     
+
+                      <label for="exampleFormControlInput1">Address</label><br>
+                      <mat-form-field class="demo-full-width">  
+                        <input  formControlName="ADDRESS" matTooltip="Enter Date Employed " matInput placeholder="">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!supplierForm.get('ADDRESS').value && supplierForm.get('ADDRESS').touched"></span>  
+                      </mat-error>
+
+                      <div > 
+                        <mat-form-field class="w-100">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput placeholder="Phone Number" maxlength="10" #PHONE_NUMBER formControlName ="PHONENUMBER">
+                            <mat-error *ngIf="supplierForm.controls['PHONENUMBER'].errors?.required ">Phone Number is required</mat-error>
+                            <mat-error *ngIf="supplierForm.controls['PHONENUMBER'].errors?.pattern ">Phone Number is not valid! 10 digits are required and Special characters are not allowed</mat-error>
+                          </mat-form-field>
+                       </div>
+    
+                       <div >
+                        <mat-form-field class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="EMAIL" placeholder="Email" #EMAIL formControlName ="EMAIL" >
+                            <mat-error *ngIf="supplierForm.controls['EMAIL'].errors?.required ">Email is required</mat-error>
+                            <mat-error *ngIf="supplierForm.controls['EMAIL'].errors?.pattern ">Email is not valid!</mat-error>
+    
+                          </mat-form-field>
+                       </div>
+                   
+                   
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!supplierForm.valid">Add Supplier</button>
+                  </div>
+             
+                </div>
+              </div>
+           
+            </div>
+          </form>
+                
+         
+           
+          <!-- Delete Area modal -->
+          
+          <!-- Modal -->
+          <div class="modal fade" *ngIf="AddshowModalBox" id="UpdateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Supplier</h3>
+                  <button type="button" #addTypeclosebutton class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Delete Supplier</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+            
+            
+
+            <!-- Modal -->
+          <div class="modal fade" id="addEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>You have successfuly added an Employee</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="updatedEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>You have successfuly updated an Employee</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="removedEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Success</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Employee has been removed</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="searchEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Not Found</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>No Employees have been Found</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+       
+           <div class="modal fade" id="searchEmployeeSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-primary ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Not Found</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>No Employees have been Found</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-success">Okay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="modal fade" *ngIf="AddshowModalBox" id="UpdateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-danger ">
+                  <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Delete Employee?</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <h2>Are you sure you want to delete the Supplier</h2>
+                </div>
+                <div class="modal-footer " >
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-success">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <form [formGroup]="updateSupplierForm"(ngSubmit)="onFormSubmitUpdateEmployee()">  
+            <div class="modal fade" id="updateSupplier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header alert-primary ">
+                    <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Update Supplier</h3>
+                    <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                    
+                      <label for="exampleFormControlInput1">Supplier Name </label><br>
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="NAME" matTooltip="Enter User ID" matInput placeholder="">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!updateSupplierForm.get('NAME').value && updateSupplierForm.get('NAME').touched"></span>  
+                      </mat-error>  
+                   
+
+                      <label for="exampleFormControlInput1">Address</label><br>
+                      <mat-form-field class="demo-full-width">  
+                        <input  formControlName="ADDRESS" matTooltip="Enter Date Employed " matInput placeholder="">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!updateSupplierForm.get('ADDRESS').value && updateSupplierForm.get('ADDRESS').touched"></span>  
+                      </mat-error>
+
+                   
+                      <div > 
+                        <mat-form-field class="w-100">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput placeholder="Phone Number" maxlength="10" #PHONE_NUMBER formControlName ="PHONENUMBER">
+                            <mat-error *ngIf="updateSupplierForm.controls['PHONENUMBER'].errors?.required ">Phone Number is required</mat-error>
+                            <mat-error *ngIf="updateSupplierForm.controls['PHONENUMBER'].errors?.pattern ">Phone Number is not valid! 10 digits are required and Special characters are not allowed</mat-error>
+                          </mat-form-field>
+                       </div>
+    
+                       <div >
+                        <mat-form-field class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="EMAIL" placeholder="Email" #EMAIL formControlName ="EMAIL" >
+                            <mat-error *ngIf="updateSupplierForm.controls['EMAIL'].errors?.required ">Email is required</mat-error>
+                            <mat-error *ngIf="updateSupplierForm.controls['EMAIL'].errors?.pattern ">Email is not valid!</mat-error>
+    
+                          </mat-form-field>
+                       </div>
+                   
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!updateSupplierForm.valid">Update Supplier</button>
+                  </div>
+             
+                </div>
+              </div>
+           
+            </div>
+          </form>
+                
+          <ng-template #content let-modal>
+            <div class="modal-header alert-success">
+              <h3 class="modal-title text-center"  style="text-align: center;">Success</h3>
+              <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" routerLink="/login">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Supplier Updated</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button"   class="btn btn-danger" (click)="modal.close()" (click)="modal.close()">No</button> -->
+  
+              <button type="button" ngbAutofocus  class="btn btn-success" (click)="modal.close(); "  >Okay</button>
+            </div>
+          </ng-template>

@@ -1,0 +1,163 @@
+
+<mat-sidenav-container class="example-container"  >
+  <mat-sidenav mode="side" opened *ngIf="!isLoggedIn"> 
+   
+<app-nav></app-nav>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-username></app-username>
+        <mat-card>  
+          <mat-toolbar color="primary">  
+            <div class="container w-100 row"  >
+            <div align="center" style="color:white; text-align: left;  " class="col-6">  
+              Property Details
+           
+             </div>
+             <div align="right"  class="col-6">
+              <button class="btn btn-primary" routerLink="/Properties" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" >
+                 
+                <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                  keyboard_backspace
+                </i>
+                  <span>  
+                   
+                    Go Back To Properties</span>
+
+              </button>
+
+             </div>
+             
+             <br>
+          
+          
+
+          </div>
+          </mat-toolbar>  
+          <!-- <mat-toolbar color="primary">  
+            <div class="container w-100 row">
+            <div align="center" style="color:white; text-align: left;"  class="col-6">  
+             Property Details
+           
+             </div>
+             <div align="right"  class="col-6">
+              
+              <button class="btn btn-primary"  routerLink="/" style="vertical-align: middle; display: inline-flex; line-height: 24px;" type="button" >
+                 
+                  <i style=" color: rgb(66, 252, 9);" class="material-icons">
+                      keyboard_backspace
+                    </i>
+                    <span>  
+                     
+                      Go Back To Browse properties</span>
+  
+                </button>
+                
+                
+                
+
+              
+
+             </div>
+             <br>
+          </div>
+          </mat-toolbar>   -->
+        <br><br>  
+          <mat-card-content>  
+            <div >
+              
+
+             </div>
+             <div class="control-group span6 container row">
+
+              <div class="col-md-4">
+              
+              </div>
+
+             </div>
+             <br><br>
+             <div class="row">
+              <div class="col-md-12">
+            
+                <!-- <div id="mdb-lightbox-ui"></div>
+            
+                <div class="mdb-lightbox no-margin">
+            
+                  <figure class="center">
+                   
+                      <img alt="picture" src="../../assets/images/Accomodation1.jpg"
+                      
+                        class="img-fluid">
+                     
+                    
+                  </figure> 
+                  <mat-card class="card" >   
+                      <h2>{{allProperty.ADDITIONALINFO}}</h2> 
+                      <p>{{allProperty.PROPERTYDESCRIPTION}}</p>
+                      <p>{{allProperty.ADDRESS}}</p>
+                      </mat-card>
+<br><br>
+                   -->
+<mdb-carousel [animation]="'slide'"  style="margin-top:0px; width:100%; height:50px;" class="images">
+<mdb-carousel-item *ngFor="let ty of allProperty.photo">
+  <img class="d-block w-100 img-fluid" src="{{ty.PHOTO}}" alt="First slide">
+</mdb-carousel-item>
+
+</mdb-carousel>
+<!-- <img [src]="allProperty.photo.PHOTO" style="margin-top:0px; width:100%; height:330px;" class="images">
+<ng-image-slider [images]="allProperty.photo" #nav style="margin-top:0px; width:100%; height:330px;" class="images"></ng-image-slider> -->
+<!-- <img src="../../../assets/images/left.png" (click)="left()" class="left">  
+<img src="../../../assets/images/right.png" (click)="right()" class="right"> -->
+<table class="table table-striped text-center " style="table-layout: fixed;width: 100%;">
+<tbody>
+<tr >
+  <td class="text-center" colspan="4">{{allProperty.PROPERTYDESCRIPTION}}</td>
+</tr>
+<tr>
+  <td style="text-align:right;">Size:</td><td>{{allProperty.SIZE}} m<sup>2</sup></td>
+  <td style="text-align:right;">Address:</td><td>{{allProperty.ADDRESS}}</td>
+</tr>
+<tr >
+    <td style="text-align:right;">Rental Amount:</td><td>R {{allProperty.RentalAmount}} per month</td>
+    <td style="text-align:right;">Bedrooms:</td><td>{{allProperty.NUMBED}}</td>
+</tr>
+<tr >
+  <td style="text-align:right;">Property Reference No.:</td><td>{{allProperty.PROPERTYID}}</td>
+  <td style="text-align:right;">Bathrooms:</td><td>{{allProperty.NUMBBATH}}</td>
+</tr>
+<tr >
+<td style="text-align:right;">Garden:</td><td>{{allProperty.GARDEN}}</td>
+<td style="text-align:right;">Available from :</td><td>{{allProperty.AVAILABLEDATE |date:'dd MMMM yyyy'}}</td>
+</tr> 
+<tr >
+<td class="text-center" colspan="4">Property Reference No : {{allProperty.PROPERTYID}}</td>
+</tr>
+<tr>
+
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+
+</tr>
+<!-- <tr>
+<td class="tbl2">  
+  <button type="button" class="btn btn-info" data-toggle="modal"  matTooltip="Click Edit Button" (click)="loadProperty(allProperty.PROPERTYID)">Update</button>  
+</td>  
+</tr> -->
+</tbody>
+</table>
+
+
+                </div>
+              
+            </div>
+          </mat-card-content>  
+        </mat-card>  
+              </mat-sidenav-content>
+            </mat-sidenav-container>
+        
+        
+        
+       

@@ -1,0 +1,166 @@
+<app-is-logged-in></app-is-logged-in>
+
+<mat-sidenav-container class="example-container"  >
+    <mat-sidenav mode="side" opened> 
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+ <app-username></app-username>
+          <mat-card>  
+            <mat-toolbar color="primary">  
+              <div class="container w-100 row"  >
+              <div align="center" style="color:white; text-align: left;  " class="col-6">  
+               My Account Details
+             
+               </div>
+  
+               <div text align="right"  class="col-6">
+               
+  
+               </div>
+               <br>
+            
+            
+  
+            </div>
+            </mat-toolbar>  
+          <br><br>  
+            <mat-card-content>  
+          
+            
+               <mat-card class="my-card">
+                <h2 style="text-align:center">USER PROFILE</h2>
+
+                    <div class="card">
+                    <h1>{{myClient.Name + ' ' + myClient.Surname}}</h1>
+                    <br> 
+                    <label>Name: {{myClient.Name}}</label>
+                    <label>Surname: {{myClient.Surname}}</label>
+                    <label>Phone Number: {{myClient.PhoneNo}}</label>
+                    <label>Email: {{myClient.Email}}</label>
+                    <label *ngIf="myClient.PassportNo">Passport Number: {{myClient.PassportNo}}</label>
+                    <label *ngIf="myClient.IdNo">ID Number: {{myClient.IdNo}}</label>
+                    <label>Nationality: {{myClient.Nationality}}</label>
+                    <label>Date of birth: {{myClient.DOB | date: 'dd/MM/yyyy'}}</label>
+                    <label>Residental Address: {{myClient.Residental}}</label>
+                    <label>Postal Address: {{myClient.Postal}}</label>
+                    <label *ngIf="!isStudent">Employer: {{myClient.Employer}}</label>
+                    <label *ngIf="!isStudent">Occupation: {{myClient.Occupation}}</label>
+                    <label *ngIf="!isStudent">WorkAddress: {{myClient.WorkAddress}}</label>
+                    <label *ngIf="!isStudent">WorkTel: {{myClient.WorkTel}}</label>
+                    <label *ngIf="!isStudent">GrossSalary: R{{myClient.GrossSalary}}</label>
+                    <p><button routerLink = '/update-user' >Update Details</button></p>
+                    <p><button routerLink = '/verify' [hidden]="verified" >Verify Account</button></p>
+                    <p><button (click)="Addopen()"  hidden type="button" data-toggle="modal" data-target="#addAreaModal">Deactivate Account</button></p>
+                    </div>
+                    <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#update">Open Modal</button>
+             </mat-card>
+            </mat-card-content>  
+          </mat-card>   
+  
+  
+                
+           
+          
+                </mat-sidenav-content>
+              </mat-sidenav-container>
+          
+
+          
+          
+       
+              <div class="modal fade" id="openModalButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header alert-success ">
+                      <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Successful</h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Successfully updated details</label>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+    
+         <div class="modal fade" *ngIf="AddshowModalBox" id="addAreaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <form [formGroup]="deactivateForm" (ngSubmit)="Deactivate()"> 
+                  <div class="modal-header alert-primary ">
+                    <h3 class="modal-title text-center" id="exampleModalLabel" style="text-align: center;">Deactivate Account</h3>
+                    <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Reason for deactivating</label>
+                      <input type="text" class="form-control" id="exampleFormControlInput1" #Reason placeholder=""  reuired formControlName="Reason" >
+    
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!deactivateForm.valid" >Deactivate </button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div id="MyModal"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()" data-dismiss="modal">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel" style="color:rgb(60, 191, 196)">My Account Details Page</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>This My Account Details Page.</p><br/>
+                    <p style="color:rgb(60, 191, 196); font-weight: bold">Here you can select to:</p>
+                    <p>-Click UPDATE DETAILS to navigate to update details page </p>
+                    
+                 
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div id="MyModal1"  mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel" style="color:green">View user Page</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="modal-body">
+                      <a href="https://motlatso-baps.github.io/HelpInturbidus/pages/6251-manage-account.html" target="_blank" mat-menu-item>
+                       
+                        <mat-icon class="icons">help_outline</mat-icon>        
+                        Go to Help</a>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+    
